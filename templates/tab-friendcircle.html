@@ -1,0 +1,50 @@
+<ion-view view-title="朋友圈">
+  <ion-content style="background: #e8ebf1;" class="padding">
+    <div class="list card" ng-repeat="info in infos">
+    
+	  <div class="item item-avatar">
+	    <img ng-src="{{info.avatar_img}}">
+	    <h2>{{info.avatar_name}}</h2>
+	    <p>{{info.publish_time}}</p>
+	  </div>
+	
+	  <div class="item item-body">
+	  	<p class="friendcircle-title">
+	    {{info.content_info}}
+	    </p>
+	    
+	    <div class="row friendcircle-row" >
+		    <ul class="friendcircle-cell-list">
+	    		<li class="friendcircle-cell-{{formatcell(info.content_img.length)}}" ng-repeat='imglist in info.content_img track by $index' >
+	    			<img class="full-image"  ng-src="{{imglist}}">
+	    		</li>
+	    	</ul>
+    	</div>
+    	
+	    <p class="friendcircle-answer-tab">
+	     	<span class="friendcircle-choose" ng-show="click1">
+	     		 <a href="#"><i class="ion-ios-heart-outline"></i>点赞</a>
+	     		 <span>|</span>
+				 <a href="#" ng-click="showPopup()"><i class="ion-ios-chatbubble-outline"></i>评论</a>
+	     	</span>
+		    <a href="#" class="friendcircle-tab-click" ng-click="click1=!click1">
+		      <i class="ion-chatbox"></i>
+		    </a>
+	    </p>
+	    <div class="friendcircle-answer">
+	    	<p class="friendcircle-first-p">
+	    	  <i class="ion-ios-heart-outline"></i>
+	    	  <a ng-repeat='heartname in info.reply_heart track by $index' >{{heartname}}</a>
+		    </p>
+		    
+		    <p class="friendcircle-answer-body" ng-repeat='replycontent in info.reply track by $index'>
+	    	  <a>{{replycontent.name}}</a>:
+	    	  <span>{{replycontent.content}}</span>
+		    </p>
+	    </div>
+	    
+	  </div>
+	</div>
+	
+  </ion-content>
+</ion-view>

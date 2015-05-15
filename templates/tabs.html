@@ -1,0 +1,38 @@
+<!--
+Create tabs with an icon and label, using the tabs-dark style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-background-dark tabs-color-stable">
+
+  <!-- Welcome Tab -->
+  <ion-tab title="主页" icon-off="ion-ios-ionic-outline" icon-on="ion-ionic" href="#/tab/home">
+    <ion-nav-view name="tab-home"></ion-nav-view>
+  </ion-tab>
+
+  <!-- 朋友圈 Tab -->
+  <ion-tab title="朋友圈" icon-off="ion-happy-outline" icon-on="ion-happy" href="#/tab/friendcircle">
+    <ion-nav-view name="tab-friendcircle"></ion-nav-view>
+  </ion-tab>
+   
+  <ion-tab title="聊天室" icon-off="ion-social-twitch-outline" icon-on="ion-social-twitch" href="#/tab/chatroom">
+    <ion-nav-view name="tab-chatroom"></ion-nav-view>
+  </ion-tab> 
+  
+  <!-- Deploy Tab -->
+  <ion-tab title="好友" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#/tab/deploy">
+    <ion-nav-view name="tab-deploy"></ion-nav-view>
+  </ion-tab>
+  
+
+  <!-- Push Tab -->
+  <ion-tab title="消息" icon-off="ion-ios-chatbubble-outline" icon-on="ion-ios-chatbubble" href="#/tab/push">
+    <ion-nav-view name="tab-push"></ion-nav-view>
+  </ion-tab>
+  
+  <!-- User Tab -->
+  <ion-tab title="账户" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/user">
+    <ion-nav-view name="tab-user"></ion-nav-view>
+  </ion-tab>
+  
+</ion-tabs>
