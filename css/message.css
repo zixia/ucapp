@@ -1,0 +1,148 @@
+/*tab-message.html */
+.message-no-border{
+	border: 0 !important;
+}
+
+.message-search{
+	background: #e8ebf1;
+	margin-top:-10px;
+	margin-left: -10px;
+	margin-right: -10px;
+	margin-bottom:0px;
+	padding: 5px;
+}
+
+.message-search input{
+	border-radius: 5px;
+	width: 100%;
+}
+
+.message-search input[type="text"]{
+	height: 20px;
+}
+
+.message-search input::-webkit-input-placeholder{
+	text-align: center;
+}
+
+.message-list{
+	border-bottom: 1px solid #ddd;
+	padding-top: 5px !important;
+	height: 50px;
+	border-left:none !important;
+	border-right:none !important ;
+}
+
+.message-list-img{
+	float: left;
+}
+
+.message-list-img img{
+	width: 40px;
+	height: 40px;
+	border-radius: 5px;
+}
+
+.message-content{
+	float: left;
+	padding-left: 10px;
+	max-width: 70%;
+}
+
+.message-name{
+	color: #000 !important;
+	margin: 0px !important;
+	overflow: hidden;
+	white-space:nowrap;
+}
+
+.message-info{
+	color: #888 !important;
+	font-size: 12px !important;
+	margin: 0px !important;
+	overflow: hidden;
+	white-space:nowrap;
+}
+.message-time{
+	position: absolute;
+	right: 0px;
+}
+
+.message-time p{
+	font-size: 10px !important;
+	color: #888 !important;
+}
+
+.message-detail-list{
+	border: none !important;
+	padding: 10px !important;
+	background-color: #e8ebf1 !important;
+}
+
+.message-detail-img-left{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+}
+
+.arrow-left{
+	position: absolute;
+	top: 18px;
+	left: 40px;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	border: solid 6px;
+	border-color: #e8ebf1 #FFF #e8ebf1 #e8ebf1 ;
+}
+
+.message-detail-span-left{
+	background-color: #FFF;
+	width: auto;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-left:42px;
+	margin-right: 40px;
+	font-size: 14px;
+	white-space: normal;
+	float: left;
+	word-wrap: break-word; word-break: break-all;
+	border-radius: 5px;
+}
+
+.message-detail-img-right{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	right: 10px;
+}
+
+.arrow-right{
+	position: absolute;
+	top: 18px;
+	right: 40px;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	border: solid 6px;
+	border-color: #e8ebf1  #e8ebf1 #e8ebf1 #FFF;
+}
+
+.message-detail-span-right{
+	background-color: #FFF;
+	width: auto;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-right:41px;
+	margin-left:40px; 
+	font-size: 14px;
+	white-space: normal;
+	float: right;
+	word-wrap: break-word; 
+	word-break: break-all;
+	border-radius: 5px;
+}

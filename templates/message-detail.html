@@ -1,0 +1,30 @@
+
+<ion-view view-title="{{messageitem.message_user}}">
+	<ion-nav-bar class="bar-dark">
+      <ion-nav-buttons class = "button-icon">
+      <button class="button-stable button-clear" ng-click="gomessage()">
+        <i class="ion-ios-arrow-left"></i>消息
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content style="background: #e8ebf1;">
+<div ng-repeat='item in messageitem.message_array track by $index'>
+   <ion-item class = "message-detail-list">
+    <img ng-src="{{format_img(item.name,messageitem.message_img)}}" class = "message-detail-img-{{item.name}}">
+      <div class = "message-detail-span-{{item.name}}">
+        <div class = "arrow-{{item.name}}"></div>
+        {{item.content}}
+      </div>
+  </ion-item>
+</div>
+
+  </ion-content>
+
+  <ion-footer-bar>
+   <label class="item-input-wrapper">
+    <input type="text" class = "friendcircle_input" ng-model = "message_detail_send"> 
+   </label>
+   <button class = "friendcircle_inputbutton" ng-click = "sendmessagedetail()">发送</button>
+  </ion-footer-bar>
+</ion-view>

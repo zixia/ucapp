@@ -1,0 +1,31 @@
+/*tab-discovery.html */
+.discover-list{
+	background-color:#FFF;
+	margin-top:15px;
+	padding-top:9px;
+	padding-bottom:1px; 
+	padding-left: 20px;
+	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+}
+
+.dicover-list p{
+	margin: 0px !important;
+	padding: 0px !important;
+}
+
+.border_none{
+	border:none;
+}
+
+.discover_i{ 
+	padding-right: 8px;
+	font-size: 18px;
+}
+
+.discover_right_i{
+	position: absolute;
+	right: 10px;
+	font-size: 10px;
+	color: #ddd;
+}

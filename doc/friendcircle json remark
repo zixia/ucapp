@@ -1,0 +1,11 @@
+friendcircle json remark
+	 
+	发状态人id "friend_id":"ruirui",
+	发状态人头像地址 "avatar_img":"./img/1.jpg",
+	发状态人昵称 "avatar_name":"ruiruxxxi",
+	发布时间 "publish_time":"2小时前",
+	发布内容 "content_info":"这是一段文字的",
+	发布图片地址 "content_img":"",
+	点赞人 "reply_heart":["aa","bb"],
+	回复人及评论过 "reply":[{"name":"ruirui1","content":"qqqqq"},{"name":"ruirui2","content":"dddddddd"}]
+	 

@@ -1,0 +1,53 @@
+/*personalhomepage.css*/
+.personalhomepage_sign{
+	margin-top: 20px;
+	float: right;
+	margin-right:10px;
+	color: #666;
+	font-size: 80%; 
+}
+
+.personal_homepage_list{
+	border: none !important;
+	margin-top: 25px !important;
+}
+
+.personal_homepage_time{
+	color: #000;
+	float: left;
+	/*position: absolute;
+	left: 0;*/
+}
+
+.personal_homepage_time .date{
+	font-size: 120%;
+	font-weight: 900;
+}
+
+.personal_homepage_time .month{
+	font-size: 70%;
+	margin-left: -3px !important;
+}
+
+.personal_homepage_time_pic{
+	margin-top: 5px;
+	width: 80px;
+	height: 80px;
+}
+
+.personal_homepage_time_pic img{
+	width: 100%;
+	margin-left: 50px;
+}
+
+.personal_homepage_time_word{
+	background-color: #eee;
+	margin-left: 50px;
+	font-size: 80%;
+	color: #444;
+	margin-top: 5px;
+	padding-left: 5px;
+	word-wrap: break-word; 
+	word-break: break-all;
+	white-space: normal;
+}

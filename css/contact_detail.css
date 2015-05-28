@@ -1,0 +1,77 @@
+/*contact_detail.css*/
+.contact_item_div{
+	margin: 10px;
+}
+
+.contact_item_div img{
+	width: 60px; 
+	height: 60px;
+	border-radius: 5px;
+	float: left;
+}
+
+.contact_item_title{
+	margin-left: 70px;
+}
+
+.contact_item_title h3{
+	font-size: 20px;
+}
+
+.contact_item_title p{
+	color: #888;
+}
+
+.contact_content{
+	background-color:#FFF;
+	margin-top: 15px;
+}
+
+.contact_content_list{
+	border-bottom: 1px solid #ddd;
+	padding: 10px;
+	color: #888;
+	font-size: 14px !important;
+}
+
+.contact_content_list span{
+	position: absolute;
+	left: 90px;
+}
+
+.contact_content_list_big{
+	border-bottom: 1px solid #ddd;
+	padding: 10px !important;
+	color: #888 !important;
+	font-size: 14px !important;
+	height:60px;
+}
+
+.contact_content_list_big p{
+	float: left;
+	color: #888 !important;
+	font-size: 14px !important;
+	margin-right:25px; 
+}
+
+.contact_content_list_big img{
+	width: 40px;
+	height:40px;
+	margin-right: 3px;
+}
+
+.contact_detail_button{
+	padding: 10px;
+	margin: 5px !important;
+
+}
+
+.contact_detail_button button{
+	width: 100%;
+	border: none;
+	height: 30px;
+	border-radius: 5px;
+	color: #fff;
+	background-color: #00AA00;
+}
+ 

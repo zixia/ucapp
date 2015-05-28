@@ -1,0 +1,74 @@
+[
+	
+	{"message_id":"88881234",
+	 "message_img":"./img/head.jpg",
+	 "message_user":"紫霞",
+	 "message_user_id":"1111",
+	 "message_publish_time":"上午10点",
+	 "message_array":[
+	 	{"name":"right","content":"我来啦"},
+	 	{"name":"right","content":"好呀好呀"},
+	 	{"name":"right","content":"不好玩"},
+	 	{"name":"right","content":"我要去欢乐谷"},
+	 	{"name":"left","content":"真的么"},
+	 	{"name":"right","content":"还是去水魔方把"},
+	 	{"name":"left","content":"快点快点把代码调通"}
+	 	] 
+	 },
+
+	 {"message_id":"88881235",
+	 "message_img":"./img/con1.jpg",
+	 "message_user":"zixia",
+	 "message_user_id":"2222",
+	 "message_publish_time":"上午10点",
+	 "message_array":[
+	 	{"name":"right","content":"qqqqq"},
+	 	{"name":"left","content":"dddddddd"},
+	 	{"name":"left","content":"dddddddd"},
+	 	{"name":"left","content":"dddddddd"},
+	 	{"name":"right","content":"dddddddd"},
+	 	{"name":"left","content":"dddddddd"},
+	 	{"name":"right","content":"dddddddd"}
+	 	] 	 
+	 },
+
+	 {"message_id":"88881236",
+	 "message_img":"./img/con2.jpg",
+	 "message_user":"ruirui",
+	 "message_user_id":"3333",
+	 "message_publish_time":"上午10点",
+	 "message_array":[
+	 	{"name":"left","content":"qqqqq"},
+	 	{"name":"right","content":"dddddddd"},
+	 	{"name":"left","content":"qqqqq"},
+	 	{"name":"right","content":"dddddddd"},
+	 	{"name":"left","content":"qqqqq"},
+	 	{"name":"right","content":"dddddddd"},
+	 	{"name":"right","content":"qqqqq"},
+	 	{"name":"left","content":"haowan bu s"}
+	 	] 
+	 },
+
+	 {"message_id":"88881237",
+	 "message_img":"./img/1.jpg",
+	 "message_user":"芮芮",
+	 "message_user_id":"4444",
+	 "message_publish_time":"上午10点",
+	 "message_array":[
+	 	{"name":"right","content":"qqqqq"},
+	 	{"name":"left","content":"yingle"}
+	 	] 	
+	 },
+
+	 {"message_id":"88881238",
+	 "message_img":"./img/con4.jpg",
+	 "message_user":"嘿嘿",
+	 "message_user_id":"5555",
+	 "message_publish_time":"上午10点",
+	 "message_array":[
+	 	{"name":"right","content":"qqqqq"},
+	 	{"name":"left","content":"laile"}
+	 	] 
+	 }
+ 
+]

@@ -1,13 +1,8 @@
 [
-	{"avatar_img":"./img/1.jpg",
-	 "avatar_name":"ruiruxxxi",
-	 "publish_time":"2小时前",
-	 "content_info":"这是一张图片的",
-	 "content_img":["./img/1.jpg"],
-	 "reply_heart":["aa","bb"],
-	 "reply":[{"name":"ruirui1","content":"qqqqq"},{"name":"ruirui2","content":"dddddddd"}]
-	 },
-	 {"avatar_img":"./img/1.jpg",
+	
+	{
+	 "friend_id":"1111111",
+	 "avatar_img":"./img/1.jpg",
 	 "avatar_name":"ruiruxxxi",
 	 "publish_time":"2小时前",
 	 "content_info":"这是一段文字的",
@@ -15,7 +10,21 @@
 	 "reply_heart":["aa","bb"],
 	 "reply":[{"name":"ruirui1","content":"qqqqq"},{"name":"ruirui2","content":"dddddddd"}]
 	 },
-	 {"avatar_img":"./img/1.jpg",
+	 
+	{
+	 "friend_id":"2222222",
+	 "avatar_img":"./img/1.jpg",
+	 "avatar_name":"ruiruxxxi",
+	 "publish_time":"2小时前",
+	 "content_info":"这是一张图片的",
+	 "content_img":["./img/1.jpg"],
+	 "reply_heart":["aa","bb"],
+	 "reply":[{"name":"ruirui1","content":"qqqqq"},{"name":"ruirui2","content":"dddddddd"}]
+	 },
+	 
+	 {
+	 "friend_id":"3333333",
+	 "avatar_img":"./img/1.jpg",
 	 "avatar_name":"ruiruxxxi",
 	 "publish_time":"2小时前",
 	 "content_info":"这是多多张图片的",
@@ -23,7 +32,10 @@
 	 "reply_heart":["aa","bb"],
 	 "reply":[{"name":"ruirui1","content":"qqqqq"},{"name":"ruirui2","content":"dddddddd"}]
 	 },
-	 {"avatar_img":"./img/1.jpg",
+
+	 {
+	 "friend_id":"44444444",
+	 "avatar_img":"./img/1.jpg",
 	 "avatar_name":"ruiruxxxi",
 	 "publish_time":"2小时前",
 	 "content_info":"这是2张图片的",

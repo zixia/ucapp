@@ -5,34 +5,34 @@ navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-background-dark tabs-color-stable">
 
-  <!-- Welcome Tab -->
-  <ion-tab title="主页" icon-off="ion-ios-ionic-outline" icon-on="ion-ionic" href="#/tab/home">
-    <ion-nav-view name="tab-home"></ion-nav-view>
+  <ion-tab title="活动" icon-off="ion-ios-pricetags-outline" icon-on="ion-ios-pricetags" href="#/tab/activity">
+    <ion-nav-view name="tab-activity"></ion-nav-view>
   </ion-tab>
 
-  <!-- 朋友圈 Tab -->
-  <ion-tab title="朋友圈" icon-off="ion-happy-outline" icon-on="ion-happy" href="#/tab/friendcircle">
+  <ion-tab title="消息" icon-off="ion-ios-chatbubble-outline" icon-on="ion-ios-chatbubble" href="#/tab/message">
+    <ion-nav-view name="tab-message"></ion-nav-view>
+  </ion-tab>  
+
+<!--   <ion-tab title="朋友圈" icon-off="ion-happy-outline" icon-on="ion-happy" href="#/tab/friendcircle">
     <ion-nav-view name="tab-friendcircle"></ion-nav-view>
+  </ion-tab> -->
+
+ <!--  <ion-tab title="通讯录" icon-off="ion-ios-personadd-outline" icon-on="ion-ios-personadd" href="#/tab/contact">
+    <ion-nav-view name="tab-contact"></ion-nav-view>
+  </ion-tab> -->
+
+  <ion-tab title="发现" icon-off="ion-ios-ionic-outline" icon-on="ion-ionic" href="#/tab/discovery">
+    <ion-nav-view name="tab-discovery"></ion-nav-view>
   </ion-tab>
    
-  <ion-tab title="聊天室" icon-off="ion-social-twitch-outline" icon-on="ion-social-twitch" href="#/tab/chatroom">
+<!--   <ion-tab title="聊天室" icon-off="ion-social-twitch-outline" icon-on="ion-social-twitch" href="#/tab/chatroom">
     <ion-nav-view name="tab-chatroom"></ion-nav-view>
-  </ion-tab> 
+  </ion-tab>  -->
   
-  <!-- Deploy Tab -->
-  <ion-tab title="好友" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#/tab/deploy">
-    <ion-nav-view name="tab-deploy"></ion-nav-view>
+  <ion-tab title="我" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/account" hidden="false">
+    <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
-  
 
-  <!-- Push Tab -->
-  <ion-tab title="消息" icon-off="ion-ios-chatbubble-outline" icon-on="ion-ios-chatbubble" href="#/tab/push">
-    <ion-nav-view name="tab-push"></ion-nav-view>
-  </ion-tab>
-  
-  <!-- User Tab -->
-  <ion-tab title="账户" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/user">
-    <ion-nav-view name="tab-user"></ion-nav-view>
-  </ion-tab>
-  
+
+
 </ion-tabs>

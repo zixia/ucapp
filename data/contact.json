@@ -1,0 +1,36 @@
+[
+	
+	{"contact_img":"./img/head.jpg",
+	 "contact_name":"紫霞",
+	 "contact_id":"1111",
+	 "contact_region":"Beijing",
+	 "contact_sign":"帅帅坏坏哒",
+	 "contact_pic":["img/1.jpg","img/con1.jpg","img/con2.jpg","img/con4.jpg"]
+	 },
+
+	 {"contact_img":"./img/con1.jpg",
+	 "contact_name":"zixia",
+	 "contact_id":"2222",
+	 "contact_region":"Beijing",
+	 "contact_sign":"帅帅坏坏哒",
+	 "contact_pic":["img/head.jpg","img/heihei.jpg","img/dance.jpg","img/1.jpg"]
+	 },
+
+	{"contact_img":"./img/con2.jpg",
+	 "contact_name":"ruirui",
+	 "contact_id":"3333",
+	 "contact_region":"Beijing",
+	 "contact_sign":"帅帅坏坏哒",
+	"contact_pic":["img/1.jpg","img/con1.jpg","img/con2.jpg","img/con4.jpg"]
+	 },
+
+	 {"contact_img":"./img/1.jpg",
+	 "contact_name":"芮芮",
+	 "contact_id":"4444",
+	 "contact_region":"Beijing",
+	 "contact_sign":"帅帅坏坏哒",
+	 "contact_pic":["img/head.jpg","img/heihei.jpg","img/dance.png","img/1.jpg"]
+	 }
+
+	 
+]

@@ -1,0 +1,28 @@
+<ion-view view-title="通讯录">
+  <ion-nav-bar class="bar-dark">
+      <ion-nav-buttons class = "button-icon">
+      <button class="button-stable button-clear" ng-click="godiscover()">
+        <i class="ion-ios-arrow-left"></i>返回
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content  class="padding">
+  
+  	<div class = "contact-search">
+      <input ng-model="query" type="text" placeholder="搜索"/>
+    </div>
+
+
+    <ion-item  class="contact-list" ng-repeat = "contact in contacts | filter:query" href="#/contact/{{contact.contact_id}}">
+
+      <div class = "contact-list-img">
+        <img ng-src="{{contact.contact_img}}">
+      </div>
+
+      <div class = "contact-content">
+        <p>{{contact.contact_name}}</p>
+      </div>
+
+    </ion-item>
+  </ion-content>
+</ion-view>

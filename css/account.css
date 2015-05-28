@@ -1,0 +1,60 @@
+/*tab-account.html */
+.no-border{
+	border:none !important;
+}
+
+.account-content{
+	background-color:#FFF;
+	margin-top: 15px;
+	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+}
+
+.account-item-img{
+	height: 60px;
+}
+
+.account-item-img p{
+	float: left;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.account-item-img img{
+	height: 50px;
+	width: 50px;
+	border-radius: 5px;
+	position: absolute;
+	right: 25px;
+	margin-top: 5px;
+}
+
+.account-item-img i{
+	position: absolute;
+	right: 10px;
+	font-size: 10px;
+	color: #ddd;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.accout-item{
+	margin-left: 20px;
+	margin-right: 10px;
+	border-top: 1px solid #ddd;
+	padding-top: 8px;
+}
+
+.accout-item span{
+	position: absolute;
+	right: 20px;
+	font-size: 14px;
+	color: #ddd;
+}
+
+.accout-i {
+	position: absolute;
+	right: 10px;
+	font-size: 10px;
+	color: #ddd;
+}

@@ -1,0 +1,58 @@
+/*tab-contact.html */
+.contact-search{
+	background: #e8ebf1;
+	margin-top:-10px;
+	margin-left: -10px;
+	margin-right: -10px;
+	margin-bottom:0px;
+	padding: 5px;
+}
+
+.contact-search input{
+	border-radius: 5px;
+	width: 100%;
+}
+
+.contact-search input[type="text"]{
+	height: 20px;
+}
+
+.contact-search input::-webkit-input-placeholder{
+	text-align: center;
+}
+
+.contact-list{
+	border-left:none !important;
+	border-right:none !important ;
+	border-bottom: 1px solid #ddd;
+	padding-top: 5px !important;
+	height: 40px;
+}
+
+.contact-list-img{
+	float: left;
+}
+
+.contact-list-img img{
+	width: 30px;
+	height: 30px;
+}
+
+.contact-content{
+	float: left;
+	padding-left: 10px;
+	max-width: 70%;
+}
+
+.contact-content p{
+	margin: 5px !important;
+	overflow: hidden;
+	white-space:nowrap;
+	font-size: 15px;
+}
+
+/*改写原生ionic样式*/
+.item-complex .item-content{
+	margin: 0px !important;
+	padding: 0px !important;
+}

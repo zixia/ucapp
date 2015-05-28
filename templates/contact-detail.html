@@ -1,0 +1,43 @@
+
+<ion-view view-title="详细资料">
+	<ion-nav-bar class="bar-dark">
+      <ion-nav-buttons class = "button-icon">
+      <button class="button-stable button-clear" ng-click="gocontact()">
+        <i class="ion-ios-arrow-left"></i>通讯录
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content style="background: #e8ebf1;">
+
+  	<div class = "contact_item_div">
+  		<img ng-src="{{contactitem.contact_img}}">
+
+  		<div class = "contact_item_title">
+			<h3>{{contactitem.contact_name}}</h3>
+			<p>id:{{contactitem.contact_id}}</p>
+  		</div>
+  	</div>
+    
+  	<div class = "contact_content">
+  		<div class = "contact_content_list">
+			地区<span>{{contactitem.contact_region}}</span>
+  		</div>
+
+  		<div class = "contact_content_list">
+  			个性签名<span>{{contactitem.contact_sign}}</span>
+  		</div>
+
+  		<ion-item class = "contact_content_list_big" href="#/message/{{contactitem.contact_id}}">
+  			<p>个人相册</p>
+  				<img ng-repeat='contact_pic_src in contactitem.contact_pic track by $index' ng-src="{{contact_pic_src}}">
+  		</ion-item >
+  	</div>
+
+  	<ion-item class = "contact_detail_button" href="#/message/{{contactitem.contact_id}}">
+  		<button >发消息</button>
+  	</ion-item>
+
+
+
+  </ion-content>
+</ion-view>

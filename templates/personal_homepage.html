@@ -1,0 +1,60 @@
+<ion-view title="相册">
+	<ion-nav-bar class="bar-dark">
+	    <ion-nav-buttons class = "button-icon">
+	    <button class="button-stable button-clear" ng-click="godiscover()">
+	      <i class="ion-ios-arrow-left"></i>详细资料
+	    </button>
+	  </ion-nav-buttons>
+	</ion-nav-bar>
+
+  <ion-content class="padding" on-tap="clearclick()">
+  	<ion-refresher on-refresh="refresh()"></ion-refresher>
+  	<div class = "friendcircle-header">
+  		<div class = "friendcircle-header-div">
+  			<img ng-src={{userBasicInfo.user_headpic}} >
+  		</div>
+
+  		<div class = "friendcircle-header-nickname">
+  			<p>{{userBasicInfo.user_name}}</p>
+  		</div>
+
+  		<div class = "friendcircle-header-avatar">
+  			<img ng-src={{userBasicInfo.user_avatar}} >
+  		</div>
+
+  		<p class = "personalhomepage_sign">
+  			{{userBasicInfo.user_sign}}
+  		</p>
+
+  	</div>
+
+  	<div style = "margin-top:60px">
+  		<ion-item class = "personal_homepage_list" ng-repeat = "infoitem in userContentInfo" href = "#/personal_homepage_detail">
+  		<div class = "personal_homepage_time">
+  			<span class = "date">{{infoitem.publish_time_date}}</span>
+  			<span class = "month">{{infoitem.publish_time_month}}</span>
+  		</div>
+
+  		<div class = "personal_homepage_time_pic">
+  			<img src={{img}} ng-repeat = "img in infoitem.content_img">
+  		</div>
+
+  		<div class = "personal_homepage_time_word">
+  			{{infoitem.content_info}}
+  		</div>
+  	</ion-item>
+  	</div>
+
+  	
+    
+
+  </ion-content>
+
+  <ion-footer-bar ng-show="inputshow">
+	 <label class="item-input-wrapper">
+	 	<input type="text" class = "friendcircle_input" placeholder="评论" ng-model = "inputContent"> 
+	 </label>
+	 
+	 <button class = "friendcircle_inputbutton" ng-click = "sendremark()">发送</button>
+  </ion-footer-bar>
+</ion-view>

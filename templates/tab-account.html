@@ -1,0 +1,46 @@
+<ion-view view-title="我">
+	<ion-content style="background: #e8ebf1;" ng-repeat = "user in users">
+		<div class = "account-content" >
+			<div class = "account-item-img">
+				<p>头像</p>
+				<img ng-src="{{user.user_avatar}}">
+				<i class = "ion-chevron-right"></i>
+			</div>
+			<div class = "accout-item">
+				<p>
+				 名字
+				 <span>{{user.user_name}}</span>
+				 <i class = "ion-chevron-right accout-i"></i>
+				</p>	
+			</div>	    
+	    </div>
+
+	    <div class = "account-content">
+			<div class = "accout-item no-border">
+				<p>
+				 性别
+				 <span>{{user.user_gender}}</span>
+				 <i class = "ion-chevron-right accout-i"></i>
+				</p>	
+			</div>	 
+
+			<div class = "accout-item">
+				<p>
+				 地区
+				 <span>{{user.user_area}}</span>
+				 <i class = "ion-chevron-right accout-i"></i>
+				</p>	
+			</div>	
+
+			<div class = "accout-item">
+				<p>
+				 签名
+				 <span>{{user.user_sign}}</span>
+				 <i class = "ion-chevron-right accout-i"></i>
+				</p>	
+			</div>	   
+	    </div>
+
+	
+	</ion-content>
+</ion-view>
