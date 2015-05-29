@@ -38,7 +38,11 @@ angular.module('starter.controllers', [])
     });
 
     $scope.gomessage = function(){
-            $state.go("tab.message");
+        $state.go("tab.message");
+    }
+
+    $scope.gocontact = function(){
+        $state.go("contact-detail",{'contactId':num});
     }
 
     $scope.format_img = function(source,img_src){

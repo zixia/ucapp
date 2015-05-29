@@ -64,7 +64,7 @@ angular.module('starter', [
   service.getMainInfo = function(){
     // return $http.get('data/contact.json');
     return $http
-    .post('http://127.0.0.1/17salsa_serve/showcontact.php',{user_id:user_id});
+    .post('http://17salsa.com/app++/showcontact.php',{user_id:user_id});
   }
 
   return service;
@@ -78,7 +78,7 @@ angular.module('starter', [
   service.getMainInfo = function(){
     // return $http.get('data/message.json');
     return $http
-    .post('http://127.0.0.1/17salsa_serve/showmessage.php',{user_id:user_id});
+    .post('http://17salsa.com/app++/showmessage.php',{user_id:user_id});
   }
 
   return service;
@@ -102,12 +102,12 @@ angular.module('starter', [
 
   service.getContactUserInfo = function(user_id){
     return $http
-    .post('http://127.0.0.1/17salsa_serve/showcontactInfo.php',{user_id:user_id});
+    .post('http://17salsa.com/app++/showcontactInfo.php',{user_id:user_id});
   };
 
   service.getContentInfo = function(){
     return $http
-    .post('http://127.0.0.1/17salsa_serve/showhomepage.php',{user_id:user_id});
+    .post('http://17salsa.com/app++/showhomepage.php',{user_id:user_id});
   };
 
   return service;
@@ -118,7 +118,8 @@ angular.module('starter', [
 	function login (username,password){
 		return $http
 //		.post('http://17salsa.com/login.php',{username:"zixia"})
-		.post('http://127.0.0.1/17salsa_serve/login.php',{username:username,password:password})
+		// .post('http://127.0.0.1/17salsa_serve/login.php',{username:username,password:password})
+    .post('http://17salsa.com/app++/login.php',{username:username,password:password})
 		.then(function(res){
       if (res.data.ret == true) {
         $window.sessionStorage['sessionId'] = res.data.sid;
