@@ -180,24 +180,12 @@ angular.module('starter', [
 })
 
 .run(function($rootScope, $location, AuthService,$state) {
-  // console.log(arguments);
 
-  $rootScope.$on("$stateChangeStart",function(event,a,b,c,d,e){
-    // console.log("???");
-    // console.log(AuthService);
-    // if (AuthService.isAuthenticated == "null") {
-    //   console.log('s');
-    //   $state.go("tab.user");//从user那里跳过来还是有问题。
-    //   // $location.path("/tab/user");//uiroute和ngroute的区别 uiroute是angularjs的扩展
-    // };
-  })
-
-  $rootScope.$on("$stateChangeError",function(event,a,b,c,d,e){
-    event.preventDefault(); //Note: Use event.preventDefault() to prevent the transition from happening.
-    // console.log(arguments);
-    // console.log(e);
-    if (e.authenticated === false) {
-      $state.go("tab.user");//从user那里跳过来还是有问题。
+  $rootScope.$on("$stateChangeStart",function(event,toState,b,c,d,e){
+    if(toState.name=='login')return;// 如果是进入登录界面则允许
+    if (!AuthService.isAuthenticated()) {
+      event.preventDefault();// 取消默认跳转行为
+      $state.go("login");
       // $location.path("/tab/user");//uiroute和ngroute的区别 uiroute是angularjs的扩展
     };
   })
