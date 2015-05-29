@@ -35,4 +35,6 @@ function login($data){
 	$response_json = json_encode($response);//生成json数据
 	print_r($response_json);
 }
+
 ?>
+
