@@ -1,0 +1,59 @@
+
+<ion-view view-title="详情">
+	<ion-nav-bar class="bar-dark">
+      <ion-nav-buttons class = "button-icon">
+      <button class="button-stable button-clear" ng-click="goaccount()">
+        <i class="ion-ios-arrow-left"></i>{{userBasic.user_name}}
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content style="background: #e8ebf1;">
+    <div class = "homepage_detail_head">
+      <img class = "homepage_detail_head_avatar" ng-src={{userBasic.user_avatar}}>
+      <p class = "homepage_detail_head_name">{{userBasic.user_name}}</p>
+      <p class = "homepage_detail_head_content">{{InfoItem.content_info}}</p>
+
+      <div class = "homepage_detail_head_img_div_list">
+        <ul class = "homepage_detail_head_img_cell_list">
+          <li class = "homepage_detail_head_img_cell" ng-repeat='img in InfoItem.content_img track by $index' >
+               <img class="full-image"    ng-src="{{img}}">
+          </li>
+        </ul>
+      </div> 
+
+      <span class = "homepage_detail_head_time">{{InfoItem.publis_time}}</span>
+      <span class = "homepage_detail_head_delete">删除</span>
+
+      <span class="friendcircle-choose" ng-show=0>
+           <a href="#" ng-click = "sendheart()"><i class="ion-ios-heart-outline"></i>点赞</a>
+           <span>|</span>
+         <a href="#" ng-click = "remark('{{info.avatar_name}}' )"><i class="ion-ios-chatbubble-outline"></i>评论</a>
+      </span>
+
+      <a href="#" class="friendcircle-tab-click" ng-click="clickfun({{$index}})">
+        <i class="ion-chatbox"></i>
+      </a>
+    </div>
+
+    <div class = "homepage_detail_content">
+      <div class="friendcircle-answer">
+          <p class="friendcircle-first-p">
+            <i class="ion-ios-heart-outline"></i>
+            <a ng-repeat='heartname in InfoItem.reply_heart track by $index' >{{heartname}}</a>
+          </p>
+          
+          <p class="friendcircle-answer-body" ng-repeat='replycontent in InfoItem.reply track by $index'>
+            <a>{{replycontent.name}}</a>:
+            <span>{{replycontent.content}}</span>
+          </p>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar>
+   <label class="item-input-wrapper">
+    <input type="text" class = "friendcircle_input" ng-model = "message_detail_send"> 
+   </label>
+   <button class = "friendcircle_inputbutton" ng-click = "sendmessagedetail()">发送</button>
+  </ion-footer-bar>
+</ion-view>

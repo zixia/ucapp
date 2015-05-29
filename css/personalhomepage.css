@@ -33,11 +33,76 @@
 	margin-top: 5px;
 	width: 80px;
 	height: 80px;
+	margin-left: 50px;
 }
 
-.personal_homepage_time_pic img{
-	width: 100%;
-	margin-left: 50px;
+.personal_homepage_cell_list{
+	margin:0;
+	padding:0;
+	list-style:none;
+	display:block;
+	text-align:center;
+	width:100%;
+}
+
+.personal_homepage_cell_1{
+	float:left;
+	margin-left:-5px;
+	display:inline-block;
+	max-width:100%;
+}
+
+.personal_homepage_cell_2{
+	float:left;
+	margin-left:-5px;
+	display:inline-block;
+}
+
+.personal_homepage_cell_3{
+	float:left;
+	margin-left:-5px;
+	display:inline-block;
+}
+
+.personal_homepage_img_div_1{
+	width: 70px;
+	height: 70px;
+	overflow:hidden;
+	float: left;
+	margin: 5px;
+}
+
+.personal_homepage_img_div_2{
+	width: 30px;
+	height: 70px;
+	overflow:hidden;
+	float: left;
+	margin: 5px;
+}
+
+.personal_homepage_img_div_3{
+	width: 30px;
+	height: 30px;
+	overflow:hidden;
+	float: left;
+	margin: 5px;
+}
+
+.personal_homepage_img{
+	height: 100%;
+}
+
+.personal_homepage_content{
+	position: absolute;
+	left:125px;
+	margin-top: 3px;
+	color: #444;
+	font-size: 80%;
+	word-wrap: break-word; 
+	word-break: break-all;
+	white-space: normal;
+	overflow: hidden;
+	height: 80px;
 }
 
 .personal_homepage_time_word{
@@ -46,7 +111,7 @@
 	font-size: 80%;
 	color: #444;
 	margin-top: 5px;
-	padding-left: 5px;
+	padding:4px; 
 	word-wrap: break-word; 
 	word-break: break-all;
 	white-space: normal;

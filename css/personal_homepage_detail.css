@@ -1,0 +1,63 @@
+/*personal_homepage_detail.css*/
+.homepage_detail_head{
+	margin: 10px;
+}
+
+.homepage_detail_head_avatar{
+	width: 35px;
+	height: 35px;
+	position: absolute;
+	left: 10px;
+}
+
+.homepage_detail_head_img_div_list{
+	margin-left:35px;
+}
+
+.homepage_detail_head_img_cell_list{
+	margin:0;
+	padding:0;
+	list-style:none;
+	display:block;
+	text-align:left;
+	width:100%;
+	
+}
+
+.homepage_detail_head_img_cell{
+	padding:5px;
+	margin:0px;
+	display:inline-block;
+	max-width:33.33333%;
+}
+.homepage_detail_head_name{
+	margin-left:40px; 
+	color: #387ef5;
+	margin-bottom: 0px;
+}
+
+.homepage_detail_head_content{
+	margin-left:40px;
+	margin-top:5px;
+	margin-bottom: 0px;
+	font-size: 80%;
+	line-height: 110%;
+}
+
+.homepage_detail_head_time{
+	margin-left:40px;
+	margin-top: 5px;
+	font-size: 60%;
+	line-height: 80%;
+	color: #666; 
+}
+
+.homepage_detail_head_delete{
+	color: #387ef5;
+	font-size: 60%;
+}
+
+.homepage_detail_content{
+	margin-left: 50px;
+	margin-top:20px; 
+}

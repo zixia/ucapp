@@ -274,7 +274,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('PersonalHomepageCtrl', function($http, $scope,$ionicLoading,PersonalHomepageService) {
+.controller('PersonalHomepageCtrl', function($http, $scope,$state,$ionicLoading,PersonalHomepageService) {
     $ionicLoading.show({
         template:'<i class = "ion-load-c"><br></i>Loading...'
     });
@@ -288,7 +288,65 @@ angular.module('starter.controllers', [])
     }).then(function(){
         $ionicLoading.hide();
     });
+
+    $scope.formatcell = function(num){
+         if(num == 1){
+            return 1;
+          }
+          if(num == 2){
+            return 2;
+          }
+          else{
+            return 3;
+          }
+    };
+
+    $scope.infoshowpic = function(type){
+        if(type == "pic"){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    $scope.infoshowword = function(type){
+        if(type == "word"){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+     $scope.gofriendcircle = function(){
+        $state.go("friendcircle");
+    }
+})
+
+.controller('PersonalHomepageDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,PersonalHomepageService) {
+
+    var num = $stateParams.infoId;
+
+    $ionicLoading.show({
+        template:'<i class = "ion-load-c"><br></i>Loading...'
+    });
+
+    PersonalHomepageService.getUserInfo().success(function(data) {
+        $scope.userBasic = data;
+    });
+
+    PersonalHomepageService.getContentInfo().success(function(data) {
+        $scope.InfoItem = data[num];
+    }).then(function(){
+        $ionicLoading.hide();
+    });
+
+    $scope.goaccount = function(){
+        $state.go("personalHomepage");
+    }
     
+
 })
 
 .controller('LoginCtrl',function($scope,$rootScope,AuthService){

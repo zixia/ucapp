@@ -3,9 +3,10 @@
 	{
 	 "publish_time_month":"五月",
 	 "publish_time_date":"16",
+	 "publis_time":"2014年12月21日 凌晨1:30",
 	 "type":"pic",
 	 "content_info":"这是一段文字的",
-	 "content_img":["./img/1.jpg"],
+	 "content_img":["./img/1.jpg","./img/con2.jpg","./img/con1.jpg"],
 	 "reply_heart":["aa","bb"],
 	 "reply":[{"name":"ruirui1","content":"qqqqq"},{"name":"ruirui2","content":"dddddddd"}]
 	 },
@@ -13,6 +14,7 @@
 	{
 	 "publish_time_month":"五月",
 	 "publish_time_date":"16",
+	 "publis_time":"2014年12月21日 凌晨1:30",
 	 "type":"word",
 	 "content_info":"这是一段文字的这是一段文字的这是一段文字的这是一段文字的这是一段文字的这是一段文字的这是一段文字的这是一段文字的",
 	 "content_img":"",
@@ -23,6 +25,7 @@
 	 {
 	 "publish_time_month":"五月",
 	 "publish_time_date":"16",
+	 "publis_time":"2014年12月21日 凌晨1:30",
 	 "type":"pic",
 	 "content_info":"这是一段文字的",
 	 "content_img":["./img/2.jpg"],
@@ -33,6 +36,7 @@
 	 {
 	 "publish_time_month":"五月",
 	 "publish_time_date":"16",
+	 "publis_time":"2014年12月21日 凌晨1:30",
 	 "type":"pic",
 	 "content_info":"这是一段文字的",
 	 "content_img":["./img/1.jpg"],
@@ -43,6 +47,7 @@
 	 {
 	 "publish_time_month":"五月",
 	 "publish_time_date":"16",
+	 "publis_time":"2014年12月21日 凌晨1:30",
 	 "type":"word",
 	 "content_info":"这是一段文字的",
 	 "content_img":"",
@@ -53,6 +58,7 @@
 	 {
 	 "publish_time_month":"五月",
 	 "publish_time_date":"16",
+	 "publis_time":"2014年12月21日 凌晨1:30",
 	 "type":"pic",
 	 "content_info":"这是一段文字的",
 	 "content_img":["./img/1.jpg","./img/1.jpg","./img/1.jpg","./img/1.jpg"],

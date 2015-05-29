@@ -328,6 +328,12 @@ angular.module('starter', [
           controller: 'PersonalHomepageCtrl'
   })
 
+  .state('personalHomepage-detail', {
+      url: '/personalHomepage/:infoId',
+          templateUrl: 'templates/personal_homepage_detail.html',
+          controller: 'PersonalHomepageDetailCtrl'
+  })
+
 
   // Ionic Analytics tab
   .state('tab.analytics', {
