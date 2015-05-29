@@ -115,4 +115,6 @@
 	word-wrap: break-word; 
 	word-break: break-all;
 	white-space: normal;
+	max-height:84px; 
+	overflow: hidden;
 }

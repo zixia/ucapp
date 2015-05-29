@@ -1,8 +1,8 @@
-<ion-view title="相册">
+<ion-view title={{title}}>
 	<ion-nav-bar class="bar-dark">
 	    <ion-nav-buttons class = "button-icon">
-	    <button class="button-stable button-clear" ng-click="gofriendcircle()">
-	      <i class="ion-ios-arrow-left"></i>详细资料
+	    <button class="button-stable button-clear" ng-click="goback(userBasicInfo.user_id)">
+	      <i class="ion-ios-arrow-left"></i>{{gobackbutton}}
 	    </button>
 	  </ion-nav-buttons>
 	</ion-nav-bar>
@@ -21,9 +21,9 @@
   		<div class = "friendcircle-header-avatar">
   			<img ng-src={{userBasicInfo.user_avatar}} >
   		</div>
-
   		<p class = "personalhomepage_sign">
   			{{userBasicInfo.user_sign}}
+
   		</p>
 
   	</div>

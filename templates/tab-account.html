@@ -1,5 +1,5 @@
 <ion-view view-title="我">
-	<ion-content style="background: #e8ebf1;" ng-repeat = "user in users">
+	<ion-content style="background: #e8ebf1;">
 		<div class = "account-content" >
 			<div class = "account-item-img">
 				<p>头像</p>
@@ -41,6 +41,9 @@
 			</div>	   
 	    </div>
 
+	    <div class = "account-content" ng-click = "logout()">
+  			<p class = "logout">退出登录</p>
+  		</div>
 	
 	</ion-content>
 </ion-view>

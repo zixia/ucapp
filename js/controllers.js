@@ -1,21 +1,9 @@
 angular.module('starter.controllers', [])
 
 .controller('ActivityCtrl', function($http, $scope,$ionicLoading) {
-    // $ionicLoading.show({
-    //     template:'<i class = "ion-load-c"><br></i>Loading...'
-    // });
-
-    // $http.get('data/contact.json').success(function(data) {
-    //       $scope.contacts = data;
-    //     }).then(function(){
-    //         $ionicLoading.hide();
-    // });
 
 })
 
-// .controller("TestCtrl",function($http,$scope){
-//     console.log("test");
-// })
 
 .controller('MessageCtrl', function($http, $scope,$ionicLoading,MessageService) {
     $ionicLoading.show({
@@ -29,11 +17,11 @@ angular.module('starter.controllers', [])
     });
 })
 
-.controller('MessageDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,MessageService)  {
+.controller('MessageDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,MessageService,$window)  {
 
     var num = $stateParams.messageId;
 
-    var account_img_src = "img/con4.jpg";
+    var account_img_src = $window.sessionStorage['user_avatar'];
 
     $ionicLoading.show({
         template:'<i class = "ion-load-c"><br></i>Loading...'
@@ -75,8 +63,8 @@ angular.module('starter.controllers', [])
         template:'<i class = "ion-load-c"><br></i>Loading...'
     });
 
-    ContactService.getMainInfo().success(function(data){
-        $scope.contacts = data;
+    ContactService.getMainInfo().then(function(res){
+        $scope.contacts = res.data;
     }).then(function(){
             $ionicLoading.hide();
     });
@@ -129,17 +117,16 @@ angular.module('starter.controllers', [])
   // Nothing to see here.
 })
 
-.controller('FriendcircleHeaderCtrl',function($scope){
-    // $http.get('http://17salsa.com/home/s.php?rewrite=home-view-all').success(function(data) {
-    //       $scope.infos = data;
-    //     });
-})
-
-.controller('FriendcircleCtrl', function($scope,$http,$ionicPopup,Format,$ionicLoading,$state,$rootScope) {       
+.controller('FriendcircleCtrl', function($scope,$http,$ionicPopup,Format,$ionicLoading,$state,$rootScope,$window) {       
         $scope.clickarray = new Array();
         $scope.friend_id = null;
         $scope.inputshow = false;
 
+        $scope.userbasic = $window.sessionStorage;
+
+        $scope.gomypage = function(){
+            $state.go("personalHomepage");
+        }
 
         $scope.godiscover = function(){
             $state.go("tab.discovery");
@@ -216,8 +203,8 @@ angular.module('starter.controllers', [])
          $ionicLoading.show({
             template:'<i class = "ion-load-c"><br></i>Loading...'
          });
-         $http.get('data/friendcircle.json').success(function(data) {
-         // $http.get('http://17salsa.com/home/s.php?rewrite=home-view-all').success(function(data) {
+         // $http.get('data/friendcircle.json').success(function(data) {
+         $http.get('http://17salsa.com/home/s.php?rewrite=home-view-all').success(function(data) {
           $scope.infos = data;
         }).then(function(){
             $ionicLoading.hide();
@@ -235,42 +222,15 @@ angular.module('starter.controllers', [])
                 $scope.$broadcast('scroll.refreshComplete');
             });
         }
-
-        
-        
-
-
-       
-        
-        // $scope.showPopup = function(){
-        // 	var myPopup = $ionicPopup.show({
-        // 		templateUrl:"../templates/input.html",
-        // 		scope:$scope,
-        // 		buttons:[
-        // 		   {text:'取消'},
-        // 		   {
-        // 			text:'保存',
-        // 			type:'button-positive',
-        // 		   }
-        // 		]
-        // 	});
-        // }
-        
-        
 })
 
-.controller('AccountCtrl', function($http, $scope,$ionicLoading,$ionicNavBarDelegate) {
-	$ionicNavBarDelegate.showBackButton(true);
+.controller('AccountCtrl', function($scope,AuthService,$state,$window) {
+    $scope.user = $window.sessionStorage;
 
-    $ionicLoading.show({
-        template:'<i class = "ion-load-c"><br></i>Loading...'
-    });
-
-    $http.get('data/user.json').success(function(data) {
-          $scope.users = data;
-        }).then(function(){
-            $ionicLoading.hide();
-    });
+    $scope.logout = function(){
+        AuthService.logout();
+        $state.go("login");
+    }
 })
 
 
@@ -279,9 +239,10 @@ angular.module('starter.controllers', [])
         template:'<i class = "ion-load-c"><br></i>Loading...'
     });
 
-    PersonalHomepageService.getUserInfo().success(function(data) {
-        $scope.userBasicInfo = data;
-    });
+    $scope.title = "相册";
+    $scope.gobackbutton = "朋友圈";
+
+    $scope.userBasicInfo = PersonalHomepageService.getUserInfo();
 
     PersonalHomepageService.getContentInfo().success(function(data) {
         $scope.userContentInfo = data;
@@ -322,7 +283,71 @@ angular.module('starter.controllers', [])
      $scope.gofriendcircle = function(){
         $state.go("friendcircle");
     }
+
+    $scope.goback = function(contactId){
+        $state.go("friendcircle");
+    };
 })
+
+.controller('PersonalContactHomepageCtrl', function($http, $scope,$state,$ionicLoading,$stateParams,PersonalHomepageService) {
+    var num = $stateParams.contactId;
+
+    $scope.gobackbutton = "详细资料";
+
+    $ionicLoading.show({
+        template:'<i class = "ion-load-c"><br></i>Loading...'
+    });
+
+    PersonalHomepageService.getContactUserInfo(num).success(function(data) {
+        $scope.userBasicInfo = data;
+        $scope.title = $scope.userBasicInfo.user_name;
+    });
+
+    PersonalHomepageService.getContentInfo().success(function(data) {
+        $scope.userContentInfo = data;
+    }).then(function(){
+        $ionicLoading.hide();
+    });
+
+    $scope.formatcell = function(num){
+         if(num == 1){
+            return 1;
+          }
+          if(num == 2){
+            return 2;
+          }
+          else{
+            return 3;
+          }
+    };
+
+    $scope.infoshowpic = function(type){
+        if(type == "pic"){
+            return true;
+        }
+        else{
+            return false;
+        }
+    };
+
+    $scope.infoshowword = function(type){
+        if(type == "word"){
+            return true;
+        }
+        else{
+            return false;
+        }
+    };
+
+     $scope.gofriendcircle = function(){
+        $state.go("friendcircle");
+    };
+
+    $scope.goback = function(contactId){
+        $state.go("contact-detail",{'contactId':contactId});
+    };
+})
+
 
 .controller('PersonalHomepageDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,PersonalHomepageService) {
 
@@ -354,7 +379,6 @@ angular.module('starter.controllers', [])
          AuthService.login(username,password)
         .then(function(res){
             if (res.ret === true) {
-                console.log(res);
                 $rootScope.$broadcast(res);
             }
             else{

@@ -12,15 +12,15 @@
 
   	<div class = "friendcircle-header">
   		<div class = "friendcircle-header-div">
-  			<img ng-src="img/heihei.jpg" >
+  			<img ng-src={{userbasic.user_headpic}}>
   		</div>
 
   		<div class = "friendcircle-header-nickname">
-  			<p>紫霞么么哒</p>
+  			<p>{{userbasic.user_name}}</p>
   		</div>
 
   		<div class = "friendcircle-header-avatar">
-  			<img ng-src="img/con1.jpg" >
+  			<img ng-src={{userbasic.user_avatar}} ng-click="gomypage()">
   		</div>
 
   	</div>
@@ -29,7 +29,7 @@
 
 	  <!-- <div class="item item-avatar"> -->
 	  <div class="friendcircle-no-border item item-avatar">
-	    <img class="friendcircle-square" ng-src="{{info.avatar_img}}" >
+	    <img class="friendcircle-square" ng-src="{{info.avatar_img}}">
 	    <h2 class = "friendcirle-friendname">{{info.avatar_name}}</h2>
 	    
 	    <h3>{{info.content_info}}</h3>

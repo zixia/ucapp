@@ -58,3 +58,9 @@
 	font-size: 10px;
 	color: #ddd;
 }
+
+.logout{
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 0px;
+}
