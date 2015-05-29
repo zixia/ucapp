@@ -8,6 +8,8 @@ $data = json_decode($res,true);//生成array数组
 
 login($data);
 
+//这是钩子么？？？？？
+
 
 //实现用户登录
 function login($data){
