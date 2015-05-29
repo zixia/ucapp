@@ -29,7 +29,8 @@
   	</div>
 
   	<div style = "margin-top:60px">
-  		<ion-item class = "personal_homepage_list" ng-repeat = "infoitem in userContentInfo" href = "#/personalHomepage/{{$index}}">
+  		<ion-item class = "personal_homepage_list" ng-repeat = "infoitem in userContentInfo" href = "#/personalHomepage/{{Parafun($index)}}">
+
   		<div class = "personal_homepage_time">
   			<span class = "date">{{infoitem.publish_time_date}}</span>
   			<span class = "month">{{infoitem.publish_time_month}}</span>

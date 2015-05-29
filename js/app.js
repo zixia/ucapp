@@ -104,6 +104,7 @@ angular.module('starter', [
     return $http
     .post('http://17salsa.com/app++/showcontactInfo.php',{user_id:user_id});
   };
+  
 
   service.getContentInfo = function(){
     return $http
