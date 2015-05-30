@@ -6,15 +6,29 @@ header("Content-Type:text/html; charset=utf-8");
 $res = file_get_contents('php://input');
 $data = json_decode($res,true);//生成array数组
 
-showmessage($data);
+$response = showmessage($data);
+$response_json = json_encode($response);//生成json数据
+print_r($response_json);
 
+/**
+ * @Author:      ruirui
+ * @DateTime:    2015-05-30 11:47:18
+ * @description: 展示与所有人联系人的所有消息记录
+ * @para:        $data['user_id'] 									用户自己唯一识别id
+ * @return:      $response									object	所有联系人的所有消息记录
+ * 			     $response[]['message_img']					string	当前联系人的头像 size:70px*70px
+ * 			     $response[]['message_user']				string	当前联系人昵称
+ * 			     $response[]['message_user_id']				string	当前联系人user_id
+ * 			     $response[]['message_publish_time']		string	发送时间 GMT
+ * 			     $response[]['message_array']				array	当前联系人发送的所有消息	
+ * 			     $response[]['message_array'][]['name']		string	right:消息从联系人方发过来
+ *																	left:消息从用户方发出去 
+ * 			     $response[]['message_array'][]['content']	string	发送内容	
+ */
 
-//实现发送信息展示
 function showmessage($data){
 	$userid = $data['user_id'];
 	$response = array();
-
-	//根据userid 添加相关内容，返回$response
 
 	//下面是我瞎填的东西
 
@@ -53,9 +67,6 @@ function showmessage($data){
 
 
 	$response = array($item1,$item2);
-	
-
-	$response_json = json_encode($response);//生成json数据
-	print_r($response_json);
+	return $response;
 }
 ?>

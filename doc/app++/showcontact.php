@@ -6,15 +6,30 @@ header("Content-Type:text/html; charset=utf-8");
 $res = file_get_contents('php://input');
 $data = json_decode($res,true);//生成array数组
 
-showcontact($data);
+$response = showcontact($data);
+$response_json = json_encode($response);//生成json数据
+print_r($response_json);
+
+/**
+ * @Author:      ruirui
+ * @DateTime:    2015-05-30 11:07:22
+ * @description: 根据用户id展示用户所有联系人信息
+ * @para:        $data['user_id'] 用户唯一识别id
+ * @return:      $response object 所有联系人的所有信息
+ *				 $response[]['contact_img']    	string 	联系人头像 	
+ *														size:30px*30px
+ *				 $response[]['contact_name']   	string	联系人昵称
+ *				 $response[]['contact_id']	  	string	userid
+ *				 $response[]['contact_region']  string	地域	 
+ *				 $response[]['contact_sign']	string	签名
+ *				 $response[]['contact_pic']		string	个人主页照片
+ *														max_num:4 size:40px*40px
+ */
 
 
-//实现联系人信息展示
 function showcontact($data){
 	$userid = $data['user_id'];
 	$response = array();
-
-	//根据userid 添加相关内容，返回$response
 
 	//下面是我瞎填的东西
 	$item1 = array();
@@ -51,8 +66,6 @@ function showcontact($data){
 
 	$response = array($item1,$item2,$item3,$item4);
 	
-
-	$response_json = json_encode($response);//生成json数据
-	print_r($response_json);
+	return $response;
 }
 ?>

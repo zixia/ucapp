@@ -123,7 +123,7 @@ angular.module('starter', [
     .post('http://17salsa.com/app++/login.php',{username:username,password:password})
 		.then(function(res){
       if (res.data.ret == true) {
-        $window.sessionStorage['sessionId'] = res.data.sid;
+
         //个人主页相关信息
         $window.sessionStorage['user_id'] = res.data.user_id;
         $window.sessionStorage['user_name'] = res.data.user_name;
