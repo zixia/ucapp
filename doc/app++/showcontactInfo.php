@@ -1,4 +1,7 @@
 <?php
+include_once('/750/xfs/vhost/17salsa.com/home/common.php');
+include_once(S_ROOT.'./source/function_cp.php');
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
@@ -30,39 +33,18 @@ function showcontactInfo($data){
 	$userid = $data['user_id'];
 	$response = array();
 
+    $m_space = getspace($userid);
+	$avatar_exists = ckavatar($userid);
+
 	//下面是我瞎填的东西
-	if ($userid == 1111) {
-		$response['user_id'] = 1111;
-		$response['user_name'] = "紫霞";
-		$response['user_headpic'] = "./img/heihei.jpg";
-		$response['user_avatar'] = "./img/head.jpg";
-		$response['user_sign'] = "帅帅坏坏哒";
-	}
-
-	if ($userid == 2222) {
-		$response['user_id'] = 2222;
-		$response['user_name'] = "zixia";
-		$response['user_headpic'] = "./img/con2.jpg";
-		$response['user_avatar'] = "./img/con1.jpg";
-		$response['user_sign'] = "帅帅坏坏哒";
-	}
-
-	if ($userid == 3333) {
-		$response['user_id'] = 3333;
-		$response['user_name'] = "ruirui";
-		$response['user_headpic'] = "./img/heihei.jpg";
-		$response['user_avatar'] = "./img/con2.jpg";
-		$response['user_sign'] = "帅帅坏坏哒";
-	}
-
-	if ($userid == 4444) {
-		$response['user_id'] = 4444;
-		$response['user_name'] = "芮芮";
-		$response['user_headpic'] = "./img/dance.png";
-		$response['user_avatar'] = "./img/1.jpg";
-		$response['user_sign'] = "帅帅坏坏哒";
-	}	
+	$response['user_id']        = $userid;
+	$response['user_name']      = $m_space['name'];
+	$response['user_avatar']    = 'http://17salsa.com/center/data/avatar/' . $_SGLOBAL['avatarfile_1_middle_real'];
+	$response['user_headpic']   = 'http://17salsa.com/center/data/avatar/'
+                                    . str_replace('middle','big',$_SGLOBAL['avatarfile_1_middle_real']);
+	$response['user_sign']      = preg_replace('/\<img[^>]+>/', '', $m_space['note']) ;
 
 	return $response;
 }
+
 ?>
