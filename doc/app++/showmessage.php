@@ -1,4 +1,8 @@
 <?php
+include_once('/750/xfs/vhost/17salsa.com/home/common.php');
+include_once(S_ROOT.'./source/function_cp.php');
+include_once(S_ROOT.'./uc_client/client.php');
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
@@ -6,7 +10,7 @@ header("Content-Type:text/html; charset=utf-8");
 $res = file_get_contents('php://input');
 $data = json_decode($res,true);//生成array数组
 
-$response = showmessage($data);
+$response = showmessage1($data);
 $response_json = json_encode($response);//生成json数据
 print_r($response_json);
 
@@ -26,47 +30,103 @@ print_r($response_json);
  * 			     $response[]['message_array'][]['content']	string	发送内容	
  */
 
-function showmessage($data){
-	$userid = $data['user_id'];
+function showmessage1($data) {
+    global $_SGLOBAL;
+
+    $user_id = $data['user_id'];
 	$response = array();
 
-	//下面是我瞎填的东西
+    $list = array();
 
-	$item1 = array();
-	$item1["message_img"] = "./img/head.jpg";
-	$item1["message_user"] = "紫霞";
-	$item1["message_user_id"] = "1111";
-	$item1["message_publish_time"] = "上午10点";
-	//right代表信息从外面发过来，left代表信息从自己这里发出去
-	$messageitem1["name"] = "right";
-	$messageitem1["content"] = "我来啦";
-	$messageitem2["name"] = "right";
-	$messageitem2["content"] = "好呀好呀";
-	$messageitem3["name"] = "left";
-	$messageitem3["content"] = "真的么";
-	$messageitem4["name"] = "right";
-	$messageitem4["content"] = "快点快点把代码调通";
-	$item1["message_array"] = array($messageitem1,$messageitem2,$messageitem3,$messageitem4);
+    $pmid = empty($_GET['pmid'])?0:floatval($_GET['pmid']);
+    $touid = empty($_GET['touid'])?0:intval($_GET['touid']);
+    $daterange = empty($_GET['daterange'])?1:intval($_GET['daterange']);
 
+    if($_GET['subop'] == 'view') {
 
-	$item2 = array();
-	$item2["message_img"] = "./img/con1.jpg";
-	$item2["message_user"] = "zixia";
-	$item2["message_user_id"] = "2222";
-	$item2["message_publish_time"] = "上午10点";
-	//right代表信息从外面发过来，left代表信息从自己这里发出去
-	$messageitem1["name"] = "left";
-	$messageitem1["content"] = "qqqqq";
-	$messageitem2["name"] = "right";
-	$messageitem2["content"] = "ddddddddd";
-	$messageitem3["name"] = "left";
-	$messageitem3["content"] = "aaaaaa";
-	$messageitem4["name"] = "right";
-	$messageitem4["content"] = "vvvvvvvvv";
-	$item2["message_array"] = array($messageitem1,$messageitem2,$messageitem3,$messageitem4);
+        if($touid) {
+            $list = uc_pm_view($_SGLOBAL['supe_uid'], 0, $touid, $daterange);
+            $pmid = empty($list)?0:$list[0]['pmid'];
+        } elseif($pmid) {
+            $list = uc_pm_view($_SGLOBAL['supe_uid'], $pmid);
+        }
 
+        $actives = array($daterange=>' class="active"');
 
-	$response = array($item1,$item2);
+    } elseif($_GET['subop'] == 'ignore') {
+
+        $ignorelist = uc_pm_blackls_get($_SGLOBAL['supe_uid']);
+        $actives = array('ignore'=>' class="active"');
+
+    } else {
+
+        $filter = in_array($_GET['filter'], array('newpm', 'privatepm', 'systempm', 'announcepm'))?$_GET['filter']:($space['newpm']?'newpm':'privatepm');
+
+        //分页
+        $perpage = 10;
+        $perpage = mob_perpage($perpage);
+
+        $page = empty($_GET['page'])?0:intval($_GET['page']);
+        if($page<1) $page = 1;
+
+        $result = uc_pm_list($_SGLOBAL['supe_uid'], $page, $perpage, 'inbox', $filter, 1000);
+
+        $count = $result['count'];
+        $list = $result['data'];
+
+        $multi = multi($count, $perpage, $page, "space.php?do=pm&filter=$filter");
+
+        if($_SGLOBAL['member']['newpm']) {
+            //取消新短消息提示
+            updatetable('space', array('newpm'=>0), array('uid'=>$_SGLOBAL['supe_uid']));
+            //UCenter
+            uc_pm_ignore($_SGLOBAL['supe_uid']);
+        }
+
+        $actives = array($filter=>' class="active"');
+    }
+
+    //实名
+    if($list) {
+        $today = $_SGLOBAL['timestamp'] - ($_SGLOBAL['timestamp'] + $_SCONFIG['timeoffset'] * 3600) % 86400;
+        foreach ($list as $key => $value) {
+
+            realname_set($value['msgfromid'], $value['msgfrom']);
+
+            $value['daterange'] = 5;
+            if($value['dateline'] >= $today) {
+                $value['daterange'] = 1;
+            } elseif($value['dateline'] >= $today - 86400) {
+                $value['daterange'] = 2;
+            } elseif($value['dateline'] >= $today - 172800) {
+                $value['daterange'] = 3;
+            }
+            $list[$key] = $value;
+        }
+        realname_get();
+    }
+
+    $response = array();
+
+    foreach ( $list as $message ) {
+        $msg = array();
+
+    	$msg["message_img"] = "http://17salsa.com/home/template/default/image/logo.gif";
+    	$msg["message_user"]    = $message['msgfrom'];
+    	$msg["message_user_id"] = $message['msgfromid'];
+    	$msg["message_publish_time"] = "上午10点";
+        $msg['message_array'] = array();
+
+        $msg_item = array();
+	    $msg_item["name"] = "right";
+	    $msg_item["content"] = $message['message'];
+
+        array_push($msg['message_array'], $msg_item);
+
+        array_push($response, $msg);
+    }
+
 	return $response;
 }
+
 ?>
