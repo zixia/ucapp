@@ -1,7 +1,7 @@
 <?php
 include_once('/750/xfs/vhost/17salsa.com/home/common.php');
 include_once(S_ROOT.'./source/function_cp.php');
-include_once(S_ROOT.'./source/function_magic.php');
+//include_once(S_ROOT.'./source/function_magic.php');
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
