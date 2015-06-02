@@ -158,7 +158,7 @@ function showcontact($data)
 	    $friend['contact_img']  = avatar($friend_id,'middle',true);
 
         $space = getspace($friend_id);
-        require "space_album.php";
+        require "inc/space_album.php";
         //print_r($list[0]['pic']);
 
         $friend['contact_pic'] = array();
