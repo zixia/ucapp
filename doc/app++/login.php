@@ -149,9 +149,8 @@ function login($data) {
 	//  个人主页的基本信息
 	$response['user_id']        = $m_space['uid'];
 	$response['user_name']      = $m_space['name'];
-	$response['user_avatar']    = 'http://17salsa.com/center/data/avatar/' . $_SGLOBAL['avatarfile_1_middle_real'];
-	$response['user_headpic']   = 'http://17salsa.com/center/data/avatar/' 
-                                    . str_replace('middle','big',$_SGLOBAL['avatarfile_1_middle_real']);
+	$response['user_avatar']    = avatar($m_space['uid'],'middle',true);
+	$response['user_headpic']   = avatar($m_space['uid'],'big',true);
 	$response['user_gender']    = 1==$m_space['sex'] ? "男" : "女";
 	$response['user_area']      = $m_space['resideprovince'] . " " . $m_space['residecity'];
 	$response['user_sign']      = preg_replace('/\<img[^>]+>/', '', $m_space['note']) ;
