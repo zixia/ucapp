@@ -2,7 +2,7 @@ angular.module('GlobalPath', [])
 
 .factory("UrlPath",function(){
   var service = {};
-  var urldomain = "http://17salsa.com/app++/";
+  var urldomain = "http://17salsa.com/ucapp/ucapi/";
 
   service.getLoginpath = function(){
     return urldomain+"login.php";
