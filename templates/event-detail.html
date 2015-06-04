@@ -9,31 +9,31 @@
   </ion-nav-bar>
 
   <ion-content class = "padding">
-    <h3 class = "activity_detail_title_h3">{{activity.activity_title}}</h3>
-    <img ng-src="{{activity.activity_img}}" class = "full-image">
-    <div class = "activity_detail_titel">
-    <p >
-      <span>{{activity.activity_people}}</span>
+    <h3 class = "event_detail_title_h3">{{event.event_title}}</h3>
+    <img ng-src="{{event.event_img}}" class = "full-image">
+    <div class = "event_detail_titel">
+    <p>发起人
+      <span>{{event.event_people}}</span>
     </p>
     <p>活动类型:
-      <span>{{activity.activity_type}}</span>
+      <span>{{event.event_type}}</span>
     </p>
     <p>活动地点:
-      <span>{{activity.activity_spot}}</span>
+      <span>{{event.event_spot}}</span>
     </p>
     <p>活动时间:
-      <span>{{activity.activity_time}}</span>
+      <span>{{event.event_time}}</span>
     </p>
     <p>截止报名:
-      <span>{{activity.activity_ddl}}</span>
+      <span>{{event.event_ddl}}</span>
     </p>
     <p>活动人数:
-      <span>{{activity.activity_maxmun}}</span>
+      <span>{{event.event_maxmun}}</span>
     </p>
     <p>需要审核:
-      <span>{{activity.activity_authen}}</span>
+      <span>{{event.event_authen}}</span>
     </p>
-    <p class = "activity_detail_button">
+    <p class = "event_detail_button">
       <button class = "button button-energized button-small">我要参加</button>
       <button class = "button button-energized button-small">我要报名</button>
     </p>
@@ -42,7 +42,7 @@
 
     <p>活动介绍</p>
     <p>
-      {{activity.activity_intro}}
+      {{event.event_intro}}
     </p>
 </div>
   </ion-content>
