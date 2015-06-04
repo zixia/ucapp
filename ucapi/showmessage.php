@@ -11,10 +11,17 @@ $res = file_get_contents('php://input');
 $data = json_decode($res,true);//生成array数组
 
 $response = showmessage1($data);
+
 $response_json = json_encode($response);//生成json数据
-print_r($response_json);
+die($response_json);
+
 
 /**
+
+threadInfo[] = getPrivateMessageThread(start,num)
+
+getPrivateMessageThreadDetail(id,start,num)
+
  * @Author:      ruirui
  * @DateTime:    2015-05-30 11:47:18
  * @description: 展示与所有人联系人的所有消息记录
@@ -30,11 +37,20 @@ print_r($response_json);
  * 			     $response[]['message_array'][]['content']	string	发送内容	
  */
 
+/*
+define('RET_ERR_UNKNOWN', -1);
+define('RET_ERR_NOLOGIN', 1);
+*/
+
 function showmessage1($data) {
     global $_SGLOBAL;
 
-    $user_id = $data['user_id'];
 	$response = array();
+    $response['ret'] = false;
+
+    if(!$_SGLOBAL['supe_uid']) { // need login
+        return $response;
+    }
 
     $list = array();
 
@@ -69,8 +85,10 @@ function showmessage1($data) {
         $page = empty($_GET['page'])?0:intval($_GET['page']);
         if($page<1) $page = 1;
 
-        $result = uc_pm_list($_SGLOBAL['supe_uid'], $page, $perpage, 'inbox', $filter, 1000);
+        $result = uc_pm_list($_SGLOBAL['supe_uid'], $page, $perpage, 'inbox', $filter, 100);
 
+//die("$_SGLOBAL[supe_uid], $page, $perpage, 'inbox', $filter, 100");
+//print_r($result);
         $count = $result['count'];
         $list = $result['data'];
 
