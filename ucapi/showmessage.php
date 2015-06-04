@@ -17,6 +17,11 @@ die($response_json);
 
 
 /**
+
+threadInfo[] = getPrivateMessageThread(start,num)
+
+getPrivateMessageThreadDetail(id,start,num)
+
  * @Author:      ruirui
  * @DateTime:    2015-05-30 11:47:18
  * @description: 展示与所有人联系人的所有消息记录

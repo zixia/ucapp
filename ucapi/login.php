@@ -100,7 +100,14 @@ function login($data) {
 	ssetcookie('loginuser', $passport['username'], 31536000);
 	ssetcookie('_refer', '');
 	
-
+	//同步登录
+	if($_SCONFIG['uc_status']) {
+		include_once S_ROOT.'./uc_client/client.php';
+		$ucsynlogin = uc_user_synlogin($setarr['uid']);
+	} else {
+		$ucsynlogin = '';
+	}
+	
 	$_SGLOBAL['supe_uid'] = $space['uid'];
 	//判断用户是否设置了头像
 	$reward = $setarr = array();
