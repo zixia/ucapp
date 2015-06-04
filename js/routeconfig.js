@@ -32,10 +32,10 @@ angular.module('RouteConfig', [])
     }
   })
 
-  .state('activity-detail',{
-    url:"/activity/:activityId",
-    templateUrl:'templates/activity-detail.html',
-    controller:"ActivityDetailCtrl"
+  .state('event-detail',{
+    url:"/event/:eventId",
+    templateUrl:'templates/event-detail.html',
+    controller:"EventDetailCtrl"
   })
 
   .state('tab.message', {
