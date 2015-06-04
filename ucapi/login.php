@@ -10,6 +10,7 @@ header("Content-Type:text/html; charset=utf-8");
 $res = file_get_contents('php://input');
 $data = json_decode($res,true);//生成array数组
 
+
 /*
 $data['username'] = 'ruiruibupt';
 $data['password'] = '123456';
