@@ -35,7 +35,7 @@ function showhomepage(){
 
 	//下面是我瞎填的东西
 	$item1 = array();
-	$item1["ts"] = 1234124234;
+	$item1["ts"] = 1433420932;
 	$item1["type"] = "img";// txt 朋友圈发布的是纯文字内容就是word，是图片加文字或者纯图片就是pic
 	$item1["txt"] = "这是一段文字的";
 	$item1["img"] = array("./img/1.jpg","./img/con2.jpg","./img/con1.jpg");//不包含图片返回null 图片>100px
