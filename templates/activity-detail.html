@@ -1,0 +1,49 @@
+
+<ion-view view-title="活动介绍">
+	<ion-nav-bar class="bar-dark">
+      <ion-nav-buttons class = "button-icon">
+      <button class="button-stable button-clear" ng-click="goback()">
+        <i class="ion-ios-arrow-left"></i>返回
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class = "padding">
+    <h3 class = "activity_detail_title_h3">{{activity.activity_title}}</h3>
+    <img ng-src="{{activity.activity_img}}" class = "full-image">
+    <div class = "activity_detail_titel">
+    <p >
+      <span>{{activity.activity_people}}</span>
+    </p>
+    <p>活动类型:
+      <span>{{activity.activity_type}}</span>
+    </p>
+    <p>活动地点:
+      <span>{{activity.activity_spot}}</span>
+    </p>
+    <p>活动时间:
+      <span>{{activity.activity_time}}</span>
+    </p>
+    <p>截止报名:
+      <span>{{activity.activity_ddl}}</span>
+    </p>
+    <p>活动人数:
+      <span>{{activity.activity_maxmun}}</span>
+    </p>
+    <p>需要审核:
+      <span>{{activity.activity_authen}}</span>
+    </p>
+    <p class = "activity_detail_button">
+      <button class = "button button-energized button-small">我要参加</button>
+      <button class = "button button-energized button-small">我要报名</button>
+    </p>
+
+    <hr>
+
+    <p>活动介绍</p>
+    <p>
+      {{activity.activity_intro}}
+    </p>
+</div>
+  </ion-content>
+</ion-view>

@@ -3,24 +3,26 @@
     <div class = "message-search">
       <input ng-model="query" type="text" placeholder="搜索"/>
     </div>
-  ssssss
 
-    <div class="message-list" ng-repeat = "message in messages | filter:query">
-
-      <div class = "message-list-img">
-        <img ng-src="{{message.message_img}}">
+    <ion-item class="list card" ng-repeat = "item in activitylist" href = "#/activity/{{activityId}}">
+      <div class="item">
+        <h3 class = "activity_title_h3">{{item.activity_title}}</h3>
       </div>
 
-      <div class = "message-content">
-        <p class = "message-name">{{message.message_user}}</p>
-        <p class = "message-info">{{message.message_content}}</p>
+      <div class="item item-body">
+        <img ng-src="{{item.activity_img}}" class = "full-image">
+        <p class = "activity_title_p"><span>活动时间：</span>{{item.activity_time}}</p>
+        <p class = "activity_title_p"><span>活动地点：</span>{{item.activity_spot}}</p>
+        <p class = "activity_title_p"><span>发起人:</span>{{item.activity_people}}</p>
+        <p>
+          <span  class="activity_body_span">{{item.activity_view}} 次查看</span>
+          <span  class="activity_body_span">{{item.activity_participate}} 人参加</span>
+          <span  class="activity_body_span">{{item.activity_attention}} 人关注</span>
+        </p>
+        
       </div>
 
-      <div class = "message-time">
-        <p>{{message.message_publish_time}}</p>
-      </div>
-
-    </div>
+    </ion-item>
 
   </ion-content>
 </ion-view>

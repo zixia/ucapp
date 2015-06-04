@@ -1,0 +1,40 @@
+/*activity.css*/
+.activity_title_h3{
+	color: #387ef5;
+	white-space: normal !important;
+}
+
+.activity_title_p{
+	font-size: 60% !important;
+	margin: 0px !important;
+}
+
+.activity_body_span{
+	font-size: 60% !important;
+}
+
+.activity_detail_titel p{
+	color: #888;
+	font-size: 90%;
+}
+
+.activity_detail_title_h3{
+	font-size: 95% !important;
+	color: #387ef5;
+	white-space: normal !important;
+}
+
+.activity_detail_titel span{
+	color: #000;
+	font-size: 90%;
+}
+
+.activity_detail_button{
+	text-align: center;
+}
+
+.activity_detail_button button{
+	margin-left:10px;
+	margin-right: 10px; 
+	color: #888 !important;
+}

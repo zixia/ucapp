@@ -1,0 +1,27 @@
+[
+	
+	{
+		"activity_id":1234,
+		"activity_title":"【广州古巴莎莎舞俱乐部】6月9日新学期啦！",
+		"activity_img":"img/2.jpg",
+		"activity_time":"05月30日 21:00 - 06月30日 01:00",
+		"activity_spot":"广东 广州 珠江新城马场路16号 富力盈盛广场B座3楼会所 （地铁5号线 潭村D出口直走10m右侧）",
+		"activity_people":"左吟",
+		"activity_view":41,
+		"activity_participate":5,
+		"activity_attention":0
+
+	},
+
+	{
+		"activity_id":1235,
+		"activity_title":"【深圳古巴莎莎舞俱乐部】6月9日新学期啦！",
+		"activity_img":"img/1.jpg",
+		"activity_time":"05月30日 21:00 - 06月30日 01:00",
+		"activity_spot":"广东 广州 珠江新城马场路16号 富力盈盛广场B座3楼会所 （地铁5号线 潭村D出口直走10m右侧）",
+		"activity_people":"左吟",
+		"activity_view":41,
+		"activity_participate":5,
+		"activity_attention":0
+	}
+]
