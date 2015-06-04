@@ -35,13 +35,13 @@ function showhomepage(){
 	$item1["like"] = array(1,2);
 	$item1["reply"] = array(array(1,"qqqq"),array(2,"xxx"));
 
-	$item1 = array();
-	$item1["ts"] = 1433420932;
-	$item1["type"] = "txt";// txt 朋友圈发布的是纯文字内容就是word，是图片加文字或者纯图片就是pic
-	$item1["txt"] = "这是一段文字的";
-	$item1["img"] = null;//不包含图片返回null 图片>100px
-	$item1["like"] = array(1,2);
-	$item1["reply"] = array(array(1,"qqqq"),array(2,"xxx"));
+	$item2 = array();
+	$item2["ts"] = 1433420932;
+	$item2["type"] = "txt";// txt 朋友圈发布的是纯文字内容就是word，是图片加文字或者纯图片就是pic
+	$item2["txt"] = "这是一段文字的";
+	$item2["img"] = null;//不包含图片返回null 图片>100px
+	$item2["like"] = array(1,2);
+	$item2["reply"] = array(array(1,"qqqq"),array(2,"xxx"));
 
 	$response = array($item1,$item2);
 	
