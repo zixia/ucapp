@@ -10,10 +10,15 @@ header("Content-Type:text/html; charset=utf-8");
 $res = file_get_contents('php://input');
 $data = json_decode($res,true);//生成array数组
 
+/*
+$data['username'] = 'ruiruibupt';
+$data['password'] = '123456';
+*/
+
 $response = login($data);
 $response_json = json_encode($response);//生成json数据
-print_r($response_json);
 
+die($response_json);
 
 /**
  * @Author:      ruirui
@@ -37,7 +42,7 @@ function login($data) {
     global $_SGLOBAL;
 
 	$response = array();
-	$response['ret'] = null;
+	$response['ret'] = false;
 
 	$username = $data['username'];
     $password = $data['password'];
@@ -48,13 +53,12 @@ function login($data) {
 	$membername = $username;
 	
 	if(empty($username)) {
-		$response['ret'] = false;
         return $response;
 	}
 	
 	//同步获取用户源
 	if(!$passport = getpassport($username, $password)) {
-		return;
+		return $response;
 	}
 	
     $setarr = array(
@@ -149,9 +153,8 @@ function login($data) {
 	//  个人主页的基本信息
 	$response['user_id']        = $m_space['uid'];
 	$response['user_name']      = $m_space['name'];
-	$response['user_avatar']    = 'http://17salsa.com/center/data/avatar/' . $_SGLOBAL['avatarfile_1_middle_real'];
-	$response['user_headpic']   = 'http://17salsa.com/center/data/avatar/' 
-                                    . str_replace('middle','big',$_SGLOBAL['avatarfile_1_middle_real']);
+	$response['user_avatar']    = avatar($m_space['uid'], 'middle', true);
+	$response['user_headpic']   = avatar($m_space['uid'], 'big', true);
 	$response['user_gender']    = 1==$m_space['sex'] ? "男" : "女";
 	$response['user_area']      = $m_space['resideprovince'] . " " . $m_space['residecity'];
 	$response['user_sign']      = preg_replace('/\<img[^>]+>/', '', $m_space['note']) ;
