@@ -22,12 +22,12 @@ angular.module('RouteConfig', [])
     templateUrl: 'templates/tab-login.html',
   })
 
-  .state('tab.activity', {
-    url: '/activity',
+  .state('tab.event', {
+    url: '/event',
     views: {
-      'tab-activity': {
-        templateUrl: 'templates/tab-activity.html',
-        controller: 'ActivityCtrl'
+      'tab-event': {
+        templateUrl: 'templates/tab-event.html',
+        controller: 'EventCtrl'
       }
     }
   })

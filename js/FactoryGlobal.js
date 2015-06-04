@@ -4,6 +4,8 @@ angular.module('GlobalPath', [])
   var service = {};
   var urldomain = "http://17salsa.com/ucapp/ucapi/";
 
+  // var urldomain = "http://127.0.0.1/ionic/myApp/www/ucapi/";
+
   service.getLoginpath = function(){
     return urldomain+"login.php";
   };
@@ -23,6 +25,14 @@ angular.module('GlobalPath', [])
   service.getContentPath = function(){
     return urldomain+"showhomepage.php";
   };
+
+  service.getEventPath = function(){
+    return urldomain+"showevent.php";
+  }
+
+  service.getEventDetailPath = function(){
+    return urldomain+"showeventdetail.php";
+  }
 
   return service;
 })

@@ -7,9 +7,18 @@ angular.module('starter.messagecontrollers', [])
 
     MessageService.getMainInfo().success(function(data){
         $scope.messages = data;
+        console.log(data);
         }).then(function(){
             $ionicLoading.hide();
     });
+
+    $scope.refresh = function(){
+            MessageService.getMainInfo().success(function(data){
+            $scope.messages = data;
+            }).then(function(){
+                $scope.$broadcast('scroll.refreshComplete');
+            });
+    }
 })
 
 .controller('MessageDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,MessageService,$window)  {

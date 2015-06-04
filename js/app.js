@@ -26,7 +26,7 @@ angular.module('starter', [
   'FactoryFormat',
   'FactoryAuthService',
   'MessageServiceFactory',
-  'ActivityServiceFactory',
+  'EventServiceFactory',
   
   //route
   'RouteConfig',

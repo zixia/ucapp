@@ -1,34 +1,34 @@
 angular.module('starter.controllers', [])
 
-.controller('ActivityCtrl', function($scope,ActivityService,$ionicLoading) {
+.controller('EventCtrl', function($scope,EventService,$ionicLoading) {
 
 	$ionicLoading.show({
         template:'<i class = "ion-load-c"><br></i>Loading...'
     });
 
-	ActivityService.getMainInfo().success(function(data){
-        $scope.activitylist = data;
+	EventService.getMainInfo().success(function(data){
+        $scope.eventlist = data;
         }).then(function(){
             $ionicLoading.hide();
     });
 	
 })
 
-.controller('ActivityDetailCtrl',function($state,$scope,$stateParams,$ionicLoading,ActivityService){
-	var num = $stateParams.activityId;
+.controller('EventDetailCtrl',function($state,$scope,$stateParams,$ionicLoading,EventService){
+	var num = $stateParams.eventId;
 
 	$ionicLoading.show({
         template:'<i class = "ion-load-c"><br></i>Loading...'
     });
 
-    ActivityService.getDetailInfo().success(function(data){
-        $scope.activity = data;
+    EventService.getDetailInfo(num).success(function(data){
+        $scope.event = data;
         }).then(function(){
             $ionicLoading.hide();
     });
 
     $scope.goback = function(){
-    	$state.go("activity");
+    	$state.go("tab.event");
     }
 })
 
