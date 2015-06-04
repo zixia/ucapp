@@ -1,15 +1,16 @@
 <?php
-
 require_once('./inc/error.inc.php');
 
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST');
-header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+$req_headers = apache_request_headers();
+
 header("Content-Type:text/html; charset=utf-8");
+header('Access-Control-Allow-Origin: ' . ($req_headers['Origin'] ? $req_headers['Origin'] : '*') );
+header('Access-Control-Allow-Methods: GET, POST');
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, withCredentials");
+header('Access-Control-Allow-Credentials: true');
 
 $response = showhomepage();
 $response_json = json_encode($response);//生成json数据
-print_r($response);
 die($response_json);
 
 /**
