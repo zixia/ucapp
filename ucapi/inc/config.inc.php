@@ -9,8 +9,6 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 header('Access-Control-Allow-Origin: ' . $req_headers['Origin'] );
 header('Access-Control-Allow-Credentials: true');
 
-require_once('error.inc.php');
-
 include_once('/750/xfs/vhost/17salsa.com/home/common.php');
 include_once(S_ROOT.'./source/function_cp.php');
 include_once(S_ROOT.'./uc_client/client.php');
