@@ -27,7 +27,7 @@ angular.module('FactoryFormat', [])
     timearray.month = time.getMonth()+1;
     timearray.date = time.getDate();
     Y = time.getFullYear()+"年";
-    M = time.getMonth()+"月";
+    M = time.getMonth()+1+"月";
     D = time.getDate()+"日";
     h = time.getHours()+":";
     m = time.getMinutes();

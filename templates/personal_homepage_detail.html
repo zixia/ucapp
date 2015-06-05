@@ -40,10 +40,10 @@
       <div class="friendcircle-answer">
           <p class="friendcircle-first-p">
             <i class="ion-ios-heart-outline"></i>
-            <a ng-repeat='id in InfoItem.like track by $index' >ss</a>
+            <a ng-repeat='id in InfoItem.likelist track by $index' > {{id}}</a>
           </p>
           
-          <p class="friendcircle-answer-body" ng-repeat='replycontent in InfoItem.reply track by $index'>
+          <p class="friendcircle-answer-body" ng-repeat='replycontent in InfoItem.replylist track by $index'>
             <a>{{replycontent[0]}}</a>:
             <span>{{replycontent[1]}}</span>
           </p>

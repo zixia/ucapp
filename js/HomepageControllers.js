@@ -165,13 +165,25 @@ angular.module('starter.homepagecontrollers', [])
         });
     }
 
-    $scope.changeId = function(id){
-        var idcontent = IdSearch.getIdInfo(id);
-        return idcontent;
-    }
+    
 
     PersonalHomepageService.getContentInfo().success(function(data) {
-        $scope.InfoItem = data[num];
+        $scope.InfoItem = data.b[num];
+
+
+        // 处理like相关的东西
+        IdSearch.getMainInfo().success(function(data) {
+            $scope.InfoItem.fullarray = data;
+            $scope.InfoItem.likelist = IdSearch.getIdUsername($scope.InfoItem.like,$scope.InfoItem.fullarray);
+        });
+
+        //处理reply相关的东西
+        IdSearch.getMainInfo().success(function(data) {
+            $scope.InfoItem.fullarray = data;
+            $scope.InfoItem.replylist = IdSearch.getIdUsernameReply($scope.InfoItem.reply,$scope.InfoItem.fullarray);
+        });
+
+
     }).then(function(){
         $ionicLoading.hide();
     });

@@ -7,23 +7,36 @@ angular.module('IdSearchFactroy', [])
 
   service.getMainInfo = function(){
     return $http.get('data/idsearch.json');
+
     // return $http
     // .post(contenturl,{user_id:user_id});
   }
 
-  service.getIdInfo = function(id){
-  	// var idlist = {};
-  	// $http.get('data/idsearch.json').success(function(data) {
-   //      idlist.array = data;
-   //      });
+  service.getIdUsername = function(idlist,fulllist){
+  	var newlist = {};
+  	for(var j= 0 ; j<idlist.length;j++){
+        for(var i= 0; i<fulllist.length;i++){
+            if (idlist[j] == fulllist[i].id) {
+                newlist[j] = fulllist[i].content.username;
+                break;
+            }
+        }
+    }
+    return newlist;
+  }
 
-  	// return idlist.array;
-  	// for(var i= 0; i<idlist.array.length;i++){
-  	// 	if (id == idlist.array.id) {
-  	// 		return idlist.array.content;
-  	// 		break;
-  	// 	}
-  	// }
+  service.getIdUsernameReply = function(idlist,fulllist){
+  	console.log(idlist.length);
+  	console.log(fulllist.length);
+  	for(var j= 0 ; j<idlist.length;j++){
+        for(var i= 0; i<fulllist.length;i++){
+            if (idlist[j][0] == fulllist[i].id) {
+                idlist[j][0] = fulllist[i].content.username;
+                break;
+            }
+        }
+    }
+    return idlist;
   }
 
   return service;

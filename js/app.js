@@ -48,10 +48,9 @@ angular.module('starter', [
   });
 }])
 
-.config(function($ionicConfigProvider){
-  // console.log($ionicConfigProvider);
-  // $ionicConfigProvider.backButton.previousTitleText(false).text('');
-})
+.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.defaults.withCredentials = true;
+}])
 
 
 .run(function($ionicPlatform) {

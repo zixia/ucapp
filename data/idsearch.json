@@ -1,19 +1,17 @@
 [
 	{
 		"id":1,
-		"content":[{"username":"ruirui"},
-		{"avatar":"./img/1.jpg"}]
+		"content":{"username":"ruirui","avatar":"./img/1.jpg"}
+		
 	},
 
 	{
-		"id":1,
-		"content":[{"username":"zixia"},
-		{"avatar":"./img/2.jpg"}]
+		"id":2,
+		"content":{"username":"zixia","avatar":"./img/2.jpg"}
 	},
 
 	{
 		"id":3,
-		"content":[{"username":"iiii"},
-		{"avatar":"./img/con1.jpg"}]
+		"content":{"username":"iiii","avatar":"./img/con1.jpg"}
 	}
 ]

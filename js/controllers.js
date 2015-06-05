@@ -31,7 +31,7 @@ angular.module('starter.controllers', [])
     });
 
     EventService.getDetailInfo(num).success(function(data){
-        $scope.event = data;
+        $scope.event = data.b;
         }).then(function(){
             $ionicLoading.hide();
     });
