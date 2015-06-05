@@ -24,11 +24,17 @@ die($response_json);
 function idtransfer($req){
 	$idlist = $req['idlist'];
 
+	$resp['b'] = array();
+    $resp['h'] = array();
+
 	$content = array("username"=>"zixia","avatar"=>"./img/con1.jpg");
 
 	$response[0]['id'] = $idlist[0];
 	$response[0]['content'] = $content;
 
-	return $response;
+	$resp['b'] = $response;
+
+
+	return $resp;
 }
 ?>
