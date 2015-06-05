@@ -1,7 +1,11 @@
 <?php
 require_once('inc/config.inc.php');
 
-$response = showhomepage();
+$res = file_get_contents('php://input');
+$req = json_decode($res,true);//生成array数组
+
+
+$response = showhomepage($req);
 $response_json = json_encode($response);//生成json数据
 //print_r($response);
 die($response_json);
@@ -10,8 +14,12 @@ die($response_json);
  * @Author:      ruirui
  * @DateTime:    2015-05-30 11:32:21
  * @description: 根据用户id显示个人发布过的状态
- * @para:        $data['
+ * @para:        $data['']              如果是null，则是朋友圈信息，如果有id展示某个用户的homepage
  * @return:      $response				object	所有发布过的信息
+ *               $response[]["p"]      array   发布人
+ *               $response[]["p"][0]      int   发布人id
+ *               $response[]["p"][1]      string   发布人用户名
+ *               $response[]["p"][2]      string   发布人头像
  *				 $response[]["ts"]		array	发布时间戳
  *				 $response[]["type"]	array	'img'代表发布内容包含图片 'txt'代表发布内容为纯文本
  *				 $response[]["txt"]		array	发布内容
@@ -24,7 +32,8 @@ die($response_json);
 
 
 //实现朋友圈信息展示
-function showhomepage(){
+function showhomepage($req){
+    $flag = $req['flag'];
     global $_SGLOBAL;
 
     $resp = array();
@@ -554,6 +563,9 @@ function showhomepage(){
             $feed['txt'] = isset($value['body_template']) ? $value['body_template'] : $value['title_template'] ;
             $feed['txt'] = strip_tags ( html_entity_decode( $feed['txt'], ENT_QUOTES, "utf-8" ) );
             if ( empty($feed['txt']) ) continue;
+
+            $feed["p"] = array(1,"阿布","./img/1.jpg");//tbd
+
 
             $feed["ts"] = $value['dateline'];
 
