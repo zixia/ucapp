@@ -87,14 +87,10 @@ angular.module('RouteConfig', [])
   })
   
   // 聊天室 tab
-  .state('tab.chatroom', {
+  .state('chatroom', {
     url: '/chatroom',
-    views: {
-      'tab-chatroom': {
-        templateUrl: 'templates/tab-chatroom.html',
-        controller: 'ChatroomCtrl'
-      }
-    }
+    templateUrl: 'templates/tab-chatroom.html',
+    controller: 'ChatroomCtrl'
   })
 
   .state('tab.account', {
