@@ -30,33 +30,31 @@
 
   	<div style = "margin-top:60px">
   		<ion-item class = "personal_homepage_list" ng-repeat = "infoitem in userContentInfo" href = "#/personalHomepage/{{Parafun($index)}}">
-
   		<div class = "personal_homepage_time">
-  			<span class = "date">{{infoitem.publish_time_date}}</span>
-  			<span class = "month">{{infoitem.publish_time_month}}</span>
+  			<span class = "date">{{getdate(infoitem.ts)}}</span>
+  			<span class = "month">{{getmonth(infoitem.ts)}}月</span>
   		</div>
 
   		<div class = "personal_homepage_time_pic" ng-show = {{infoshowpic(infoitem.type)}}>
   			<ul class="personal_homepage_cell_list">
-	    		<li class="personal_homepage_cell_{{formatcell(infoitem.content_img.length)}}" ng-repeat='img in infoitem.content_img track by $index' >
-	    			<div class = "personal_homepage_img_div_{{formatcell(infoitem.content_img.length)}}">
+	    		<li class="personal_homepage_cell_{{formatcell(infoitem.img.length)}}" ng-repeat='img in infoitem.img track by $index' >
+	    			<div class = "personal_homepage_img_div_{{formatcell(infoitem.img.length)}}">
 	    				<img class="personal_homepage_img"  ng-src="{{img}}">
 	    			</div>
 	    		</li>
 	    	</ul>
 
 	    	<div class = "personal_homepage_content">
-	    	{{infoitem.content_info}}		
+	    	{{infoitem.txt}}		
 	    	</div>
   		</div>
 
   		<div class = "personal_homepage_time_word"  ng-show = {{infoshowword(infoitem.type)}}>
-  			{{infoitem.content_info}}
+  			{{infoitem.txt}}
   		</div>
   	</ion-item>
   	</div>
 
-  	
     
 
   </ion-content>

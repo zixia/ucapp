@@ -21,8 +21,9 @@ angular.module('FactoryFormat', [])
     return commonTime;
   };
 
-  function formattimefriendcircle(time){
+  function formattimefriendcircle(timetmp){
     timearray = {};
+    var time = new Date(timetmp* 1000); 
     timearray.month = time.getMonth()+1;
     timearray.date = time.getDate();
     Y = time.getFullYear()+"年";
@@ -80,7 +81,10 @@ angular.module('FactoryFormat', [])
   }
 
   return {
-    formatcell:formatcell
+    formatcell:formatcell,
+    formattimestamp:formattimestamp,
+    formattimefriendcircle:formattimefriendcircle,
+    formatmonth:formatmonth
   }
 
 })

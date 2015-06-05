@@ -1,6 +1,6 @@
 angular.module('starter.homepagecontrollers', [])
 
-.controller('PersonalHomepageCtrl', function($http, $scope,$state,$ionicLoading,PersonalHomepageService) {
+.controller('PersonalHomepageCtrl', function($http, $scope,$state,$ionicLoading,PersonalHomepageService,Format) {
     var passPara = {};
 
     $ionicLoading.show({
@@ -20,6 +20,7 @@ angular.module('starter.homepagecontrollers', [])
         $ionicLoading.hide();
     });
 
+
     $scope.Parafun = function(index){
         passPara.infoId = index;
         return passPara;
@@ -38,7 +39,7 @@ angular.module('starter.homepagecontrollers', [])
     };
 
     $scope.infoshowpic = function(type){
-        if(type == "pic"){
+        if(type == "img"){
             return true;
         }
         else{
@@ -47,7 +48,7 @@ angular.module('starter.homepagecontrollers', [])
     }
 
     $scope.infoshowword = function(type){
-        if(type == "word"){
+        if(type == "txt"){
             return true;
         }
         else{
@@ -64,7 +65,7 @@ angular.module('starter.homepagecontrollers', [])
     };
 })
 
-.controller('PersonalContactHomepageCtrl', function($http, $scope,$state,$ionicLoading,$stateParams,PersonalHomepageService) {
+.controller('PersonalContactHomepageCtrl', function($http, $scope,$state,$ionicLoading,$stateParams,PersonalHomepageService,Format) {
     var num = $stateParams.contactId;
 
     var passPara = {};
@@ -88,6 +89,16 @@ angular.module('starter.homepagecontrollers', [])
         $ionicLoading.hide();
     });
 
+    $scope.getdate = function(ts){
+        var timearray = Format.formattimefriendcircle(ts);
+        return timearray.date;
+    }
+
+    $scope.getmonth = function(ts){
+        var timearray = Format.formattimefriendcircle(ts);
+        return timearray.month;
+    }
+
     $scope.Parafun = function(index){
         passPara.infoId = index;
         return passPara;
@@ -106,7 +117,7 @@ angular.module('starter.homepagecontrollers', [])
     };
 
     $scope.infoshowpic = function(type){
-        if(type == "pic"){
+        if(type == "img"){
             return true;
         }
         else{
@@ -115,7 +126,7 @@ angular.module('starter.homepagecontrollers', [])
     };
 
     $scope.infoshowword = function(type){
-        if(type == "word"){
+        if(type == "txt"){
             return true;
         }
         else{
@@ -133,7 +144,7 @@ angular.module('starter.homepagecontrollers', [])
 })
 
 
-.controller('PersonalHomepageDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,PersonalHomepageService,$window) {
+.controller('PersonalHomepageDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,PersonalHomepageService,$window,Format,IdSearch) {
 
     var Paraarray = $stateParams.infoId;
     var ParaObj = JSON.parse(Paraarray);
@@ -149,10 +160,14 @@ angular.module('starter.homepagecontrollers', [])
         $scope.userBasic = PersonalHomepageService.getUserInfo();
     }
     else{
-        console.log("???????");
         PersonalHomepageService.getContactUserInfo(contactId).success(function(data) {
         $scope.userBasic = data;
         });
+    }
+
+    $scope.changeId = function(id){
+        var idcontent = IdSearch.getIdInfo(id);
+        return idcontent;
     }
 
     PersonalHomepageService.getContentInfo().success(function(data) {
@@ -160,6 +175,13 @@ angular.module('starter.homepagecontrollers', [])
     }).then(function(){
         $ionicLoading.hide();
     });
+
+
+
+    $scope.getstandardtime = function(ts){
+        var timearray = Format.formattimefriendcircle(ts);
+        return timearray.timestandard;
+    }
 
     $scope.goaccount = function(){
         $state.go("personalHomepage");

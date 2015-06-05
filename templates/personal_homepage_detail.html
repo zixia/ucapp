@@ -12,17 +12,17 @@
     <div class = "homepage_detail_head">
       <img class = "homepage_detail_head_avatar" ng-src={{userBasic.user_avatar}}>
       <p class = "homepage_detail_head_name">{{userBasic.user_name}}</p>
-      <p class = "homepage_detail_head_content">{{InfoItem.content_info}}</p>
+      <p class = "homepage_detail_head_content">{{InfoItem.txt}}</p>
 
       <div class = "homepage_detail_head_img_div_list">
         <ul class = "homepage_detail_head_img_cell_list">
-          <li class = "homepage_detail_head_img_cell" ng-repeat='img in InfoItem.content_img track by $index' >
+          <li class = "homepage_detail_head_img_cell" ng-repeat='img in InfoItem.img track by $index' >
                <img class="full-image"    ng-src="{{img}}">
           </li>
         </ul>
       </div> 
 
-      <span class = "homepage_detail_head_time">{{InfoItem.publis_time}}</span>
+      <span class = "homepage_detail_head_time">{{getstandardtime(InfoItem.ts)}}</span>
       <span class = "homepage_detail_head_delete">删除</span>
 
       <span class="friendcircle-choose" ng-show=0>
@@ -40,12 +40,12 @@
       <div class="friendcircle-answer">
           <p class="friendcircle-first-p">
             <i class="ion-ios-heart-outline"></i>
-            <a ng-repeat='heartname in InfoItem.reply_heart track by $index' >{{heartname}}</a>
+            <a ng-repeat='id in InfoItem.like track by $index' >ss</a>
           </p>
           
           <p class="friendcircle-answer-body" ng-repeat='replycontent in InfoItem.reply track by $index'>
-            <a>{{replycontent.name}}</a>:
-            <span>{{replycontent.content}}</span>
+            <a>{{replycontent[0]}}</a>:
+            <span>{{replycontent[1]}}</span>
           </p>
       </div>
     </div>

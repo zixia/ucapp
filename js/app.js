@@ -27,6 +27,7 @@ angular.module('starter', [
   'FactoryAuthService',
   'MessageServiceFactory',
   'EventServiceFactory',
+  'IdSearchFactroy',
   
   //route
   'RouteConfig',
