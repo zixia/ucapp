@@ -5,9 +5,9 @@ header('Access-Control-Allow-Methods: GET, POST');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 header("Content-Type:text/html; charset=utf-8");
 $res = file_get_contents('php://input');
-$data = json_decode($res,true);//生成array数组
+$req = json_decode($res,true);//生成array数组
 
-$response = showevent();
+$response = showevent($req);
 $response_json = json_encode($response);//生成json数据
 die($response_json);
 
@@ -32,7 +32,9 @@ die($response_json);
  *               $response['event_intro']        string  活动介绍
  */
 
-    function showevent(){
+    function showevent($req){
+        $event_id = $req['event_id'];
+
         $response = array();
         $response['event_id'] = 1234;
         $response['event_title'] = "【广州古巴莎莎舞俱乐部】6月9日新学期啦！";
