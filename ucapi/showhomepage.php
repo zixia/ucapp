@@ -3,9 +3,9 @@ require_once('inc/config.inc.php');
 
 $res = file_get_contents('php://input');
 $req = json_decode($res,true);//生成array数组
+$userid = $req['userid'];
 
-
-$response = showhomepage($req);
+$response = showhomepage($userid);
 $response_json = json_encode($response);//生成json数据
 //print_r($response);
 die($response_json);
@@ -32,8 +32,8 @@ die($response_json);
 
 
 //实现朋友圈信息展示
-function showhomepage($req){
-    $flag = $req['flag'];
+function showhomepage($userid){
+   
     global $_SGLOBAL;
 
     $resp = array();
