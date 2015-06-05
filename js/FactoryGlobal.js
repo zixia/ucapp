@@ -34,5 +34,9 @@ angular.module('GlobalPath', [])
     return urldomain+"showeventdetail.php";
   }
 
+  service.getIdtransferurlPath = function(){
+    return urldomain+"idtransfer.php";
+  }
+
   return service;
 })

@@ -1,41 +1,29 @@
 angular.module('IdSearchFactroy', [])
 
-.factory("IdSearch",function($http){
+.factory("IdSearch",function($http,UrlPath){
   var service = {};
 
   // var contenturl = UrlPath.getContactpath();
 
-  service.getMainInfo = function(){
-    return $http.get('data/idsearch.json');
-
-    // return $http
-    // .post(contenturl,{user_id:user_id});
+  service.getMainInfo = function(idlist){
+    // return $http.get('data/idsearch.json');
+    var idtransferurl = UrlPath.getIdtransferurlPath();
+    return $http
+    .post(idtransferurl,{idlist:idlist});
   }
 
   service.getIdUsername = function(idlist,fulllist){
   	var newlist = {};
-  	for(var j= 0 ; j<idlist.length;j++){
-        for(var i= 0; i<fulllist.length;i++){
-            if (idlist[j] == fulllist[i].id) {
-                newlist[j] = fulllist[i].content.username;
-                break;
-            }
-        }
-    }
+  	for(var i = 0; i<idlist.length;i++){
+  		newlist[i] = fulllist[idlist[i]].username;
+  	}
     return newlist;
   }
 
   service.getIdUsernameReply = function(idlist,fulllist){
-  	console.log(idlist.length);
-  	console.log(fulllist.length);
-  	for(var j= 0 ; j<idlist.length;j++){
-        for(var i= 0; i<fulllist.length;i++){
-            if (idlist[j][0] == fulllist[i].id) {
-                idlist[j][0] = fulllist[i].content.username;
-                break;
-            }
-        }
-    }
+  	for(var i =0; i<idlist.length;i++){
+  		idlist[i][0] = fulllist[idlist[i][0]].username;
+  	}
     return idlist;
   }
 

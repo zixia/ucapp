@@ -169,17 +169,23 @@ angular.module('starter.homepagecontrollers', [])
 
     PersonalHomepageService.getContentInfo().success(function(data) {
         $scope.InfoItem = data.b[num];
+        var idreplylist = new Array();
+        var idlikelist = $scope.InfoItem.like;
 
+        for(var i =0; i<$scope.InfoItem.reply.length;i++){
+            idreplylist[i] = $scope.InfoItem.reply[i][0];
+        }
 
         // 处理like相关的东西
-        IdSearch.getMainInfo().success(function(data) {
-            $scope.InfoItem.fullarray = data;
+        IdSearch.getMainInfo(idlikelist).success(function(data) {
+            $scope.InfoItem.fullarray = data.b;
+            // console.log($scope.InfoItem.fullarray);
             $scope.InfoItem.likelist = IdSearch.getIdUsername($scope.InfoItem.like,$scope.InfoItem.fullarray);
         });
 
         //处理reply相关的东西
-        IdSearch.getMainInfo().success(function(data) {
-            $scope.InfoItem.fullarray = data;
+        IdSearch.getMainInfo(idreplylist).success(function(data) {
+            $scope.InfoItem.fullarray = data.b;
             $scope.InfoItem.replylist = IdSearch.getIdUsernameReply($scope.InfoItem.reply,$scope.InfoItem.fullarray);
         });
 

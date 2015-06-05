@@ -6,15 +6,14 @@ angular.module('starter.messagecontrollers', [])
     });
 
     MessageService.getMainInfo().success(function(data){
-        $scope.messages = data;
-        console.log(data);
+        $scope.messages = data.b;
         }).then(function(){
             $ionicLoading.hide();
     });
 
     $scope.refresh = function(){
             MessageService.getMainInfo().success(function(data){
-            $scope.messages = data;
+            $scope.messages = data.b;
             }).then(function(){
                 $scope.$broadcast('scroll.refreshComplete');
             });
@@ -32,9 +31,10 @@ angular.module('starter.messagecontrollers', [])
     });
 
     MessageService.getMainInfo().success(function(data) {
-          for (var i = 0; i < data.length; i++) {
-            if(data[i].message_user_id == num){
-                $scope.messageitem = data[i];
+        console.log(data.b);
+          for (var i = 0; i < data.b.length; i++) {
+            if(data.b[i].message_user_id == num){
+                $scope.messageitem = data.b[i];
             }
         }
     }).then(function(){
