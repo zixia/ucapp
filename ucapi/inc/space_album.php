@@ -1,10 +1,12 @@
 <?php
-include_once('/750/xfs/vhost/17salsa.com/home/common.php');
-include_once(S_ROOT.'./source/function_cp.php');
+require_once('/750/xfs/vhost/17salsa.com/home/common.php');
+require_once(S_ROOT.'./source/function_cp.php');
 
 if(!defined('IN_UCHOME')) {
 	exit('Access Denied');
 }
+
+global $_SGLOBAL;
 
 $_GET['view'] = 'me';
 
@@ -19,6 +21,7 @@ if($page<1) $page=1;
 //表态分类
 @include_once(S_ROOT.'./data/data_click.php');
 $clicks = empty($_SGLOBAL['click']['picid'])?array():$_SGLOBAL['click']['picid'];
+
 
 if($id) {
 	//图片列表

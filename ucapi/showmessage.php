@@ -31,18 +31,15 @@ getPrivateMessageThreadDetail(id,start,num)
  * 			     $response[]['message_array'][]['content']	string	发送内容	
  */
 
-/*
-define('RET_ERR_UNKNOWN', -1);
-define('RET_ERR_NOLOGIN', 1);
-*/
 
 function showmessage1($data) {
     global $_SGLOBAL;
 
 	$response = array();
-    $response['ret'] = false;
+    $response['ret'] = ERR_UNKNOWN;
 
     if(!$_SGLOBAL['supe_uid']) { // need login
+        $response['ret'] = ERR_NEEDLOGIN;
         return $response;
     }
 
@@ -73,13 +70,13 @@ function showmessage1($data) {
         $filter = in_array($_GET['filter'], array('newpm', 'privatepm', 'systempm', 'announcepm'))?$_GET['filter']:($space['newpm']?'newpm':'privatepm');
 
         //分页
-        $perpage = 10;
+        $perpage = 25;
         $perpage = mob_perpage($perpage);
 
         $page = empty($_GET['page'])?0:intval($_GET['page']);
         if($page<1) $page = 1;
 
-        $result = uc_pm_list($_SGLOBAL['supe_uid'], $page, $perpage, 'inbox', $filter, 100);
+        $result = uc_pm_list($_SGLOBAL['supe_uid'], $page, $perpage, 'inbox', $filter, 4096);
 
 //die("$_SGLOBAL[supe_uid], $page, $perpage, 'inbox', $filter, 100");
 //print_r($result);
@@ -118,12 +115,10 @@ function showmessage1($data) {
         realname_get();
     }
 
-    $response = array();
-
     foreach ( $list as $message ) {
         $msg = array();
 
-    	$msg["message_img"] = "http://17salsa.com/home/template/default/image/logo.gif";
+    	$msg["message_img"]     = avatar($message['msgfromid'],'small',true);
     	$msg["message_user"]    = $message['msgfrom'];
     	$msg["message_user_id"] = $message['msgfromid'];
     	$msg["message_publish_time"] = "上午10点";
