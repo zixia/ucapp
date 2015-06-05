@@ -2,12 +2,12 @@
 require_once('inc/config.inc.php');
 
 $res = file_get_contents('php://input');
-$data = json_decode($res,true);//生成array数组
+$req = json_decode($res,true);//生成array数组
 
-$response = showmessage1($data);
+$resp = showmessage1($req);
 
-$response_json = json_encode($response);//生成json数据
-die($response_json);
+$resp_json = json_encode($resp);//生成json数据
+die($resp_json);
 
 
 /**
@@ -35,12 +35,14 @@ getPrivateMessageThreadDetail(id,start,num)
 function showmessage1($data) {
     global $_SGLOBAL;
 
-	$response = array();
-    $response['ret'] = ERR_UNKNOWN;
+	$resp = array();
+	$resp['h'] = array();
+	$resp['b'] = array();
+    $resp['h']['ret'] = ERR_UNKNOWN;
 
     if(!$_SGLOBAL['supe_uid']) { // need login
-        $response['ret'] = ERR_NEEDLOGIN;
-        return $response;
+        $resp['h']['ret'] = ERR_NEEDLOGIN;
+        return $resp;
     }
 
     $list = array();
@@ -130,10 +132,11 @@ function showmessage1($data) {
 
         array_push($msg['message_array'], $msg_item);
 
-        array_push($response, $msg);
+        array_push($resp['b'], $msg);
     }
 
-	return $response;
+    $resp['h']['ret'] = ERR_OK;
+	return $resp;
 }
 
 ?>

@@ -3,9 +3,11 @@ require_once('inc/config.inc.php');
 $res = file_get_contents('php://input');
 $req = json_decode($res,true);//生成array数组
 
-$response = idtransfer($req;);
-$response_json = json_encode($response);//生成json数据
-die($response_json);
+$req['idlist'] = array ( 1,2,3 );
+
+$resp = idtransfer($req);
+$resp_json = json_encode($resp);//生成json数据
+die($resp_json);
 
 
 
@@ -22,18 +24,26 @@ die($response_json);
 
 //实现朋友圈信息展示
 function idtransfer($req){
+    global $_SGLOBAL;
+
 	$idlist = $req['idlist'];
 
 	$resp['b'] = array();
     $resp['h'] = array();
 
-	$content = array("username"=>"zixia","avatar"=>"./img/con1.jpg");
+    $result = array();
 
-	$response[0]['id'] = $idlist[0];
-	$response[0]['content'] = $content;
+    foreach ( $idlist as $uid ) {
+        $m_space = getspace($uid);
 
-	$resp['b'] = $response;
+	    $result[$uid] = array(
+                username    => $m_space['name'],
+                avatar      => avatar($uid,'small',true)
+            );
+    }
 
+    $resp['b'] = $result;
+    $resp['h']['ret'] = ERR_OK;
 
 	return $resp;
 }
