@@ -28,27 +28,27 @@
     <div class = "friendcircle-list" ng-repeat="info in infos">
 	  <!-- <div class="item item-avatar"> -->
 	  <div class="friendcircle-no-border item item-avatar">
-	    <img class="friendcircle-square" ng-src="{{info.avatar_img}}">
-	    <h2 class = "friendcirle-friendname">{{info.avatar_name}}</h2>
+	    <img class="friendcircle-square" ng-src="{{info.p[2]}}">
+	    <h2 class = "friendcirle-friendname">{{info.p[1]}}</h2>
 	    
-	    <h3>{{info.content_info}}</h3>
+	    <h3>{{info.txt}}</h3>
 	    
 
 	    <div class="row friendcircle-row" >
 		    <ul class="friendcircle-cell-list">
-	    		<li class="friendcircle-cell-{{formatcell(info.content_img.length)}}" ng-repeat='imglist in info.content_img track by $index' >
+	    		<li class="friendcircle-cell-{{formatcell(info.img.length)}}" ng-repeat='imglist in info.img track by $index' >
 	    			<img class="full-image"  ng-src="{{imglist}}">
 	    		</li>
 	    	</ul>
     	</div>
     	
 	    <div class="friendcircle-answer-tab">
-	     	<span class = "friendcircle-publish-time">{{info.publish_time}}</span>
+	     	<span class = "friendcircle-publish-time">{{getstandardtime(info.ts)}}</span>
     		
     		<span class="friendcircle-choose" ng-show="searchclick({{$index}})">
 	     		 <a href="#" ng-click = "sendheart()"><i class="ion-ios-heart-outline"></i>{{heart_tag}}</a>
 	     		 <span>|</span>
-				 <a href="#" ng-click = "remark('{{info.avatar_name}}' )"><i class="ion-ios-chatbubble-outline"></i>评论</a>
+				 <a href="#" ng-click = "remark('{{info.p[2]}}' )"><i class="ion-ios-chatbubble-outline"></i>评论</a>
 	     	</span>
 
 		    <a href="#" class="friendcircle-tab-click" ng-click="clickfun({{$index}})">
@@ -60,12 +60,12 @@
 	    <div class="friendcircle-answer">
 	    	<p class="friendcircle-first-p">
 	    	  <i class="ion-ios-heart-outline"></i>
-	    	  <a ng-repeat='heartname in info.reply_heart track by $index' >{{heartname}}</a>
+	    	  <a ng-repeat='id in info.likelist track by $index' >{{id.username}}</a>
 		    </p>
 		    
-		    <p class="friendcircle-answer-body" ng-repeat='replycontent in info.reply track by $index'>
+		    <p class="friendcircle-answer-body" ng-repeat='replycontent in info.replylist track by $index'>
 	    	  <a>{{replycontent.name}}</a>:
-	    	  <span>{{replycontent.content}}</span>
+	    	  <span>{{replycontent[1]}}</span>
 		    </p>
 	    </div>
 

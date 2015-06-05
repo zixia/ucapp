@@ -24,9 +24,9 @@ angular.module('FactoryPersonalHomepageService', [])
   };
   
 
-  service.getContentInfo = function(){
+  service.getContentInfo = function(contact_id){
     return $http
-    .post(getContentPath,{user_id:user_id});
+    .post(getContentPath,{user_id:contact_id});
   };
 
   return service;

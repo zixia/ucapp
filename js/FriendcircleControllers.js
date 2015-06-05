@@ -1,6 +1,6 @@
 angular.module('starter.friendcirclecontrollers', [])
 
-.controller('FriendcircleCtrl', function($scope,$http,$ionicPopup,Format,$ionicLoading,$state,$rootScope,$window) {       
+.controller('FriendcircleCtrl', function($scope,$http,$ionicPopup,Format,$ionicLoading,$state,$rootScope,$window,PersonalHomepageService,IdSearch) {       
         $scope.clickarray = new Array();
         $scope.friend_id = null;
         $scope.inputshow = false;
@@ -87,11 +87,54 @@ angular.module('starter.friendcirclecontrollers', [])
             template:'<i class = "ion-load-c"><br></i>Loading...'
          });
          // $http.get('data/friendcircle.json').success(function(data) {
-         $http.get('http://17salsa.com/home/s.php?rewrite=home-view-all').success(function(data) {
-          $scope.infos = data;
-        }).then(function(){
+         // $http.get('http://17salsa.com/home/s.php?rewrite=home-view-all').success(function(data) {
+         PersonalHomepageService.getContentInfo().success(function(data) {
+            $scope.infos = data.b;
+
+
+
+            console.log($scope.infos.length);
+            for (var j = 0; j < $scope.infos.length; j++) {       
+                
+                (function(jj){
+                    IdSearch.getMainInfo($scope.infos[jj].like).success(function(data) {
+                    var fullarray = data.b;
+                    $scope.infos[jj].likelist = fullarray;
+                });
+
+                })(j);
+
+                (function(aa){
+                    var idreplylist = new Array();
+                    for(var b =0; b<$scope.infos[aa].reply.length;b++){
+                        idreplylist[b] = $scope.infos[aa].reply[b][0];
+                    }
+                    IdSearch.getMainInfo(idreplylist).success(function(data) {
+                        var fullarray = data.b;
+                        console.log(data.b);
+                        $scope.infos[aa].replylist = fullarray;
+                    });
+
+                })(j);
+                
+
+
+                // // 处理reply相关的东西
+                // IdSearch.getMainInfo(idreplylist).success(function(data) {
+                //     $scope.InfoItem.fullarray = data.b;
+                //     $scope.InfoItem.replylist = IdSearch.getIdUsernameReply($scope.InfoItem.reply,$scope.InfoItem.fullarray);
+                // });                
+            }
+        })
+          
+        .then(function(){
             $ionicLoading.hide();
         });
+
+        $scope.getstandardtime = function(ts){
+            var timearray = Format.formattimefriendcircle(ts);
+            return timearray.timestandard;
+        }
         
         //格式化类,根据收到的图片展示不同的样式
         $scope.formatcell = function(cell){

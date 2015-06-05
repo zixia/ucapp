@@ -1,7 +1,8 @@
 angular.module('starter.homepagecontrollers', [])
 
-.controller('PersonalHomepageCtrl', function($http, $scope,$state,$ionicLoading,PersonalHomepageService,Format) {
+.controller('PersonalHomepageCtrl', function($window,$http, $scope,$state,$ionicLoading,PersonalHomepageService,Format) {
     var passPara = {};
+    var user_own_id = $window.sessionStorage['user_id'];
 
     $ionicLoading.show({
         template:'<i class = "ion-load-c"><br></i>Loading...'
@@ -14,7 +15,7 @@ angular.module('starter.homepagecontrollers', [])
 
     passPara.contactId = $scope.userBasicInfo.user_id;
 
-    PersonalHomepageService.getContentInfo().success(function(data) {
+    PersonalHomepageService.getContentInfo(user_own_id).success(function(data) {
         $scope.userContentInfo = data;
     }).then(function(){
         $ionicLoading.hide();
@@ -83,7 +84,7 @@ angular.module('starter.homepagecontrollers', [])
         passPara.contactId = $scope.userBasicInfo.user_id;
     });
 
-    PersonalHomepageService.getContentInfo().success(function(data) {
+    PersonalHomepageService.getContentInfo(num).success(function(data) {
         $scope.userContentInfo = data;
     }).then(function(){
         $ionicLoading.hide();
