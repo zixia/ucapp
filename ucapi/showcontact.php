@@ -1,7 +1,7 @@
 <?php
 require_once('inc/config.inc.php');
 
-res = file_get_contents('php://input');
+$res = file_get_contents('php://input');
 $data = json_decode($res,true);//生成array数组
 
 $response = showcontact($data);
@@ -39,7 +39,7 @@ function showcontact($data)
     }
 
     //分页
-    $perpage = 24;
+    $perpage = 100;
     $perpage = mob_perpage($perpage);
 
     $list = $ols = $fuids = array();
