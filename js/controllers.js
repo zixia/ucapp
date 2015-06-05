@@ -49,6 +49,10 @@ angular.module('starter.controllers', [])
     $scope.gocontact = function(){
         $state.go("contact");
     }
+
+    $scope.gochat = function(){
+        $state.go("chatroom");
+    }
 })
 
 .controller('ChatroomCtrl', function($scope) {
