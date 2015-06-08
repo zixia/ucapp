@@ -110,7 +110,7 @@ angular.module('RouteConfig', [])
   })
 
   .state('personalContactHomepage', {
-      url: '/personalContactHomepage/:contactId',
+      url: '/personalContactHomepage/:contact',
           templateUrl: 'templates/personal_homepage.html',
           controller: 'PersonalContactHomepageCtrl'
   })

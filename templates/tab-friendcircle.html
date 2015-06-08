@@ -62,9 +62,9 @@
 	    	  <a ng-repeat='id in info.likelist track by $index' >{{id.username}}</a>
 		    </p>
 		    
-		    <p class="friendcircle-answer-body" ng-repeat='replycontent in info.replylist track by $index'>
-	    	  <a>{{replycontent.name}}</a>:
-	    	  <span>{{replycontent[1]}}</span>
+		    <p class="friendcircle-answer-body" ng-repeat='item in info.reply track by $index'>
+	    	  <a>{{info.likelist[item[0]].username}}</a>:
+	    	  <span>{{item[1]}}</span>
 		    </p>
 	    </div>
 

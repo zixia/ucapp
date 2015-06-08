@@ -67,7 +67,14 @@ angular.module('starter.homepagecontrollers', [])
 })
 
 .controller('PersonalContactHomepageCtrl', function($http, $scope,$state,$ionicLoading,$stateParams,PersonalHomepageService,Format) {
-    var num = $stateParams.contactId;
+    var contactPath = JSON.parse($stateParams.contact);
+
+    var num = contactPath.id;
+    var urlPara = contactPath.path;
+
+    $scope.urlPath = {};
+    $scope.urlPath.id = contactPath.id;
+    $scope.urlPath.history = contactPath.path;
 
     var passPara = {};
 
@@ -139,8 +146,9 @@ angular.module('starter.homepagecontrollers', [])
         $state.go("friendcircle");
     };
 
-    $scope.goback = function(contactId){
-        $state.go("contact-detail",{'contactId':contactId});
+
+    $scope.goback = function(){
+        $state.go($scope.urlPath.history,{'contactId':$scope.urlPath.id});
     };
 })
 

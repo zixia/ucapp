@@ -26,9 +26,12 @@ angular.module('starter.contactcontrollers', [])
     });
 
     ContactService.getMainInfo().success(function(data){
+        $scope.contactpath = {};
         for (var i = 0; i < data.length; i++) {
             if(data[i].contact_id == num){
                 $scope.contactitem = data[i];
+                $scope.contactpath.id = $scope.contactitem.contact_id;
+                $scope.contactpath.path = "contact-detail";
             }
         }
     }).then(function(){
@@ -38,6 +41,9 @@ angular.module('starter.contactcontrollers', [])
     $scope.gocback = function(){
         $window.history.back();
     }
+
+
+    
 
     // $scope.sendmessage = function(contact_id){
     //     $state.go("tab.message",{contact_id:contact_id});

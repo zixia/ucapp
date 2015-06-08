@@ -104,26 +104,16 @@ angular.module('starter.friendcirclecontrollers', [])
 
                 })(j);
 
-                (function(aa){
-                    var idreplylist = new Array();
-                    for(var b =0; b<$scope.infos[aa].reply.length;b++){
-                        idreplylist[b] = $scope.infos[aa].reply[b][0];
-                    }
-                    IdSearch.getMainInfo(idreplylist).success(function(data) {
-                        var fullarray = data.b;
-                        console.log(data.b);
-                        $scope.infos[aa].replylist = fullarray;
-                    });
-
-                })(j);
-                
-
-
-                // // 处理reply相关的东西
-                // IdSearch.getMainInfo(idreplylist).success(function(data) {
-                //     $scope.InfoItem.fullarray = data.b;
-                //     $scope.InfoItem.replylist = IdSearch.getIdUsernameReply($scope.InfoItem.reply,$scope.InfoItem.fullarray);
-                // });                
+                // (function(aa){
+                //     var idreplylist = new Array();
+                //     for(var b =0; b<$scope.infos[aa].reply.length;b++){
+                //         idreplylist[b] = $scope.infos[aa].reply[b][0];
+                //     }
+                //     IdSearch.getMainInfo(idreplylist).success(function(data) {
+                //         var fullarray = data.b;
+                //         $scope.infos[aa].replylist = fullarray;                       
+                //     });
+                // })(j);             
             }
         })
           
