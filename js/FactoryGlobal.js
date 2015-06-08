@@ -40,3 +40,39 @@ angular.module('GlobalPath', [])
 
   return service;
 })
+
+// .factory("BrowserHistory",function(){
+
+//   service = {};
+
+//   function getHash(){
+//     var h = location.hash;
+
+//     if(!h){
+//       return "";
+//     }else{
+//       return location.hash;
+//     }
+//   }
+
+//   service.changeHash = function(){
+//     location.hash = "#"+nextHash++;
+//   }
+
+//   function changeHashCallBack(){
+//     var hash = getHash();
+
+//     if (curHash!=hash) {
+//       curHash = hash;
+//       alert("hash change:"+hash);
+//     }
+//   }
+
+//   return service;
+
+
+// })
+
+
+
+

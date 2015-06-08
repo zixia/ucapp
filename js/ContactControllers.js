@@ -11,15 +11,33 @@ angular.module('starter.contactcontrollers', [])
             $ionicLoading.hide();
     });
 
+    $scope.passcontact = function(id){
+        var contactPath = {};
+        contactPath.id = id;
+        contactPath.path = "contact";
+        return contactPath;
+    }
+
     $scope.godiscover = function(){
             $state.go("tab.discovery");
     }
 
 })
 
-.controller('ContactDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,ContactService,$window) {
+.controller('ContactDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,ContactService,$window,$location) {
 
-    var num = $stateParams.contactId;
+    var contactPath = JSON.parse($stateParams.contact);
+
+    var num = contactPath.id;
+    var urlPara = contactPath.path;
+    console.log(urlPara);
+
+    $scope.urlPath = {};
+    $scope.urlPath.id = contactPath.id;
+    $scope.urlPath.path = contactPath.path;
+
+    // var num = $stateParams.contact;
+    // console.log(num);
 
     $ionicLoading.show({
         template:'<i class = "ion-load-c"><br></i>Loading...'
@@ -38,9 +56,22 @@ angular.module('starter.contactcontrollers', [])
             $ionicLoading.hide();
     });
 
-    $scope.gocback = function(){
-        $window.history.back();
-    }
+
+    $scope.goback = function(){
+        console.log(urlPara);
+        if (urlPara == "contact-detail") {
+            history.go(-3);
+        }
+        else{
+            history.back();
+        }
+        //暂时通，满满研究history，未完待续
+        // $location.path(BrowsingHistory.prev());
+        console.log($location.path());
+        console.log($location.absUrl());
+        console.log($location.search());
+        // BrowserHistory.changeHash();
+    };
 
 
     

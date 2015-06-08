@@ -65,7 +65,7 @@ angular.module('RouteConfig', [])
   })
 
   .state('contact-detail', {
-      url: '/contact/:contactId',
+      url: '/contact/:contact',
           templateUrl: 'templates/contact-detail.html',
           controller: 'ContactDetailCtrl'
   })

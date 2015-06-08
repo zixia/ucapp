@@ -74,7 +74,7 @@ angular.module('starter.homepagecontrollers', [])
 
     $scope.urlPath = {};
     $scope.urlPath.id = contactPath.id;
-    $scope.urlPath.history = contactPath.path;
+    $scope.urlPath.path = contactPath.path;
 
     var passPara = {};
 
@@ -148,7 +148,9 @@ angular.module('starter.homepagecontrollers', [])
 
 
     $scope.goback = function(){
-        $state.go($scope.urlPath.history,{'contactId':$scope.urlPath.id});
+        var contactPathstr = JSON.stringify(contactPath);
+        console.log(contactPathstr);
+        $state.go($scope.urlPath.path,{'contact':contactPathstr});
     };
 })
 
