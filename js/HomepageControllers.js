@@ -157,8 +157,11 @@ angular.module('starter.homepagecontrollers', [])
 
 .controller('PersonalHomepageDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,PersonalHomepageService,$window,Format,IdSearch) {
 
+    
     var Paraarray = $stateParams.infoId;
     var ParaObj = JSON.parse(Paraarray);
+
+    console.log(Paraarray);
 
     var num = ParaObj.infoId;
     var contactId = ParaObj.contactId;
@@ -178,7 +181,8 @@ angular.module('starter.homepagecontrollers', [])
 
     
 
-    PersonalHomepageService.getContentInfo().success(function(data) {
+    PersonalHomepageService.getContentInfo(contactId).success(function(data) {
+
         $scope.InfoItem = data.b[num];
         var idreplylist = new Array();
         var idlikelist = $scope.InfoItem.like;
@@ -212,8 +216,8 @@ angular.module('starter.homepagecontrollers', [])
         return timearray.timestandard;
     }
 
-    $scope.goaccount = function(){
-        $state.go("personalHomepage");
+    $scope.goback = function(){
+        history.back();
     }
     
 
