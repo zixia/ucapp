@@ -29,5 +29,10 @@ angular.module('FactoryPersonalHomepageService', [])
     .post(getContentPath,{user_id:contact_id});
   };
 
+  service.sendlike = function(user_id){
+    return $http
+    .post(getSendlikePath,{user_id:user_id});
+  }
+
   return service;
 })

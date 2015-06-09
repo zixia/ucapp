@@ -38,6 +38,10 @@ angular.module('GlobalPath', [])
     return urldomain+"idtransfer.php";
   }
 
+  service.getSendlikePath = function(){
+    return urldomain+"receivelike.php";
+  }
+
   return service;
 })
 
