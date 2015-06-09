@@ -21,9 +21,9 @@ angular.module('starter.friendcirclecontrollers', [])
         }
 
         $scope.clickfun = function(num){
-            var user = "aaaaaaa";
+            var user = $window.sessionStorage['user_id'];
 
-            if($scope.infos[num].reply_heart.indexOf(user)>-1){
+            if($scope.infos[num].like.indexOf(user)>-1){
                 $scope.heart_tag =  "取消";
             }
             else{
@@ -72,14 +72,14 @@ angular.module('starter.friendcirclecontrollers', [])
 
         //点赞 和zixia调
         $scope.sendheart = function(){
-            var user = 'aaaaaaa';
+            var user = $window.sessionStorage['user_id'];
             var serial = $scope.serial_num;//整个数据流中的第几个数据
-            if($scope.infos[serial].reply_heart.indexOf(user)>-1){
-                var reply_heart_index = $scope.infos[serial].reply_heart.indexOf(user);
-                $scope.infos[serial].reply_heart.splice(reply_heart_index, 1);
+            if($scope.infos[serial].like.indexOf(user)>-1){
+                var reply_heart_index = $scope.infos[serial].like.indexOf(user);
+                $scope.infos[serial].like.splice(reply_heart_index, 1);
             }
             else{
-                $scope.infos[serial].reply_heart.push(user);
+                $scope.infos[serial].like.push(user);
             }   
         }
 

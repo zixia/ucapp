@@ -149,7 +149,6 @@ angular.module('starter.homepagecontrollers', [])
 
     $scope.goback = function(){
         var contactPathstr = JSON.stringify(contactPath);
-        console.log(contactPathstr);
         $state.go($scope.urlPath.path,{'contact':contactPathstr});
     };
 })
@@ -161,7 +160,6 @@ angular.module('starter.homepagecontrollers', [])
     var Paraarray = $stateParams.infoId;
     var ParaObj = JSON.parse(Paraarray);
 
-    console.log(Paraarray);
 
     var num = ParaObj.infoId;
     var contactId = ParaObj.contactId;

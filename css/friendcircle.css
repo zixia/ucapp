@@ -61,6 +61,14 @@
 	margin-bottom: 5px!important;
 }
 
+.friendcircle-h3{
+	word-wrap: break-word !important; 
+	word-break: break-all !important;
+	white-space: normal !important;
+	font-weight: 400 !important;
+
+}
+
 .friendcircle-publish-time{
 	font-size: 50% !important;
 }

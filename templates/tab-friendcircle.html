@@ -30,7 +30,7 @@
 	    <img class="friendcircle-square" ng-src="{{info.p[2]}}">
 	    <h2 class = "friendcirle-friendname">{{info.p[1]}}</h2>
 	    
-	    <h3>{{info.txt}}</h3>
+	    <h3 class = "friendcircle-h3">{{info.txt}}</h3>
 	    
 
 	    <div class="row friendcircle-row" >
@@ -43,7 +43,7 @@
     	
 	    <div class="friendcircle-answer-tab">
 	     	<span class = "friendcircle-publish-time">{{getstandardtime(info.ts)}}</span>
-    		
+
     		<span class="friendcircle-choose" ng-show="searchclick({{$index}})">
 	     		 <a href="#" ng-click = "sendheart()"><i class="ion-ios-heart-outline"></i>{{heart_tag}}</a>
 	     		 <span>|</span>
