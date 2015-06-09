@@ -14,24 +14,21 @@ die($response_json);
  * @Author:      name
  * @DateTime:    2015-06-09 15:14:33
  * @Description: 实现接受点赞功能
- * @Para			$resp['h']['ret'] = 0 接受成功并成功入库
+ * @Para			$resp['h']['r'] = ERR_OK 接受成功并成功入库
  *					$resp['b']
  */
 
 
 function receivelike($user){
-   
-
     $resp = array();
+    $resp['h']['r'] = ERR_UNKNOWN;
 
-    if($user){
-    	//处理成功
-    	resp['h']['ret'] = 0;
-    }
-    else{
-    	resp['h']['ret'] = ERR_UNKNOWN;
-    }
+    // XXX $user 是个啥？
     
+
+    //处理成功
+    $resp['h']['r'] = ERR_OK;
+    return $resp;
  }
 
 ?>
