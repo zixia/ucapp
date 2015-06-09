@@ -8,6 +8,8 @@ angular.module('FactoryPersonalHomepageService', [])
 
   var getContactUserPath = UrlPath.getContactUserPath();
   var getContentPath = UrlPath.getContentPath();
+  var getSendlikePath = UrlPath.getSendlikePath();
+  var getSendRemarkPath = UrlPath.getSendRemarkPath();
 
   service.getUserInfo = function(){
     userInfo.user_id = $window.sessionStorage["user_id"];
@@ -32,6 +34,11 @@ angular.module('FactoryPersonalHomepageService', [])
   service.sendlike = function(user_id){
     return $http
     .post(getSendlikePath,{user_id:user_id});
+  }
+
+  service.sendremark = function(user_id,content){
+    return $http
+    .post(getSendRemarkPath,{user_id:user_id,content:content});
   }
 
   return service;

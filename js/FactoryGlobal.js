@@ -42,6 +42,10 @@ angular.module('GlobalPath', [])
     return urldomain+"receivelike.php";
   }
 
+  service.getSendRemarkPath = function(){
+    return urldomain+"receiveremark.php";
+  }
+
   return service;
 })
 
