@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('EventCtrl', function($scope,EventService,$ionicLoading) {
+.controller('EventCtrl', function($scope,EventService,$ionicLoading,Format) {
 
     // var unixtime=1433420932;
     // var unixTimestamp = new Date(unixtime* 1000); 
@@ -20,11 +20,21 @@ angular.module('starter.controllers', [])
         }).then(function(){
             $ionicLoading.hide();
     });
+
+    $scope.getstandardtime = function(ts){
+            var timearray = Format.formattimefriendcircle(ts);
+            return timearray.timestandard;
+        }
 	
 })
 
-.controller('EventDetailCtrl',function($state,$scope,$stateParams,$ionicLoading,EventService){
+.controller('EventDetailCtrl',function($state,$scope,$stateParams,$ionicLoading,EventService,Format){
 	var num = $stateParams.eventId;
+
+    $scope.getstandardtime = function(ts){
+            var timearray = Format.formattimefriendcircle(ts);
+            return timearray.timestandard;
+        }
 
 	$ionicLoading.show({
         template:'<i class = "ion-load-c"><br></i>Loading...'
@@ -55,8 +65,10 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ChatroomCtrl', function($scope) {
-  // Nothing to see here.
+.controller('ChatroomCtrl', function($scope,$state) {
+  $scope.godiscover = function(){
+    $state.go("tab.discovery");
+  }
 })
 
 

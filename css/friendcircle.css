@@ -6,6 +6,11 @@
 	margin-bottom: 40px;
 }
 
+.friendcircle-nostatus{
+	text-align: center;
+	color: #666;
+}
+
 .friendcircle-header-div{
 	overflow:hidden;
 	height: 230px;

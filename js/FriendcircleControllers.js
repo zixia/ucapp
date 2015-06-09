@@ -48,13 +48,16 @@ angular.module('starter.friendcirclecontrollers', [])
 
         //发送评论 和zixia调
         $scope.sendremark = function(){
+            var user = $window.sessionStorage['user_id'];
+            var username = $window.sessionStorage['user_name'];
             $remark_content = $scope.inputContent;
-            $remark_json = {"name":"newremark","content":$remark_content};
+            $remark_json = [username,$remark_content];
             var serial = $scope.serial_num;//整个数据流中的第几个数据
             $scope.infos[serial].reply.push($remark_json);
+
+
             // return $http
             // // .post('http://17salsa.com/login.php',{username:"zixia"})
-            // .post('http://127.0.0.1/test.php',{
             //     content:content,
             //     friend_id:$scope.friend_id
             // }).then(function(res){
@@ -80,7 +83,11 @@ angular.module('starter.friendcirclecontrollers', [])
             }
             else{
                 $scope.infos[serial].like.push(user);
-            }   
+            }
+            IdSearch.getMainInfo($scope.infos[serial].like).success(function(data) {
+                    var fullarray = data.b;
+                    $scope.infos[serial].likelist = fullarray;
+            })   
         }
 
          $ionicLoading.show({
@@ -90,11 +97,12 @@ angular.module('starter.friendcirclecontrollers', [])
          // $http.get('http://17salsa.com/home/s.php?rewrite=home-view-all').success(function(data) {
          PersonalHomepageService.getContentInfo().success(function(data) {
             $scope.infos = data.b;
+            if ($scope.infos===undefined) {
+                $scope.content = "他很懒，还没有发表过状态";
+            }
+            else{
 
-
-
-            console.log($scope.infos.length);
-            for (var j = 0; j < $scope.infos.length; j++) {       
+                for (var j = 0; j < $scope.infos.length; j++) {       
                 
                 (function(jj){
                     IdSearch.getMainInfo($scope.infos[jj].like).success(function(data) {
@@ -114,7 +122,10 @@ angular.module('starter.friendcirclecontrollers', [])
                 //         $scope.infos[aa].replylist = fullarray;                       
                 //     });
                 // })(j);             
+                }
             }
+
+            
         })
           
         .then(function(){
@@ -139,3 +150,5 @@ angular.module('starter.friendcirclecontrollers', [])
             });
         }
 })
+
+

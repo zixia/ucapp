@@ -11,7 +11,7 @@
 
       <div class="item item-body">
         <img ng-src="{{item.event_img}}" class = "full-image">
-        <p class = "event_title_p"><span>活动时间：</span>{{item.event_time}}</p>
+        <p class = "event_title_p"><span>活动时间：</span>{{getstandardtime(item.event_time)}}</p>
         <p class = "event_title_p"><span>活动地点：</span>{{item.event_spot}}</p>
         <p class = "event_title_p"><span>发起人:</span>{{item.event_people}}</p>
         <p>
