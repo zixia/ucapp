@@ -1,17 +1,13 @@
 [
-	{
-		"id":1,
-		"content":{"username":"ruirui","avatar":"./img/1.jpg"}
-		
-	},
 
-	{
-		"id":2,
-		"content":{"username":"zixia","avatar":"./img/2.jpg"}
-	},
+"1":{"username":"ruirui","avatar":"./img/1.jpg"},
+	
+	"2":{"username":"zixia","avatar":"./img/2.jpg"},
 
-	{
-		"id":3,
-		"content":{"username":"iiii","avatar":"./img/con1.jpg"}
-	}
+	"3":{"username":"iiii","avatar":"./img/con1.jpg"}
+
 ]
+	
+	
+
+
