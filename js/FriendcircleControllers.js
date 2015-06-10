@@ -78,8 +78,8 @@ angular.module('starter.friendcirclecontrollers', [])
             var user = $window.sessionStorage['user_id'];
             var serial = $scope.serial_num;//整个数据流中的第几个数据
             PersonalHomepageService.sendlike(user).success(function(data){
-                if(data.h.ret = 0){
-                    console.log(data.h);
+                if(data.h.r == 0){
+                    console.log('success!!');
                     if($scope.infos[serial].like.indexOf(user)>-1){
                         var reply_heart_index = $scope.infos[serial].like.indexOf(user);
                         $scope.infos[serial].like.splice(reply_heart_index, 1);
@@ -87,17 +87,18 @@ angular.module('starter.friendcirclecontrollers', [])
                     else{
                         $scope.infos[serial].like.push(user);
                     }
+                    IdSearch.getMainInfo($scope.infos[serial].like).success(function(data) {
+                    var fullarray = data.b;
+                    $scope.infos[serial].likelist = fullarray;
+                    });  
                 }
                 else{
-                    alert(data.h);
+                    alert("点赞失败"+data.h.r);
                 }
                 
             }); 
             
-            IdSearch.getMainInfo($scope.infos[serial].like).success(function(data) {
-                    var fullarray = data.b;
-                    $scope.infos[serial].likelist = fullarray;
-            });   
+             
         }
 
          $ionicLoading.show({
