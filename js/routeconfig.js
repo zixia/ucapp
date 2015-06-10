@@ -124,6 +124,6 @@ angular.module('RouteConfig', [])
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/message');
+  $urlRouterProvider.otherwise('/tab/event');
 
 });

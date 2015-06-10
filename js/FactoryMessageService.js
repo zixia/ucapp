@@ -10,7 +10,7 @@ angular.module('MessageServiceFactory', [])
   service.getMainInfo = function(){
     // return $http.get('data/message.json');
     return $http
-    .post(getMessagePath,{user_id:user_id});
+    .post(getMessagePath,{c_id:1,start:strat,num:2});
   }
 
   return service;

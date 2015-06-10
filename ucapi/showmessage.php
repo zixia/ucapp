@@ -4,7 +4,11 @@ require_once('inc/config.inc.php');
 $res = file_get_contents('php://input');
 $req = json_decode($res,true);//生成array数组
 
-$resp = showmessage1($req);
+$start = $req['start'];
+$num = $req['num'];
+$contact_id = $req['c_id'];
+
+$resp = showmessagetest($contact_id,$start,$num);
 
 $resp_json = json_encode($resp);//生成json数据
 die($resp_json);
@@ -31,6 +35,31 @@ getPrivateMessageThreadDetail(id,start,num)
  * 			     $response[]['message_array'][]['content']	string	发送内容	
  */
 
+
+function showmessagetest($contact_id,$start,$num){
+    $resp = array();
+    $resp['h'] = array();
+    $resp['b'] = array();
+
+    $item = array();
+
+    $item_1[] = array();
+    $item_1['message_img'] = './img/1.jpg';
+    $item_1['message_user'] = 'zixia';
+    $item_1['message_user_id'] = 1;
+    $item_1['message_publish_time'] = 1234567;
+    $item_1['message_array'] = {'right','aaaaaa'};
+
+    $item = array($item_1,$item_1,$item_1,$item_1);
+
+    for ($i=$start; $i <= $num; $i++) { 
+        $resp['b'] = $item[$i];
+    }
+    
+
+    return $resp;
+
+}
 
 function showmessage1($data) {
     global $_SGLOBAL;

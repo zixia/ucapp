@@ -4,7 +4,7 @@
       <input ng-model="query" type="text" placeholder="搜索"/>
     </div>
 
-    <ion-item class="list card" ng-repeat = "item in eventlist.b track by $index | filter:query " href = "#/event/{{item.event_id}}">
+    <ion-item class="list card" ng-repeat = "item in eventlist.b track by $index | filter:query" href = "#/event/{{item.event_id}}">
       <div class="item">
         <h3 class = "event_title_h3">{{item.event_title}}</h3>
       </div>
