@@ -9,12 +9,13 @@
   </ion-nav-bar>
 
   <ion-content style="background: #e8ebf1;">
-    <div ng-repeat='item in messageitem.message_array track by $index'>
+  <ion-refresher on-refresh="refresh()"></ion-refresher>
+    <div ng-repeat='item in message_array track by $index'>
        <ion-item class = "message-detail-list">
-        <img ng-src="{{format_img(item.name,messageitem.message_img)}}" class = "message-detail-img-{{item.name}}" ng-click="gocontact()">
-          <div class = "message-detail-span-{{item.name}}">
-            <div class = "arrow-{{item.name}}"></div>
-            {{item.content}}
+        <img ng-src="{{format_img(item[0],messageitem.message_img)}}" class = "message-detail-img-{{item[0]}}" ng-click="gocontact()">
+          <div class = "message-detail-span-{{item[0]}}">
+            <div class = "arrow-{{item[0]}}"></div>
+            {{item[1]}}
           </div>
       </ion-item>
     </div>

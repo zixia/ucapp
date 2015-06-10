@@ -41,22 +41,28 @@ function showmessagetest($contact_id,$start,$num){
     $resp['h'] = array();
     $resp['b'] = array();
 
+    $resp['b']['message_img'] = './img/1.jpg';
+    $resp['b']['message_user'] = 'zixia';
+    $resp['b']['message_user_id'] = 1;
+    $resp['b']['message_publish_time'] = 1234567;
+    $resp['b']['message_array'] = array();
+
     $item = array();
 
     $item_1[] = array();
-    $item_1['message_img'] = './img/1.jpg';
-    $item_1['message_user'] = 'zixia';
-    $item_1['message_user_id'] = 1;
-    $item_1['message_publish_time'] = 1234567;
-    $item_1['message_array'] = {'right','aaaaaa'};
 
-    $item = array($item_1,$item_1,$item_1,$item_1);
+    $item_1 = array("right","11111");
+    $item_2 = array("left","22222");
+    $item_3 = array("right","33333");
+    $item_4 = array("right","44444");
+    $item_5 = array("right","55555");
 
-    for ($i=$start; $i <= $num; $i++) { 
-        $resp['b'] = $item[$i];
+    $item = array($item_1,$item_2,$item_3,$item_4,$item_5);
+
+    for ($i=0; $i < $num; $i++) { 
+        $resp['b']['message_array'][] = $item[$start+1-$num+$i];
     }
     
-
     return $resp;
 
 }
