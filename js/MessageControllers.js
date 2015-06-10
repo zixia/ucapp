@@ -35,7 +35,7 @@ angular.module('starter.messagecontrollers', [])
     });
 
     var start = 4;//从message里面传递过来的
-    var refresh_num = 1;
+    var refresh_num = 2;
 
     MessageService.getDetailInfo(contact_id,start,refresh_num).success(function(data) {
         console.log(data.b);
@@ -74,8 +74,9 @@ angular.module('starter.messagecontrollers', [])
             start = start - refresh_num;
             console.log(start);
             MessageService.getDetailInfo(contact_id,start,refresh_num).success(function(data){
-                for (var i = 0; i < data.b.message_array.length; i++) {
-                    $scope.message_array.push(data.b.message_array[i]);
+                console.log(data.b.message_array);
+                for (var i = data.b.message_array.length-1; i >= 0; i--) {
+                    $scope.message_array.unshift(data.b.message_array[i]);
                 }
             }).then(function(){
                 $scope.$broadcast('scroll.refreshComplete');

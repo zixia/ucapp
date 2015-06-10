@@ -60,7 +60,13 @@ function showmessagetest($contact_id,$start,$num){
     $item = array($item_1,$item_2,$item_3,$item_4,$item_5);
 
     for ($i=0; $i < $num; $i++) { 
-        $resp['b']['message_array'][] = $item[$start+1-$num+$i];
+        //如果refresh后没有了，做保护措施
+        if ($start+1-$num+$i < 0 ) {
+            continue;
+        }
+        else{
+            $resp['b']['message_array'][] = $item[$start+1-$num+$i];
+        } 
     }
     
     return $resp;
