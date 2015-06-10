@@ -3,7 +3,7 @@ require_once('inc/config.inc.php');
 $res = file_get_contents('php://input');
 $req = json_decode($res,true);//生成array数组
 
-$req['idlist'] = array ( 1,2,3 );
+//$req['idlist'] = array ( 1,2,3 );
 
 $resp = idtransfer($req);
 $resp_json = json_encode($resp);//生成json数据
@@ -36,10 +36,9 @@ function idtransfer($req){
     foreach ( $idlist as $uid ) {
         $m_space = getspace($uid);
 
-	    $result[$uid] = array(
-                username    => $m_space['name'],
-                avatar      => avatar($uid,'small',true)
-            );
+//print_r($m_space);
+	    $result[$uid][username] = $m_space['name'] ? $m_space['name'] : $m_space['username'] ;
+	    $result[$uid][avatar]   = avatar($uid,'small',true);
     }
 
     $resp['b'] = $result;
