@@ -41,8 +41,8 @@
     <hr>
 
     <p>活动介绍</p>
-    <p>
-      {{event.event_intro}}
+    <p  class ="event_detail_intro" ng-bind-html="event.event_intro">
+     <!--  {{removehtmltab(event.event_intro)}} -->
     </p>
 </div>
   </ion-content>

@@ -38,3 +38,7 @@
 	margin-right: 10px; 
 	color: #888 !important;
 }
+
+.event_detail_intro img{
+	width: 100%;
+}

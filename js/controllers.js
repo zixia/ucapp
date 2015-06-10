@@ -21,6 +21,7 @@ angular.module('starter.controllers', [])
             $ionicLoading.hide();
     });
 
+
     $scope.getstandardtime = function(ts){
             var timearray = Format.formattimefriendcircle(ts);
             return timearray.timestandard;
@@ -45,6 +46,10 @@ angular.module('starter.controllers', [])
         }).then(function(){
             $ionicLoading.hide();
     });
+
+    //     $scope.removehtmltab = function(txt){
+    //     return txt.replace(/<[^>]+>/g,"");
+    // }
 
     $scope.goback = function(){
     	$state.go("tab.event");
