@@ -10,7 +10,10 @@
 
   <ion-content style="background: #e8ebf1;">
   <ion-refresher on-refresh="refresh()"></ion-refresher>
+  <p class = 'message-detail-empty'>{{message_array.empty}}</p>
+  
     <div ng-repeat='item in message_array track by $index'>
+
        <ion-item class = "message-detail-list">
         <img ng-src="{{format_img(item[0],messageitem.message_img)}}" class = "message-detail-img-{{item[0]}}" ng-click="gocontact()">
           <div class = "message-detail-span-{{item[0]}}">

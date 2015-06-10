@@ -1,4 +1,10 @@
 /*tab-message.html */
+.message-detail-empty{
+	text-align: center;
+	color: #444 !important;
+	margin-top: 10px;
+}
+
 .message-no-border{
 	border: 0 !important;
 }

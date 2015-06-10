@@ -74,7 +74,9 @@ angular.module('starter.messagecontrollers', [])
             start = start - refresh_num;
             console.log(start);
             MessageService.getDetailInfo(contact_id,start,refresh_num).success(function(data){
-                console.log(data.b.message_array);
+                if (data.b.message_array.length == 0) {
+                    $scope.message_array.empty = "没有更多消息了";
+                }
                 for (var i = data.b.message_array.length-1; i >= 0; i--) {
                     $scope.message_array.unshift(data.b.message_array[i]);
                 }
