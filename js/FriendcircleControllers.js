@@ -48,29 +48,31 @@ angular.module('starter.friendcirclecontrollers', [])
 
         //发送评论 和zixia调
         $scope.sendremark = function(){
-            var user = $window.sessionStorage['user_id'];
             var username = $window.sessionStorage['user_name'];
-            $remark_content = $scope.inputContent;
-            $remark_json = [username,$remark_content];
+            var user = $window.sessionStorage['user_id'];
+            var remark_content = $scope.inputContent;
+            var remark_json = [username,remark_content];
             var serial = $scope.serial_num;//整个数据流中的第几个数据
-            $scope.infos[serial].reply.push($remark_json);
+            
+            contact_id = $scope.infos[serial].p[0];
+            item_id = $scope.infos[serial].item_id;      
 
+            PersonalHomepageService.sendremark(contact_id,item_id,remark_content).success(function(data){
+                if(data.h.r == 0){
+                    console.log('success!!');
+                    $scope.infos[serial].reply.push(remark_json);
 
-            // return $http
-            // // .post('http://17salsa.com/login.php',{username:"zixia"})
-            //     content:content,
-            //     friend_id:$scope.friend_id
-            // }).then(function(res){
-            //   if (res.data.ret == true) {
-                // $scope.infos[serial].reply.push($remark_json);
-
-            //   }
-            //   else{
-            //     console.log('aaaaaaa');
-            //     alert('评论失败');
-            //   }
-            // return res.data;
-            // };
+                    IdSearch.getMainInfo($scope.infos[serial].like).success(function(data) {
+                    var fullarray = data.b;
+                    $scope.infos[serial].likelist = fullarray;
+                    });  
+                }
+                else{
+                    alert("评论失败"+data.h.r);
+                }
+                
+            }); 
+            
         }
 
         //点赞 和zixia调
@@ -79,9 +81,7 @@ angular.module('starter.friendcirclecontrollers', [])
             var serial = $scope.serial_num;//整个数据流中的第几个数据
 
             contact_id = $scope.infos[serial].p[0];
-            item_id = $scope.infos[serial].item_id;
-
-            
+            item_id = $scope.infos[serial].item_id;      
 
             PersonalHomepageService.sendlike(contact_id,item_id).success(function(data){
                 if(data.h.r == 0){

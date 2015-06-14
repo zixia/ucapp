@@ -3,10 +3,11 @@ require_once('inc/config.inc.php');
 
 $res = file_get_contents('php://input');
 $req = json_decode($res,true);//生成array数组
-$user = $req['user_id'];
+$contact_id = $req['contact_id'];
+$item_id = $req['item_id'];
 $content = $req ['content'];
 
-$response = receiveremark($user,$content);
+$response = receiveremark($contact_id,$item_id,$content);
 $response_json = json_encode($response);//生成json数据
 die($response_json);
 
@@ -22,7 +23,7 @@ die($response_json);
  */
 
 
-function receiveremark($user,$content){
+function receiveremark($contact_id,$item_id,$content){
    
 
     $resp = array();
