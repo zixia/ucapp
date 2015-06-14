@@ -28,14 +28,13 @@ function receiveremark($contact_id,$item_id,$content){
 
     $resp = array();
 
-    if($contact_id){
-    	//处理成功
-    	$resp['h']['ret'] = 0;
-    }
-    else{
-    	$resp['h']['ret'] = ERR_UNKNOWN;
-    }
+    $resp['h']['r'] = ERR_UNKNOWN;
     
+
+    //处理成功
+    $resp['h']['r'] = ERR_OK;
+    return $resp;
+
  }
 
 ?>
