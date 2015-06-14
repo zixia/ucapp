@@ -6,6 +6,7 @@ angular.module('starter.messagecontrollers', [])
     });
 
     MessageService.getMainInfo().success(function(data){
+        console.log(data);
         $scope.messages = data.b;
         }).then(function(){
             $ionicLoading.hide();

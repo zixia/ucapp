@@ -3,9 +3,10 @@ require_once('inc/config.inc.php');
 
 $res = file_get_contents('php://input');
 $req = json_decode($res,true);//生成array数组
-$user = $req['user'];
+$contact_id = $req['contact_id'];
+$item_id = $req['item_id'];
 
-$response = receivelike($user);
+$response = receivelike($contact_id,$item_id);
 $response_json = json_encode($response);//生成json数据
 die($response_json);
 
@@ -19,11 +20,12 @@ die($response_json);
  */
 
 
-function receivelike($user){
+function receivelike($contact_id,$item_id){
     $resp = array();
     $resp['h']['r'] = ERR_UNKNOWN;
 
-    // XXX $user 是个啥？
+    //$contact_id是发这个状态的联系人的user_id
+    //$item_id时这个联系人发的第$item_id条消息
     
 
     //处理成功

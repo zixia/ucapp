@@ -31,9 +31,9 @@ angular.module('FactoryPersonalHomepageService', [])
     .post(getContentPath,{user_id:contact_id});
   };
 
-  service.sendlike = function(user_id){
+  service.sendlike = function(contact_id,item_id){
     return $http
-    .post(getSendlikePath,{user_id:user_id});
+    .post(getSendlikePath,{contact_id:contact_id,item_id:item_id});
   }
 
   service.sendremark = function(user_id,content){

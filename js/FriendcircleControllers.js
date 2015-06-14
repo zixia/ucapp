@@ -77,7 +77,13 @@ angular.module('starter.friendcirclecontrollers', [])
         $scope.sendheart = function(){
             var user = $window.sessionStorage['user_id'];
             var serial = $scope.serial_num;//整个数据流中的第几个数据
-            PersonalHomepageService.sendlike(user).success(function(data){
+
+            contact_id = $scope.infos[serial].p[0];
+            item_id = $scope.infos[serial].item_id;
+
+            
+
+            PersonalHomepageService.sendlike(contact_id,item_id).success(function(data){
                 if(data.h.r == 0){
                     console.log('success!!');
                     if($scope.infos[serial].like.indexOf(user)>-1){
