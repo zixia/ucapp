@@ -2,9 +2,9 @@ angular.module('GlobalPath', [])
 
 .factory("UrlPath",function(){
   var service = {};
-  // var urldomain = "http://17salsa.com/ucapp/ucapi/";
+  var urldomain = "http://17salsa.com/ucapp/ucapi/";
 
-  var urldomain = "http://127.0.0.1/ionic/myApp/www/ucapi/";
+  // var urldomain = "http://127.0.0.1/ionic/myApp/www/ucapi/";
 
   service.getLoginpath = function(){
     return urldomain+"login.php";
@@ -16,6 +16,10 @@ angular.module('GlobalPath', [])
 
   service.getMessagePath = function(){
     return urldomain+"showmessage.php";
+  };
+
+  service.getMessListPath = function(){
+    return urldomain+"showmessagelist.php";
   };
 
   service.getContactUserPath = function(){
