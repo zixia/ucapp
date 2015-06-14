@@ -28,7 +28,7 @@ function receiveremark($contact_id,$item_id,$content){
 
     $resp = array();
 
-    if($user&&$content){
+    if($contact_id&&$content){
     	//处理成功
     	resp['h']['ret'] = 0;
     }
