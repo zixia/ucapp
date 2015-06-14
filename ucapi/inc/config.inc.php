@@ -12,9 +12,9 @@ header("Content-Type:text/html; charset=utf-8");
 header('Access-Control-Allow-Methods: GET, POST');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
-// include_once('/750/xfs/vhost/17salsa.com/home/common.php');
-// include_once(S_ROOT.'./source/function_cp.php');
-// include_once(S_ROOT.'./uc_client/client.php');
+include_once('/750/xfs/vhost/17salsa.com/home/common.php');
+include_once(S_ROOT.'./source/function_cp.php');
+include_once(S_ROOT.'./uc_client/client.php');
 
 /*
  * API Protocol Error Number Table
