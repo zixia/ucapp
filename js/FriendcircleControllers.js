@@ -51,24 +51,35 @@ angular.module('starter.friendcirclecontrollers', [])
             var username = $window.sessionStorage['user_name'];
             var user = $window.sessionStorage['user_id'];
             var remark_content = $scope.inputContent;
-            var remark_json = [username,remark_content];
+            var remark_json = [user,remark_content];
             var serial = $scope.serial_num;//整个数据流中的第几个数据
             
             contact_id = $scope.infos[serial].p[0];
             item_id = $scope.infos[serial].item_id;      
 
             PersonalHomepageService.sendremark(contact_id,item_id,remark_content).success(function(data){
+
+                console.log(data);
                 if(data.h.r == 0){
+
                     console.log('success!!');
                     $scope.infos[serial].reply.push(remark_json);
+                    console.log($scope.infos[serial].reply);
 
-                    IdSearch.getMainInfo($scope.infos[serial].like).success(function(data) {
+
+                    IdSearch.getMainInfo($scope.infos[serial].reply[2]).success(function(data) {
                     var fullarray = data.b;
                     $scope.infos[serial].likelist = fullarray;
+
+                    console.log($scope.infos[serial].likelist);
                     });  
+
+                    
+
+
                 }
                 else{
-                    alert("评论失败"+data.h.r);
+                    alert("评论失败"+data.h.ret);
                 }
                 
             }); 
