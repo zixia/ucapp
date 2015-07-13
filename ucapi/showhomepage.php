@@ -32,7 +32,7 @@ if ( $uid > 0 ) {
     }
 }
 
-print_r($resp);
+//print_r($resp);
 $resp[h][uid] = $uid;
 $resp_json = json_encode($resp);//生成json数据
 die($resp_json);
