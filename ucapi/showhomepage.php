@@ -32,7 +32,7 @@ if ( $uid > 0 ) {
     }
 }
 
-//print_r($resp);
+print_r($resp);
 $resp[h][uid] = $uid;
 $resp_json = json_encode($resp);//生成json数据
 die($resp_json);
@@ -1529,6 +1529,7 @@ function getFriendFeeds($uid) {
                 $feed['img'] = null;
             }
 
+            $feed[item_id]      = $value[id] . '@' . $value[idtype];
 
             array_push($feeds, $feed);
         }
