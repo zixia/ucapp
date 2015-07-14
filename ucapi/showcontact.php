@@ -39,7 +39,7 @@ function showcontact($data)
     }
 
     //分页
-    $perpage = 100;
+    $perpage = 1000;
     $perpage = mob_perpage($perpage);
 
     $list = $ols = $fuids = array();
@@ -149,6 +149,8 @@ function showcontact($data)
     	$friend["contact_id"] = $friend_id;
     	$friend["contact_region"] =  $friend_arr['resideprovince'] . " " . $friend_arr['residecity'];
     	$friend["contact_sign"] = $friend_arr['spacenote'];
+        $friend["contact_sign"] = preg_replace('#<img src="image/#', '<img src="http://17salsa.com/home/image/', $friend['contact_sign']);
+
 
 	    $friend['contact_img']  = avatar($friend_id,'middle',true);
 
