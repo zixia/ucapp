@@ -19,12 +19,14 @@
   	</div>
     
   	<div class = "contact_content">
-  		<div class = "contact_content_list">
-			地区<span>{{contactitem.contact_region}}</span>
+  		<div class = "contact_content_list row">
+        <div class = "col col-25">地区</div>
+        <div class = "col col-75">{{contactitem.contact_region}}</div>
   		</div>
 
-  		<div class = "contact_content_list">
-  			个性签名<span>{{contactitem.contact_sign}}</span>
+  		<div class = "contact_content_list row">
+        <div class = "col col-25">个性签名</div>
+        <div class = "col col-75">{{contactitem.contact_sign}}</div>
   		</div>
   		<ion-item class = "contact_content_list_big" href="#/personalContactHomepage/{{contactpath}}">
   			<p>个人相册</p>
