@@ -24,7 +24,7 @@
   		</div>
 
   		<div class = "contact_content_list">
-  			个性签名<span>{{contactitem.contact_sign}}</span>
+  			个性签名<span ng-bind-html="contactitem.contact_sign"></span>
   		</div>
   		<ion-item class = "contact_content_list_big" href="#/personalContactHomepage/{{contactpath}}">
   			<p>个人相册</p>

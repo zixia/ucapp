@@ -15,9 +15,8 @@
 
        <ion-item class = "message-detail-list">
         <img ng-src="{{format_img(item.fid)}}" class = "message-detail-img-{{format_class(item.fid)}}" ng-click="gocontact()">
-          <div class = "message-detail-span-{{format_class(item.fid)}}">
+          <div class = "message-detail-span-{{format_class(item.fid)}}" ng-bind-html="item.txt">
             <div class = "arrow-{{format_class(item.fid)}}"></div>
-            {{item.txt}}
           </div>
       </ion-item>
     </div>
