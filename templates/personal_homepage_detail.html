@@ -45,7 +45,7 @@
           
           <p class="friendcircle-answer-body" ng-repeat='replycontent in InfoItem.replylist track by $index'>
             <a>{{replycontent[0]}}</a>:
-            <span>{{replycontent[1]}}</span>
+            <span ng-bind-html="replycontent[1]"></span>
           </p>
       </div>
     </div>
