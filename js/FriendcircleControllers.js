@@ -77,8 +77,8 @@ angular.module('starter.friendcirclecontrollers', [])
 
                     var fullarray = data.b;
                     var list = {'username':username};
-                    
-                    $scope.infos[serial].replylist={user:list};
+
+                    $scope.infos[serial].replylist[user]=list;
                     console.log($scope.infos[serial]);                   
                     });  
 
