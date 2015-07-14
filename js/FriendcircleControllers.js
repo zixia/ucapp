@@ -127,6 +127,7 @@ angular.module('starter.friendcirclecontrollers', [])
          // $http.get('http://17salsa.com/home/s.php?rewrite=home-view-all').success(function(data) {
          PersonalHomepageService.getContentInfo().success(function(data) {
             $scope.infos = data.b;
+            console.log($scope.infos);
             if ($scope.infos===undefined) {
                 $scope.content = "他很懒，还没有发表过状态";
             }
@@ -136,14 +137,30 @@ angular.module('starter.friendcirclecontrollers', [])
                 
                 (function(jj){
                     IdSearch.getMainInfo($scope.infos[jj].like).success(function(data) {
-                         console.log("********");
-                        console.log($scope.infos[jj].like);
-                        console.log(typeof($scope.infos[jj].like));
+                        
                     var fullarray = data.b;
                     $scope.infos[jj].likelist = fullarray;
-                });
-
+                    });
                 })(j);
+
+                (function(qq){
+                    $scope.infos[qq].replylist = new Array();
+                    for(m=0;m<$scope.infos[qq].reply.length;m++){
+                        $scope.infos[qq].replylist.push($scope.infos[qq].reply[m][0]);
+
+                    }
+                    IdSearch.getMainInfo($scope.infos[qq].replylist).success(function(data) {
+                        
+                    var fullarray = data.b;
+                    $scope.infos[qq].replylist = fullarray;
+                    });
+                })(j);
+
+                
+               
+
+
+
 
                 // (function(aa){
                 //     var idreplylist = new Array();

@@ -77,7 +77,13 @@ angular.module('starter.messagecontrollers', [])
 
     MessageService.getDetailInfo(contact_id).success(function(data) {
         $scope.messageitem = data.b.reverse();
+        var h = $(document).height()-$(window).height();
+        $(document).scrollTop(h);
 
+        // var div = document.getElementById("pagescroll");
+        // // div.scrollTop = 1000;
+        // $("#pagescroll").offsetHeight = 1000;
+        // // alert(div.scrollHeight);
     }).then(function(){
         $ionicLoading.hide();
     });
@@ -123,7 +129,6 @@ angular.module('starter.messagecontrollers', [])
             });
     }
 
-    //需要和紫霞调
     $scope.sendmessagedetail = function(){
         $message_content = $scope.message_detail_send;
         $message_json = {"fid":account_id,"txt":$message_content};

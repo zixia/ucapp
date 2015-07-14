@@ -11,7 +11,7 @@
   <ion-refresher on-refresh="refresh()"></ion-refresher>
   <p class = 'message-detail-empty'>{{message_array.empty}}</p>
 
-    <div ng-repeat='item in messageitem track by $index'>
+    <div ng-repeat='item in messageitem track by $index' id = "pagescroll">
 
        <ion-item class = "message-detail-list">
         <img ng-src="{{format_img(item.fid)}}" class = "message-detail-img-{{format_class(item.fid)}}" ng-click="gocontact()">

@@ -60,12 +60,12 @@
 	    <div class="friendcircle-answer">
 	    	<p class="friendcircle-first-p">
 	    	  <i class="ion-ios-heart-outline"></i>
-	    	  <a ng-repeat='id in info.likelist track by $index' >{{id.username}}</a>
+	    	  <a ng-repeat='id in info.likelist track by $index' >{{id.username}},</a>
 		    </p>
 		    
 		    <p class="friendcircle-answer-body" ng-repeat='item in info.reply track by $index'>
-	    	  <a>{{info.likelist[item[0]].username}}</a>:
-	    	  <span>{{item[1]}}</span>
+	    	  <a>{{info.replylist[item[0]].username}}</a>:
+	    	  <span ng-bind-html="item[1]"></span>
 		    </p>
 	    </div>
 
