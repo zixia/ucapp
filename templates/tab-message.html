@@ -9,16 +9,16 @@
     <ion-item class="message-list" ng-repeat = "message in messages | filter:query" href="#/message/{{message.message_user_id}}">
 
       <div class = "message-list-img">
-        <img ng-src="{{message.message_img}}">
+        <img ng-src="{{message.userinfo[message.fid].avatar}}">
       </div>
 
       <div class = "message-content">
-        <p class = "message-name">{{message.message_user}}</p>
-        <p class = "message-info">{{message.message_array[message.message_array.length-1].content}}</p>
+        <p class = "message-name">{{message.userinfo[message.fid].username}}</p>
+        <p class = "message-info">{{message.txt}}</p>
       </div>
 
       <div class = "message-time">
-        <p>{{message.message_publish_time}}</p>
+        <p>{{getstandardtime(message.ts)}}</p>
       </div>
 
     </ion-item>

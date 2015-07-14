@@ -5,6 +5,15 @@ angular.module('IdSearchFactroy', [])
 
   // var contenturl = UrlPath.getContactpath();
 
+  // //根据id返回id，username，img 
+  // service.getuserinfo = function(id){
+  //   var idtransferurl = UrlPath.getIdtransferurlPath();
+  //   var idlist = new Array();
+  //   idlist.push(id);
+  //   var idinfo = $http.post(idtransferurl,{idlist:idlist});
+  //   return idinfo['b'][id];
+  // }
+
   service.getMainInfo = function(idlist){
     // return $http.get('data/idsearch.json');
     var idtransferurl = UrlPath.getIdtransferurlPath();

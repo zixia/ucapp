@@ -68,6 +68,8 @@ angular.module('starter.friendcirclecontrollers', [])
 
 
                     IdSearch.getMainInfo($scope.infos[serial].reply[2]).success(function(data) {
+
+
                     var fullarray = data.b;
                     $scope.infos[serial].likelist = fullarray;
 
@@ -134,6 +136,9 @@ angular.module('starter.friendcirclecontrollers', [])
                 
                 (function(jj){
                     IdSearch.getMainInfo($scope.infos[jj].like).success(function(data) {
+                         console.log("********");
+                        console.log($scope.infos[jj].like);
+                        console.log(typeof($scope.infos[jj].like));
                     var fullarray = data.b;
                     $scope.infos[jj].likelist = fullarray;
                 });
