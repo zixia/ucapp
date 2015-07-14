@@ -60,14 +60,14 @@ angular.module('starter.friendcirclecontrollers', [])
             var serial = $scope.serial_num;//整个数据流中的第几个数据
             
             contact_id = $scope.infos[serial].p[0];
-            item_id = $scope.infos[serial].item_id;      
+            item_id = $scope.infos[serial].id;      
 
             PersonalHomepageService.sendremark(contact_id,item_id,remark_content).success(function(data){
 
-                console.log(data);
                 if(data.h.r == 0){
 
                     console.log('success!!');
+                    console.log($scope.infos[serial].reply);
                     $scope.infos[serial].reply.push(remark_json);
                     console.log($scope.infos[serial].reply);
 
@@ -76,13 +76,11 @@ angular.module('starter.friendcirclecontrollers', [])
 
 
                     var fullarray = data.b;
-                    $scope.infos[serial].likelist = fullarray;
-
-                    console.log($scope.infos[serial].likelist);
-                    });  
-
+                    var list = {'username':username};
                     
-
+                    $scope.infos[serial].replylist={user:list};
+                    console.log($scope.infos[serial]);                   
+                    });  
 
                 }
                 else{
