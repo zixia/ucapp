@@ -32,12 +32,14 @@
 	padding: 10px;
 	color: #888;
 	font-size: 14px !important;
+
 }
 
 .contact_content_list span{
-	position: absolute;
+	position: relative;
 	left: 90px;
 }
+
 
 .contact_content_list_big{
 	border-bottom: 1px solid #ddd;

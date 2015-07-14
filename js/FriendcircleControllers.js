@@ -11,6 +11,11 @@ angular.module('starter.friendcirclecontrollers', [])
             $state.go("personalHomepage");
         }
 
+        $scope.gopublisherpage = function(u_id){
+            console.log(u_id);
+            $state.go("personalContactHomepage",{contact:u_id});             
+        }
+
         $scope.godiscover = function(){
             $state.go("tab.discovery");
         }
@@ -93,11 +98,13 @@ angular.module('starter.friendcirclecontrollers', [])
             var user = $window.sessionStorage['user_id'];
             var serial = $scope.serial_num;//整个数据流中的第几个数据
 
-            contact_id = $scope.infos[serial].p[0];
-            item_id = $scope.infos[serial].item_id;      
+            // contact_id = $scope.infos[serial].p[0];
+            // item_id = $scope.infos[serial].item_id;     
+            item_id =  $scope.infos[serial].id;
+            console.log(item_id);
 
-            PersonalHomepageService.sendlike(contact_id,item_id).success(function(data){
-                if(data.h.r == 0){
+            PersonalHomepageService.sendlike(item_id).success(function(data){
+                if(data.h.ret == 0){
                     console.log('success!!');
                     if($scope.infos[serial].like.indexOf(user)>-1){
                         var reply_heart_index = $scope.infos[serial].like.indexOf(user);
@@ -154,24 +161,7 @@ angular.module('starter.friendcirclecontrollers', [])
                     var fullarray = data.b;
                     $scope.infos[qq].replylist = fullarray;
                     });
-                })(j);
-
-                
-               
-
-
-
-
-                // (function(aa){
-                //     var idreplylist = new Array();
-                //     for(var b =0; b<$scope.infos[aa].reply.length;b++){
-                //         idreplylist[b] = $scope.infos[aa].reply[b][0];
-                //     }
-                //     IdSearch.getMainInfo(idreplylist).success(function(data) {
-                //         var fullarray = data.b;
-                //         $scope.infos[aa].replylist = fullarray;                       
-                //     });
-                // })(j);             
+                })(j);          
                 }
             }
 
