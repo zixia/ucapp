@@ -20,7 +20,7 @@
 }
 
 .personal_homepage_time .date{
-	font-size: 120%;
+	font-size: 150%;
 	font-weight: 900;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .personal_homepage_time_pic{
-	margin-top: 5px;
+	margin-top: 0px;
 	width: 80px;
 	height: 80px;
 	margin-left: 50px;

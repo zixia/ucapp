@@ -2,10 +2,14 @@
 .contact_item_div{
 	margin: 10px;
 }
-
-.contact_item_div img{
-	width: 60px; 
+.contact_item_img{
+	overflow: hidden;
+	width: 60px;
 	height: 60px;
+	position: absolute;
+}
+.contact_item_div img{
+	max-width: 60px; 
 	border-radius: 5px;
 	float: left;
 }
@@ -32,12 +36,18 @@
 	padding: 10px;
 	color: #888;
 	font-size: 14px !important;
+
 }
 
 .contact_content_list span{
-	position: absolute;
+	position: relative;
 	left: 90px;
 }
+
+.contact_content_list col{
+	vertical-align:middle;
+}
+
 
 .contact_content_list_big{
 	border-bottom: 1px solid #ddd;

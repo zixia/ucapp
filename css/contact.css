@@ -31,11 +31,14 @@
 
 .contact-list-img{
 	float: left;
+	width: 30px;
+	height: 30px;
+	overflow: hidden;
 }
 
 .contact-list-img img{
-	width: 30px;
-	height: 30px;
+	max-width: 30px;
+	/*height: 30px;*/
 }
 
 .contact-content{

@@ -125,6 +125,9 @@
 .friendcircle-first-p{
 	border-bottom:1px solid #ddd;
 	margin-bottom: 0px !important;
+	word-wrap: break-word !important; 
+	word-break: break-all !important;
+	white-space: normal !important;
 }
 .friendcircle-first-p i{
 	color:#387ef5;

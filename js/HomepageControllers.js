@@ -17,9 +17,29 @@ angular.module('starter.homepagecontrollers', [])
 
     PersonalHomepageService.getContentInfo(user_own_id).success(function(data) {
         $scope.userContentInfo = data;
+        console.log($scope.userContentInfo);
     }).then(function(){
         $ionicLoading.hide();
     });
+
+     $scope.getdate = function(ts){
+        var timearray = Format.formattimefriendcircle(ts);
+        if(timearray.date<10){
+            timearray.date = '0'+timearray.date;
+
+        }
+        return timearray.date;
+    }
+
+    $scope.getmonth = function(ts){
+        var timearray = Format.formattimefriendcircle(ts);
+        return timearray.month;
+    }
+
+    $scope.Parafun = function(index){
+        passPara.infoId = index;
+        return passPara;
+    }
 
 
     $scope.Parafun = function(index){
@@ -67,14 +87,17 @@ angular.module('starter.homepagecontrollers', [])
 })
 
 .controller('PersonalContactHomepageCtrl', function($http, $scope,$state,$ionicLoading,$stateParams,PersonalHomepageService,Format) {
-    var contactPath = JSON.parse($stateParams.contact);
+    // console.log($stateParams.contact);
+    // var contactPath = JSON.parse($stateParams.contact);
+    var num = $stateParams.contact;
 
-    var num = contactPath.id;
-    var urlPara = contactPath.path;
+
+    // var num = contactPath.id;
+    // var urlPara = contactPath.path;
 
     $scope.urlPath = {};
-    $scope.urlPath.id = contactPath.id;
-    $scope.urlPath.path = contactPath.path;
+    $scope.urlPath.id = num;
+    // $scope.urlPath.path = contactPath.path;
 
     var passPara = {};
 
@@ -99,6 +122,10 @@ angular.module('starter.homepagecontrollers', [])
 
     $scope.getdate = function(ts){
         var timearray = Format.formattimefriendcircle(ts);
+         if(timearray.date<10){
+            timearray.date = '0'+timearray.date;
+
+        }
         return timearray.date;
     }
 
@@ -148,8 +175,9 @@ angular.module('starter.homepagecontrollers', [])
 
 
     $scope.goback = function(){
-        var contactPathstr = JSON.stringify(contactPath);
-        $state.go($scope.urlPath.path,{'contact':contactPathstr});
+        // var contactPathstr = JSON.stringify(contactPath);
+        // $state.go($scope.urlPath.path,{'contact':contactPathstr});
+        history.go(-1);
     };
 })
 
