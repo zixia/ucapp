@@ -19,7 +19,6 @@ angular.module('FactoryAuthService', [])
         $window.sessionStorage['user_area'] = res.data.user_area;
         $window.sessionStorage['user_sign'] = res.data.user_sign;
 
-        alert('登陆成功');
         $location.path('/tab/home');
       }
       else{
