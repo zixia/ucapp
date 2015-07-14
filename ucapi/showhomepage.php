@@ -50,8 +50,8 @@ die($resp_json);
  *				 $response[]["ts"]		array	发布时间戳
  *				 $response[]["type"]	array	'img'代表发布内容包含图片 'txt'代表发布内容为纯文本
  *				 $response[]["txt"]		array	发布内容
- *				 $response[]["img"]		array	返回null不包含图片 array 图片>100px 
- *														
+ *				 $response[]["img"]		array	返回null不包含图片 array 图片>100px
+ *
  *				 $response[]["like"]
  *				 $response[]["reply"]
  */
@@ -1515,8 +1515,6 @@ function getFriendFeeds($uid) {
                 $feed["type"] = 'img';
             }
 
-            $feed["like"] = array(1,2);
-            $feed["reply"] = array(array(1,"qqqq"),array(2,"xxx"));
 
             $feed["img"] = array();
             for ( $n=1; $n<=9; $n++ ) {
@@ -1529,7 +1527,14 @@ function getFriendFeeds($uid) {
                 $feed['img'] = null;
             }
 
-            $feed[item_id]      = $value[id] . '@' . $value[idtype];
+            $feed[id]      = $value[id] . '@' . $value[idtype];
+
+            $like_filter = array('blogid','picid');
+
+            if ( in_array($value[idtype],$like_filter) ){
+                $feed[like]     = get_feed_like($value[id],$value[idtype]);
+                $feed[reply]    = get_feed_reply($value[id],$value[idtype]);
+            }
 
             array_push($feeds, $feed);
         }
@@ -1542,4 +1547,16 @@ function getFriendFeeds($uid) {
 
 }
 
+function get_feed_like($id,$idtype)
+{
+    return array(1,2,3);
+}
+
+function get_feed_reply($id,$idtype)
+{
+    return array(
+        array(1,'xixi')
+        ,array(2,'haha')
+    );
+}
 ?>

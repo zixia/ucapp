@@ -18,14 +18,22 @@ die($resp_json);
  * @Author:      name
  * @DateTime:    2015-06-09 15:14:33
  * @Description: 实现接受点赞功能
- * @Para			$resp['h']['r'] = ERR_OK 接受成功并成功入库
+ * @Para			$resp['h']['ret'] = ERR_OK 接受成功并成功入库
  *					$resp['b']
  */
 
 
 function receivelike($item_id){
+    global $_SGLOBAL;
+
     $resp = array();
-    $resp['h']['r'] = ERR_UNKNOWN;
+    $resp['h']['ret'] = ERR_UNKNOWN;
+
+
+    if ( ! $_SGLOBAL['supe_uid'] ) {
+        $resp['h']['ret'] = ERR_NEEDLOGIN;
+        return $resp;
+    }
 
     //$item_id是某个朋友圈的消息
 
@@ -39,7 +47,7 @@ function receivelike($item_id){
     cp_click_flower($id, $idtype);
 
     //处理成功
-    $resp['h']['r'] = ERR_OK;
+    $resp['h']['ret'] = ERR_OK;
     return $resp;
  }
 
