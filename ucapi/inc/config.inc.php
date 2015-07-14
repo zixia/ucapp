@@ -25,6 +25,8 @@ define('ERR_OK',            0   );
 
 define('ERR_UNKNOWN',       -1  );
 define('ERR_NEEDLOGIN',     1   );
+define('ERR_PARAM',         2   );
+define('ERR_CALLTOOFAST',   3   );
 
 
 error_reporting(E_ALL);

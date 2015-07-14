@@ -21,7 +21,7 @@ if ( 0>=$user_id || 0>=strlen($txt) ) {
     $resp = sendmessage($user_id,$txt);
 }
 
-print_r($resp);
+//print_r($resp);
 
 $resp_json = json_encode($resp);//生成json数据
 die($resp_json);
@@ -107,7 +107,9 @@ include_once S_ROOT.'./uc_client/client.php';
 	//ÅÐ¶ÏÊÇ·ñ·¢²¼Ì«¿ì
 	$waittime = interval_check('post');
 	if($waittime > 0) {
-		showmessage('operating_too_fast','',1,array($waittime));
+		//showmessage('operating_too_fast','',1,array($waittime));
+        $resp[h][ret] = ERR_CALLTOOFAST;
+        return $resp;
 	}
 
 	//ÐÂÓÃ»§¼ûÏ°
