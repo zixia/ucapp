@@ -222,7 +222,7 @@ if($_GET['subop'] == 'view') {
     $filter = in_array($_GET['filter'], array('newpm', 'privatepm', 'systempm', 'announcepm'))?$_GET['filter']:($space['newpm']?'newpm':'privatepm');
 
     //分页
-    $perpage = 10;
+    $perpage = 1000;
     $perpage = mob_perpage($perpage);
 
     $page = empty($_GET['page'])?0:intval($_GET['page']);

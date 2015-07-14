@@ -33,6 +33,7 @@ if ( $uid > 0 ) {
 }
 
 //print_r($resp);
+
 $resp[h][uid] = $uid;
 $resp_json = json_encode($resp);//生成json数据
 die($resp_json);
@@ -1067,13 +1068,14 @@ function getUserFeeds($uid) {
             $feed["type"] = 'img';
         }
 
-        $feed["like"] = array(1,2);
-        $feed["reply"] = array(array(1,"qqqq"),array(2,"xxx"));
-
         $feed["img"] = array();
         for ( $n=1; $n<=9; $n++ ) {
             if ( 0==strlen($value["image_$n"]) ) break;
-            array_push( $feed['img'], "http://17salsa.com/home/" . $value["image_$n"]  );
+
+            if ( 'http'!=substr($value["image_$n"],0,4) )
+                $value["image_$n"] = "http://17salsa.com/home/" . $value["image_$n"] ;
+
+            array_push( $feed['img'], $value["image_$n"]  );
         }
 
         if ( empty($feed['img']) ) {
@@ -1081,6 +1083,23 @@ function getUserFeeds($uid) {
             $feed['img'] = null;
         }
 
+
+        $feed[id]      = $value[id] . '@' . $value[idtype];
+
+        switch ( $value[idtype] ) {
+        case 'blogid':
+            $like_n_comment = get_blog_like_n_comment($value[id],$value[uid]);
+            $feed[like]     = $like_n_comment[like];
+            $feed[reply]    = $like_n_comment[comment];
+            break;
+        case 'picid':
+            $like_n_comment = get_pic_like_n_comment($value[id],$value[uid]);
+            $feed[like]     = $like_n_comment[like];
+            $feed[reply]    = $like_n_comment[comment];
+            break;
+        default:
+            break;
+        }
 
         array_push($feeds, $feed);
     }
@@ -1519,7 +1538,11 @@ function getFriendFeeds($uid) {
             $feed["img"] = array();
             for ( $n=1; $n<=9; $n++ ) {
                 if ( 0==strlen($value["image_$n"]) ) break;
-                array_push( $feed['img'], "http://17salsa.com/home/" . $value["image_$n"]  );
+
+                if ( 'http'!=substr($value["image_$n"],0,4) )
+                    $value["image_$n"] = "http://17salsa.com/home/" . $value["image_$n"] ;
+
+                array_push( $feed['img'], $value["image_$n"]  );
             }
 
             if ( empty($feed['img']) ) {
@@ -1783,7 +1806,12 @@ $clicks = empty($_SGLOBAL['click']['blogid'])?array():$_SGLOBAL['click']['blogid
     }
 
     foreach ( $list as $comment ) {
-        array_push( $resp[comment], array( $comment[uid], $comment[message] ) );
+        // fix related url to abs url
+        $comment[message] = preg_replace('#<img src="image/#', '<img src="http://17salsa.com/home/image/',              $comment['message']);
+        // change quota string to @username
+        $comment[message] = preg_replace('#<div class="quote"><span class="q"><b>(.+?)</b>.*?</span></div>#', '@\1 ',   $comment['message']);
+
+        array_push( $resp[comment], array( $comment[authorid], $comment[message] ) );
     }
 
     return $resp;
@@ -1989,6 +2017,11 @@ die("FT");
     }
 
     foreach ( $list as $comment ) {
+        // fix related url to abs url
+        $comment[message] = preg_replace('#<img src="image/#', '<img src="http://17salsa.com/home/image/',              $comment['message']);
+        // change quota string to @username
+        $comment[message] = preg_replace('#<div class="quote"><span class="q"><b>(.+?)</b>.*?</span></div>#', '@\1 ',   $comment['message']);
+
         array_push( $resp[comment], array( $comment[uid], $comment[message] ) );
     }
 
