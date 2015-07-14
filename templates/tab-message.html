@@ -6,7 +6,7 @@
       <input ng-model="query" type="text" placeholder="搜索"/>
     </div>
 
-    <ion-item class="message-list" ng-repeat = "message in messages | filter:query" href="#/message/{{message.message_user_id}}">
+    <ion-item class="message-list" ng-repeat = "message in messages | filter:query" href="#/message/{{message.fid}}">
 
       <div class = "message-list-img">
         <img ng-src="{{message.userinfo[message.fid].avatar}}">

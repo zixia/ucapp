@@ -22,6 +22,10 @@ angular.module('GlobalPath', [])
     return urldomain+"showmessagelist.php";
   };
 
+  service.getsendMessPath = function(){
+    return urldomain+"sendmessage.php";
+  };
+
   service.getContactUserPath = function(){
     return urldomain+"showcontactInfo.php";
   };

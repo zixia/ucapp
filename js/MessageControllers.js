@@ -54,13 +54,20 @@ angular.module('starter.messagecontrollers', [])
     }
 })
 
-.controller('MessageDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,MessageService,$window)  {
+.controller('MessageDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,MessageService,$window,IdSearch)  {
 
-    var num = $stateParams.messageId;
+    // var num = $stateParams.messageId;
 
     var contact_id = $stateParams.messageId;
+    //获取联系人的id，name，avatar
+    //userinfo 存储相关信息
+    IdSearch.getMainInfo([contact_id]).success(function(data) {
+        var fullarray = data.b;
+        $scope.contact_info = fullarray[contact_id];
+    });
 
     var account_img_src = $window.sessionStorage['user_avatar'];
+    var account_id = $window.sessionStorage['user_id'];
 
     $scope.message_array = Array();
 
@@ -68,20 +75,8 @@ angular.module('starter.messagecontrollers', [])
         template:'<i class = "ion-load-c"><br></i>Loading...'
     });
 
-    var start = 4;//从message里面传递过来的
-    var refresh_num = 2;
-
-    MessageService.getDetailInfo(contact_id,start,refresh_num).success(function(data) {
-        console.log(data.b);
-        //   for (var i = 0; i < data.b.length; i++) {
-        //     if(data.b[i].message_user_id == num){
-        //         $scope.messageitem = data.b[i];
-        //     }
-        // }
-        $scope.messageitem = data.b;
-        for (var i = 0; i < data.b.message_array.length; i++) {
-            $scope.message_array.push(data.b.message_array[i]);
-        }
+    MessageService.getDetailInfo(contact_id).success(function(data) {
+        $scope.messageitem = data.b.reverse();
 
     }).then(function(){
         $ionicLoading.hide();
@@ -92,15 +87,24 @@ angular.module('starter.messagecontrollers', [])
     }
 
     $scope.gocontact = function(){
-        $state.go("contact-detail",{'contactId':num});
+        $state.go("contact-detail",{'contactId':contact_id});
     }
 
-    $scope.format_img = function(source,img_src){
-        if (source == "right") {
+    $scope.format_img = function(id){
+        if (id == account_id) {
             return account_img_src; 
         }
         else{
-            return img_src;
+            return $scope.contact_info.avatar;
+        }
+    }
+
+    $scope.format_class = function(id){
+        if(id == account_id){
+            return "right";
+        }
+        else{
+            return "left";
         }
     }
 
@@ -122,7 +126,18 @@ angular.module('starter.messagecontrollers', [])
     //需要和紫霞调
     $scope.sendmessagedetail = function(){
         $message_content = $scope.message_detail_send;
-        $message_json = {"name":"right","content":$message_content};
-        $scope.messageitem.message_array.push($message_json);
+        $message_json = {"fid":account_id,"txt":$message_content};
+        MessageService.sendMessage(contact_id,$message_content).success(function(data){
+            console.log(data.h.ret);
+            if (typeof data.h.ret == "undefined") {
+               alert('发送失败');
+            }
+            else if(data.h.ret!=0){
+                alert('发送失败');
+            }
+            else
+                $scope.messageitem.push($message_json);
+        });
+
     }
 })

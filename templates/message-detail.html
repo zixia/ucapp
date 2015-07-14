@@ -1,5 +1,5 @@
 
-<ion-view view-title="{{messageitem.message_user}}">
+<ion-view view-title="{{contact_info.username}}">
 	<ion-nav-bar class="bar-dark">
       <ion-nav-buttons class = "button-icon">
       <button class="button-stable button-clear" ng-click="gomessage()">
@@ -7,18 +7,17 @@
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
-
   <ion-content style="background: #e8ebf1;">
   <ion-refresher on-refresh="refresh()"></ion-refresher>
   <p class = 'message-detail-empty'>{{message_array.empty}}</p>
-  
-    <div ng-repeat='item in message_array track by $index'>
+
+    <div ng-repeat='item in messageitem track by $index'>
 
        <ion-item class = "message-detail-list">
-        <img ng-src="{{format_img(item[0],messageitem.message_img)}}" class = "message-detail-img-{{item[0]}}" ng-click="gocontact()">
-          <div class = "message-detail-span-{{item[0]}}">
-            <div class = "arrow-{{item[0]}}"></div>
-            {{item[1]}}
+        <img ng-src="{{format_img(item.fid)}}" class = "message-detail-img-{{format_class(item.fid)}}" ng-click="gocontact()">
+          <div class = "message-detail-span-{{format_class(item.fid)}}">
+            <div class = "arrow-{{format_class(item.fid)}}"></div>
+            {{item.txt}}
           </div>
       </ion-item>
     </div>
