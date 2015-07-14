@@ -7,7 +7,7 @@ $req = json_decode($res,true);//生成array数组
 //$page   = intval($req[page]);
 $tid    = intval($req[tid]);
 
-//$tid=7;
+//$tid=59347;
 $page=1;
 
 $resp = array();
@@ -22,6 +22,7 @@ if ( 0>=$page || 0>=$tid ) {
 }
 
 //print_r($resp);
+$resp[h][tid] = $tid;
 
 $resp_json = json_encode($resp);//生成json数据
 die($resp_json);
@@ -33,7 +34,7 @@ function getMessages($tid, $page)
 
     $page = intval($page);
 
-    $_GET[rewrite] = 'pm-subop-view-touid-7-daterange-5'; // page number start from 1
+    $_GET[rewrite] = 'pm-subop-view-touid-' . $tid . '-daterange-5'; // page number start from 1
 
 /*
     if ( 0<$page )
