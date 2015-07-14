@@ -36,9 +36,10 @@ function idtransfer($req){
     foreach ( $idlist as $uid ) {
         $m_space = getspace($uid);
 
-//print_r($m_space);
-	    $result[$uid][username] = $m_space['name'] ? $m_space['name'] : $m_space['username'] ;
+	    $result[$uid][username] = $m_space['username'] ;
+	    $result[$uid][nick]     = $m_space['name'] ? $m_space['name'] : $m_space['username'] ;
 	    $result[$uid][avatar]   = avatar($uid,'small',true);
+	    $result[$uid][sex]      = $m_space['sex'];
     }
 
     $resp['b'] = $result;
