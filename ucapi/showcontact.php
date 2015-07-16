@@ -4,9 +4,13 @@ require_once('inc/config.inc.php');
 $res = file_get_contents('php://input');
 $data = json_decode($res,true);//生成array数组
 
-$response = showcontact($data);
-$response_json = json_encode($response);//生成json数据
-print_r($response_json);
+//$data['user_id'] = 1;
+
+$resp = showcontact($data);
+//print_r($resp);
+
+$resp_json = json_encode($resp);//生成json数据
+print_r($resp_json);
 
 /**
  * @Author:      ruirui
@@ -14,11 +18,11 @@ print_r($response_json);
  * @description: 根据用户id展示用户所有联系人信息
  * @para:        $data['user_id'] 用户唯一识别id
  * @return:      $response object 所有联系人的所有信息
- *				 $response[]['contact_img']    	string 	联系人头像 	
+ *				 $response[]['contact_img']    	string 	联系人头像
  *														size:30px*30px
  *				 $response[]['contact_name']   	string	联系人昵称
  *				 $response[]['contact_id']	  	string	userid
- *				 $response[]['contact_region']  string	地域	 
+ *				 $response[]['contact_region']  string	地域
  *				 $response[]['contact_sign']	string	签名
  *				 $response[]['contact_pic']		string	个人主页照片
  *														max_num:4 size:40px*40px
@@ -27,7 +31,6 @@ print_r($response_json);
 function showcontact($data)
 {
     global $_SGLOBAL;
-
 	$userid = $data['user_id'];
 	$response = array();
     $response['ret'] = false;
@@ -154,6 +157,15 @@ function showcontact($data)
 
 	    $friend['contact_img']  = avatar($friend_id,'middle',true);
 
+/*
+            [contact_pic] => Array
+                (
+                    [0] => http://17salsa.com/home/attachment/201503/17/37_1426576018YR6k.jpg.thumb.jpg
+                    [1] => http://17salsa.com/home/attachment/201406/4/37_14018954521f1Q.jpg.thumb.jpg
+                    [2] => http://17salsa.com/home/attachment/201311/18/37_13847788965gzs.jpg.thumb.jpg
+                    [3] => http://17salsa.com/home/attachment/201308/18/37_1376838633Ry7Y.jpg.thumb.jpg
+                )
+
         $space = getspace($friend_id);
         require "inc/space_album.php";
         //print_r($list[0]['pic']);
@@ -163,6 +175,7 @@ function showcontact($data)
             $url = 'http://17salsa.com/home/' . $list[$i]['pic'];
     	    array_push( $friend["contact_pic"], $url );
         }
+*/
 
         array_push($response, $friend);
     }
