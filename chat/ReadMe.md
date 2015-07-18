@@ -14,3 +14,5 @@ cd chat-websocket
 npm install
 node app.js
 ```
+
+init
