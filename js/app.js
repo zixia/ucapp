@@ -6,76 +6,88 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', [
-  'ionic',
-  'ngCordova',
-  'ionic.service.core',
-  'ionic.service.push',
-  'ionic.service.deploy',
+    'ionic',
+    'ngCordova',
+    'ionic.service.core',
+    'ionic.service.push',
+    'ionic.service.deploy',
 
-  //controllers
-  'starter.controllers',
-  'starter.messagecontrollers',
-  'starter.contactcontrollers',
-  'starter.friendcirclecontrollers',
-  'starter.homepagecontrollers',
-  'starter.accountcontrollers',
+    //controllers
+    'starter.controllers',
+    'starter.messagecontrollers',
+    'starter.contactcontrollers',
+    'starter.friendcirclecontrollers',
+    'starter.homepagecontrollers',
+    'starter.accountcontrollers',
 
-  //factories
-  'ContactServiceFactory',
-  'FactoryPersonalHomepageService',
-  'FactoryFormat',
-  'FactoryAuthService',
-  'MessageServiceFactory',
-  'EventServiceFactory',
-  'IdSearchFactroy',
-  
-  //route
-  'RouteConfig',
+    //factories
+    'ContactServiceFactory',
+    'FactoryPersonalHomepageService',
+    'FactoryFormat',
+    'FactoryAuthService',
+    'MessageServiceFactory',
+    'EventServiceFactory',
+    'IdSearchFactroy',
 
-  //globalpara
-  'GlobalPath',
+    //route
+    'RouteConfig',
+
+    //globalpara
+    'GlobalPath',
+
+    //zixia
+    'angularLocalStorage'
 ])
 
+/*
+   .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+   localStorageServiceProvider
+   .setPrefix('17SALSA')
+   .setStorageType('localStorage')
+   .setNotify(true, true)
+   }])
+   */
+
 .config(['$ionicAppProvider', function($ionicAppProvider) {
-  // Identify app
-  $ionicAppProvider.identify({
-    // The App ID (from apps.ionic.io) for the server
-    app_id: '301dd65b',
-    // The public API key all services will use for this app
-    api_key: 'd76bc552414571ce7024ed7a642e2c08a77c2c357f4647d2',
-    // The GCM project ID (project number) from your Google Developer Console (un-comment if used)
-    //gcm_id: 'GCM_ID',
-  });
+    // Identify app
+    $ionicAppProvider.identify({
+        // The App ID (from apps.ionic.io) for the server
+        app_id: '301dd65b',
+        // The public API key all services will use for this app
+        api_key: 'd76bc552414571ce7024ed7a642e2c08a77c2c357f4647d2',
+        // The GCM project ID (project number) from your Google Developer Console (un-comment if used)
+        //gcm_id: 'GCM_ID',
+    })
 }])
 
 .config(['$httpProvider', function($httpProvider) {
-  $httpProvider.defaults.withCredentials = true;
+    $httpProvider.defaults.withCredentials = true
 }])
 
 
 .run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if(window.StatusBar) {
-      StatusBar.styleDefault();
-    }
-  });
+    $ionicPlatform.ready(function() {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        if(window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true)
+        }
+        if(window.StatusBar) {
+            StatusBar.styleDefault()
+        }
+    })
 })
 
 .run(function($rootScope, $location, AuthService,$state) {
 
-  $rootScope.$on("$stateChangeStart",function(event,toState,b,c,d,e){
-    if(toState.name=='login')return;// 如果是进入登录界面则允许
-    if (!AuthService.isAuthenticated()) {
-      event.preventDefault();// 取消默认跳转行为
-      $state.go("login");
-      // $location.path("/tab/user");//uiroute和ngroute的区别 uiroute是angularjs的扩展
-    };
-  })
-});
+    $rootScope.$on("$stateChangeStart",function(event,toState,b,c,d,e){
+        if(toState.name=='login')   return // 如果是进入登录界面则允许
+            if (!AuthService.isAuthenticated()) {
+                event.preventDefault()// 取消默认跳转行为
+                $state.go("login")
+                // $location.path("/tab/user") //uiroute和ngroute的区别 uiroute是angularjs的扩展
+            }
+    })
+})
 
 

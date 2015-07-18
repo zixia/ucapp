@@ -1,3 +1,7 @@
 lib
 .DS_Store 
 Trash
+bower_components
+t.js
+npm-debug.log
+
