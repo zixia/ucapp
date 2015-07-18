@@ -27,11 +27,10 @@ angular.module('starter.accountcontrollers', [])
         },function(){
             $rootScope.$broadcast("transimit failed wuwuwu");
         });
-    };
+    }
 
     $scope.logout = function(){
         AuthService.logout();
     }
 
-    javascript:void(0);
 })
