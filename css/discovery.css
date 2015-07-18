@@ -1,5 +1,5 @@
 /*tab-discovery.html */
-.discover-list{
+/*.discover-list{
 	background-color:#FFF;
 	margin-top:15px;
 	padding-top:9px;
@@ -7,11 +7,19 @@
 	padding-left: 20px;
 	border-bottom: 1px solid #ddd;
 	border-top: 1px solid #ddd;
-}
-
+}*/
+/*
 .dicover-list p{
 	margin: 0px !important;
 	padding: 0px !important;
+}*/
+
+.black{
+	color: #000000 !important;
+}
+
+.discover-list{
+	margin-top: 20px !important;
 }
 
 .border_none{

@@ -14,44 +14,51 @@
 }
 
 .contact-search input[type="text"]{
-	height: 20px;
+	height: 30px;
 }
 
 .contact-search input::-webkit-input-placeholder{
 	text-align: center;
 }
 
+.contact-ion-list{
+	border-left: none !important;
+	border-right: none !important;
+}
 .contact-list{
 	border-left:none !important;
 	border-right:none !important ;
-	border-bottom: 1px solid #ddd;
-	padding-top: 5px !important;
-	height: 40px;
+/*	border-bottom: 5px solid #ddd;
+*/	padding-top: 10px !important;
+	height: 60px;
+	float: left;
 }
 
 .contact-list-img{
 	float: left;
-	width: 30px;
-	height: 30px;
+	width: 40px;
+	height: 40px;
 	overflow: hidden;
 }
 
 .contact-list-img img{
-	max-width: 30px;
+	max-width: 40px;
 	/*height: 30px;*/
 }
 
 .contact-content{
-	float: left;
 	padding-left: 10px;
-	max-width: 70%;
+	display:table;
+	position: static;
 }
 
 .contact-content p{
-	margin: 5px !important;
+	display:table-cell;
+    vertical-align:middle;
 	overflow: hidden;
 	white-space:nowrap;
 	font-size: 15px;
+	position: static;
 }
 
 /*改写原生ionic样式*/
@@ -59,3 +66,27 @@
 	margin: 0px !important;
 	padding: 0px !important;
 }
+
+/*垂直居中*/
+.czjz{ 
+    display:-webkit-box;  
+    -webkit-box-orient:horizontal;  
+    -webkit-box-pack:center;  
+    -webkit-box-align:center;  
+    display:-moz-box;  
+    -moz-box-orient:horizontal;  
+    -moz-box-pack:center;  
+    -moz-box-align:center;  
+    display:-o-box;  
+    -o-box-orient:horizontal;  
+    -o-box-pack:center;  
+    -o-box-align:center;  
+    display:-ms-box;  
+    -ms-box-orient:horizontal;  
+    -ms-box-pack:center;  
+    -ms-box-align:center;  
+    display:box;  
+    box-orient:horizontal;  
+    box-pack:center;  
+    box-align:center;  
+} 

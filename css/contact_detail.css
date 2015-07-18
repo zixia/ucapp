@@ -29,14 +29,21 @@
 .contact_content{
 	background-color:#FFF;
 	margin-top: 15px;
+	
 }
 
-.contact_content_list{
+/*.contact_content_list{
+	display: table;
 	border-bottom: 1px solid #ddd;
 	padding: 10px;
 	color: #888;
 	font-size: 14px !important;
 
+}
+
+.contact_content_list div{	
+	display: table-cell;
+	vertical-align:middle;
 }
 
 .contact_content_list span{
@@ -47,20 +54,24 @@
 .contact_content_list col{
 	vertical-align:middle;
 }
-
+*/
 
 .contact_content_list_big{
 	border-bottom: 1px solid #ddd;
 	padding: 10px !important;
 	color: #888 !important;
-	font-size: 14px !important;
-	height:60px;
+/*	font-size: 14px !important;
+*/	height:60px;
 }
-
+.font-gray{
+	color: #888 !important;
+}
+.word-break{
+	white-space: normal !important;
+}
 .contact_content_list_big p{
 	float: left;
 	color: #888 !important;
-	font-size: 14px !important;
 	margin-right:25px; 
 }
 
@@ -71,17 +82,8 @@
 }
 
 .contact_detail_button{
-	padding: 10px;
-	margin: 5px !important;
-
+	color: white !important;
+	border: none !important;
+	border-radius: 5px !important;
+	background-color: #00AA00 !important;
 }
-
-.contact_detail_button button{
-	width: 100%;
-	border: none;
-	height: 30px;
-	border-radius: 5px;
-	color: #fff;
-	background-color: #00AA00;
-}
- 

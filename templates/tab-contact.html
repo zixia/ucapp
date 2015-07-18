@@ -13,15 +13,17 @@
     </div>
 
 
-    <ion-item  class="contact-list" ng-repeat = "contact in contacts| filter:query" href="#/contact/{{passcontact(contact.contact_id)}}">
+    <ion-item  class = "contact-ion-list" ng-repeat = "contact in contacts| filter:query" href="#/contact/{{passcontact(contact.contact_id)}}">
+      <div class="contact-list">
       <div class = "contact-list-img">
         <img ng-src="{{contact.contact_img}}">
       </div>
 
-      <div class = "contact-content">
+      <div class = "contact-content contact-list-img">
         <p>{{contact.contact_name}}</p>
       </div>
-
+      </div>
     </ion-item>
+
   </ion-content>
 </ion-view>
