@@ -78,6 +78,9 @@ angular.module('starter', [
     })
 }])
 
+/* 
+ * Error: $rootScope:infdig Infinite $digest Loop - https://docs.angularjs.org/error/$rootScope/infdig?p0=10&p1=%5B%5D
+ *
 .run(['$rootScope','$location','AuthService','$state', function($rootScope, $location, AuthService,$state) {
     $rootScope.$on("$stateChangeStart",function(event,toState,b,c,d,e){
         if(toState.name=='login')   
@@ -89,5 +92,4 @@ angular.module('starter', [
         }
     })
 }])
-
-
+*/
