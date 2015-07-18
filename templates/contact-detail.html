@@ -20,26 +20,34 @@
 			<p>id:{{contactitem.contact_id}}</p>
   		</div>
   	</div>
-    
-  	<div class = "contact_content">
-  		<div class = "contact_content_list row">
-        <div class = "col col-25">地区</div>
-        <div class = "col col-75">{{contactitem.contact_region}}</div>
-  		</div>
+ 
+    <div class = "contact_content">
+      <div class="list">
 
-  		<div class = "contact_content_list row">
-        <div class = "col col-25">个性签名</div>
-        <div class = "col col-75" ng-bind-html = "contactitem.contact_sign"></div>
-  		</div>
-  		<ion-item class = "contact_content_list_big" href="#/personalContactHomepage/{{contactpath}}">
-  			<p>个人相册</p>
-  				<img ng-repeat='contact_pic_src in contactitem.contact_pic track by $index' ng-src="{{contact_pic_src}}">
-  		</ion-item >
-  	</div>
+        <div class="item row font-gray" >
+          <div class = "col col-25">地区</div>
+          <div class = "col col-75">{{contactitem.contact_region}}</div>
+        </div>
 
+        <div class="item row font-gray word-break" href="#">
+          <div class = "col col-25  table-cell">个性签名</div>
+          <div class = "col col-75" ng-bind-html = "contactitem.contact_sign"></div>
+        </div>
+
+       <ion-item class = "contact_content_list_big" href="#/personalContactHomepage/{{contactpath}}">
+        <div>个人相册</div>
+          <img ng-repeat='contact_pic_src in contactitem.contact_pic track by $index' ng-src="{{contact_pic_src}}">
+      </ion-item >
+      </div>
+    </div>
+<!-- 
   	<ion-item class = "contact_detail_button" href="#/message/{{contactitem.contact_id}}">
-  		<button >发消息</button>
-  	</ion-item>
+  		<button class = "button button-block">发消息</button>
+  	</ion-item> -->
+
+    <div style = 'margin:10px;'>
+          <a class = "button button-block contact_detail_button" href="#/message/{{contactitem.contact_id}}">发消息</a>
+    </div>
 
 
 
