@@ -1,6 +1,6 @@
 <ion-view view-title="活动列表">
   <ion-content class="padding">
-  
+
     <ion-item class="list card" ng-repeat = "item in eventlist.b | filter:query" href = "#/event/{{item.event_id}}">
       <div class="item">
         <h3 class = "event_title_h3">{{item.event_title}}</h3>
@@ -20,6 +20,8 @@
       </div>
 
     </ion-item>
+
+
 
   </ion-content>
 </ion-view>

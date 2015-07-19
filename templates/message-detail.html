@@ -9,17 +9,21 @@
   </ion-nav-bar>
   <ion-content style="background: #e8ebf1;">
   <ion-refresher on-refresh="refresh()"></ion-refresher>
+
   <p class = 'message-detail-empty'>{{message_array.empty}}</p>
 
-    <div ng-repeat='item in messageitem track by $index' id = "pagescroll">
+    <div scroll-glue-bottom="glued"  style = "height:{{height}}px;overflow-y:scroll;">
+      <div ng-repeat='item in messageitem track by $index'>
+         <ion-item class = "message-detail-list">
+          <img ng-src="{{format_img(item.fid)}}" class = "message-detail-img-{{format_class(item.fid)}}" ng-click="gocontact()">
+            <div class = "message-detail-span-{{format_class(item.fid)}}" ng-bind-html="item.txt">
+              <div class = "arrow-{{format_class(item.fid)}}"></div>
+            </div>
+            <div class = "message-detail-sendfail" ng-show = "sendfail">fail!</div>
+        </ion-item>
+      </div>
+    </div>  
 
-       <ion-item class = "message-detail-list">
-        <img ng-src="{{format_img(item.fid)}}" class = "message-detail-img-{{format_class(item.fid)}}" ng-click="gocontact()">
-          <div class = "message-detail-span-{{format_class(item.fid)}}" ng-bind-html="item.txt">
-            <div class = "arrow-{{format_class(item.fid)}}"></div>
-          </div>
-      </ion-item>
-    </div>
 
   </ion-content>
 

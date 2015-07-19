@@ -1,4 +1,4 @@
-angular.module('starter.messagecontrollers', [])
+angular.module('starter.messagecontrollers', ['luegg.directives'])
 
 .controller('MessageCtrl', function($http, $scope,$ionicLoading,MessageService,Format,IdSearch) {
     $ionicLoading.show({
@@ -54,10 +54,12 @@ angular.module('starter.messagecontrollers', [])
     }
 })
 
-.controller('MessageDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,MessageService,$window,IdSearch)  {
+.controller('MessageDetailCtrl', function($timeout,$scope,$stateParams,$state,$ionicLoading,MessageService,$window,IdSearch)  {
 
     // var num = $stateParams.messageId;
+    $scope.glued = true;
 
+    $scope.sendfail = false;
     var contact_id = $stateParams.messageId;
     //获取联系人的id，name，avatar
     //userinfo 存储相关信息
@@ -77,13 +79,7 @@ angular.module('starter.messagecontrollers', [])
 
     MessageService.getDetailInfo(contact_id).success(function(data) {
         $scope.messageitem = data.b.reverse();
-        var h = $(document).height()-$(window).height();
-        $(document).scrollTop(h);
-
-        // var div = document.getElementById("pagescroll");
-        // // div.scrollTop = 1000;
-        // $("#pagescroll").offsetHeight = 1000;
-        // // alert(div.scrollHeight);
+        $scope.height = document.getElementsByTagName('ion-content')[0].scrollHeight-20;
     }).then(function(){
         $ionicLoading.hide();
     });
@@ -93,7 +89,9 @@ angular.module('starter.messagecontrollers', [])
     }
 
     $scope.gocontact = function(){
-        $state.go("contact-detail",{'contactId':contact_id});
+        // $state.go("contact-detail",{'contactId':contact_id});
+        console.log(contact_id);
+         $state.go("contact",{'contact':contact_id});
     }
 
     $scope.format_img = function(id){
@@ -131,14 +129,17 @@ angular.module('starter.messagecontrollers', [])
 
     $scope.sendmessagedetail = function(){
         $message_content = $scope.message_detail_send;
+        $scope.message_detail_send = null;
         $message_json = {"fid":account_id,"txt":$message_content};
         MessageService.sendMessage(contact_id,$message_content).success(function(data){
             console.log(data.h.ret);
             if (typeof data.h.ret == "undefined") {
-               alert('发送失败');
+               // alert('发送失败');
+               $scope.sendfail = true;
             }
             else if(data.h.ret!=0){
-                alert('发送失败');
+                // alert('发送失败');
+                $scope.sendfail = true;
             }
             else
                 $scope.messageitem.push($message_json);

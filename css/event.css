@@ -2,32 +2,31 @@
 .event_title_h3{
 	color: #387ef5;
 	white-space: normal !important;
+	font-size: 120% !important;
 }
 
 .event_title_p{
-	font-size: 80% !important;
 	margin: 0px !important;
 }
 
-.event_body_span{
+/*.event_body_span{
 	font-size: 60% !important;
-}
+}*/
 
 .event_detail_titel p{
 	color: #888;
-	font-size: 90%;
 }
 
 .event_detail_title_h3{
-	font-size: 95% !important;
-	color: #387ef5;
+/*	font-size: 95% !important;
+*/	color: #387ef5;
 	white-space: normal !important;
 }
 
 .event_detail_titel span{
 	color: #000;
-	font-size: 90%;
-}
+/*	font-size: 90%;
+*/}
 
 .event_detail_button{
 	text-align: center;

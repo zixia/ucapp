@@ -116,6 +116,7 @@ angular.module('starter.homepagecontrollers', [])
 
     PersonalHomepageService.getContentInfo(num).success(function(data) {
         $scope.userContentInfo = data;
+        console.log(data);
     }).then(function(){
         $ionicLoading.hide();
     });

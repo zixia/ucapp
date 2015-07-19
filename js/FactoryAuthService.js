@@ -21,7 +21,7 @@ angular.module('FactoryAuthService', [])
                     $location.path('/tab/home');
                 } else {
                     console.log('login error');
-                    alert('用户名密码错误！');
+                    // alert('用户名密码错误！');
                 }
                 return res.data;
         });

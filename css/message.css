@@ -136,6 +136,15 @@
 	border-color: #e8ebf1  #e8ebf1 #e8ebf1 #FFF;
 }
 
+.message-detail-sendfail{
+	float: right;
+	border-radius: 30%;
+	background: rgb(255, 77, 0);
+	/*padding: 5px;*/
+	margin-right: 20px;
+	font-size: 70%;
+}
+
 .message-detail-span-right{
 	background-color: #FFF;
 	width: auto;
@@ -144,8 +153,8 @@
 	padding-left: 5px;
 	padding-right: 5px;
 	margin-right:41px;
-	margin-left:40px; 
-	font-size: 14px;
+/*	margin-left:40px; 
+*/	font-size: 14px;
 	white-space: normal;
 	float: right;
 	word-wrap: break-word; 

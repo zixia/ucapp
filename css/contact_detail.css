@@ -63,12 +63,8 @@
 /*	font-size: 14px !important;
 */	height:60px;
 }
-.font-gray{
-	color: #888 !important;
-}
-.word-break{
-	white-space: normal !important;
-}
+
+
 .contact_content_list_big p{
 	float: left;
 	color: #888 !important;
@@ -79,11 +75,4 @@
 	width: 40px;
 	height:40px;
 	margin-right: 3px;
-}
-
-.contact_detail_button{
-	color: white !important;
-	border: none !important;
-	border-radius: 5px !important;
-	background-color: #00AA00 !important;
 }
