@@ -187,7 +187,29 @@ function login($data) {
     $response['user_area']      = $m_space['resideprovince'] . " " . $m_space['residecity'];
     $response['user_sign']      = preg_replace('/\<img[^>]+>/', '', $m_space['note']) ;
 
-    $response['ret'] = true;
+//    print_r($m_space);
+    $group = $m_space[groupid];
+
+/*
+禁止：12 13 4 8
+5 (普通) 6 (中级) 7(高级)
+*/
+    switch ($group) {
+    case 4:
+    case 8:
+    case 12:
+    case 13:
+        /* 禁止会员 */
+    case 5: // 普通会员
+    case 6: // 中级会员
+    //case 7: // 高级会员
+        $response['ret'] = false;
+        $response['txt'] = '17SALSA手机APP内测中。目前暂时仅接受中级以上用户登录。有任何疑问可以联络 salsa@17salsa.com ';
+        break;
+    default:
+        $response['ret'] = true;
+        break;
+    }
 
     return $response;
 }
