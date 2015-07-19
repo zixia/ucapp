@@ -54,26 +54,15 @@ angular.module('starter.contactcontrollers', [])
                 $scope.contactpath.path = "contact-detail";
             }
         }
+        console.log($scope.contactitem)
     }).then(function(){
             $ionicLoading.hide();
     });
 
 
     $scope.goback = function(){
-        console.log(urlPara);
-        if (urlPara == "contact-detail") {
-            history.go(-3);
-        }
-        else{
-            history.back();
-        }
-        //暂时通，满满研究history，未完待续
-        // $location.path(BrowsingHistory.prev());
-        console.log($location.path());
-        console.log($location.absUrl());
-        console.log($location.search());
-        // BrowserHistory.changeHash();
-    };
+            history.back()
+    }
 
 
     
