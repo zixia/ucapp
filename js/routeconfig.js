@@ -121,6 +121,13 @@ angular.module('RouteConfig', [])
         controller: 'PersonalHomepageDetailCtrl'
     })
 
+    // 设置
+    .state('setting', {
+        url: '/setting',
+        templateUrl: 'templates/setting.html',
+        controller: 'SettingCtrl'
+    })
+
 
 
     // if none of the above states are matched, use this as the fallback

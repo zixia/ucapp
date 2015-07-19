@@ -12,6 +12,10 @@ angular.module('starter.accountcontrollers', [])
     $scope.gofriendcircle = function(){
         $state.go("personalContactHomepage",{'contact':$scope.user.user_id});
     }
+
+    $scope.gosetting = function(){
+        $state.go("setting")
+    }
 })
 
 

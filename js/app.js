@@ -19,6 +19,7 @@ angular.module('starter', [
     'starter.friendcirclecontrollers',
     'starter.homepagecontrollers',
     'starter.accountcontrollers',
+    'SystemCtrls',
 
     //factories
     'ContactServiceFactory',
