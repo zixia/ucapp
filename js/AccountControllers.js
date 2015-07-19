@@ -17,7 +17,7 @@ angular.module('starter.accountcontrollers', [])
          AuthService.login(username,password)
         .then(function(res){
             if (res.ret === true) {
-                console.log("resresres");
+                //console.log("resresres");
                 console.log(res);
                 $rootScope.$broadcast(res);
             }

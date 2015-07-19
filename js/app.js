@@ -65,7 +65,7 @@ angular.module('starter', [
 }])
 
 
-.run(function($ionicPlatform) {
+.run(['$ionicPlatform',function($ionicPlatform) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -76,18 +76,25 @@ angular.module('starter', [
             StatusBar.styleDefault()
         }
     })
-})
+}])
 
-.run(function($rootScope, $location, AuthService,$state) {
+.run(['$rootScope','$location','AuthService','$state','$timeout','$log', function($rootScope, $location, AuthService,$state,$timeout,$log) {
+    $rootScope.$on("$stateChangeStart",function(event,toState,toParams,fromState,fromParams){
+        console.log("$stateChangeStart (toState:" + toState.name + ",fromState:" + fromState.name + ")" )
 
-    $rootScope.$on("$stateChangeStart",function(event,toState,b,c,d,e){
-        if(toState.name=='login')   return // 如果是进入登录界面则允许
-            if (!AuthService.isAuthenticated()) {
-                event.preventDefault()// 取消默认跳转行为
-                $state.go("login")
-                // $location.path("/tab/user") //uiroute和ngroute的区别 uiroute是angularjs的扩展
-            }
+        if ( ! fromState.name ){
+            $log.log( "$log: fromState.name empty, return" )
+            return
+        }
+
+        if ( AuthService.isAuthenticated() )
+            return
+        
+        if ( 'login'===toState.name )
+            return
+
+        event.preventDefault()
+        //$timeout($state.go,100,true,'login')
+        $state.go('login')
     })
-})
-
-
+}])

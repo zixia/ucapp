@@ -124,6 +124,8 @@ angular.module('RouteConfig', [])
 
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/event')
+    //console.log("$urlRouterProvider.otherwise('/tab/event')")
+    //$urlRouterProvider.otherwise('/tab/event')
+    $urlRouterProvider.otherwise('/chatroom')
 
 })

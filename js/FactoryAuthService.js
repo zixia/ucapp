@@ -1,6 +1,6 @@
 angular.module('FactoryAuthService', [])
 
-.factory("AuthService",function($http,$location,$window,UrlPath) {
+.factory("AuthService",function($http,$location,$window,UrlPath,$state) {
     var loginpath = UrlPath.getLoginpath();
 
     function login (username,password){
@@ -18,7 +18,7 @@ angular.module('FactoryAuthService', [])
                     $window.sessionStorage['user_area'] = res.data.user_area;
                     $window.sessionStorage['user_sign'] = res.data.user_sign;
 
-                    $location.path('/tab/home');
+                    $state.go('tab.event');
                 } else {
                     console.log('login error');
                     // alert('用户名密码错误！');
