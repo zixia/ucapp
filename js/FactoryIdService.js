@@ -3,7 +3,7 @@ angular.module('IdSearchFactroy', [])
     var APIURL = UrlPath.getIdtransferurlPath()
 
     function getMainInfo(userIds){
-console.log("param userIds: " + userIds)
+        console.log("param userIds: " + userIds)
         var deferred    = $q.defer()
         var promise     = deferred.promise
 
@@ -26,10 +26,10 @@ console.log("param userIds: " + userIds)
            })
            */
 
-          /*
-        for (var i=0; i<userIds.length; i++){
-            var userId = userIds[i]
-            */
+        /*
+           for (var i=0; i<userIds.length; i++){
+           var userId = userIds[i]
+           */
         for ( userId of userIds ){
             var obj = storage.get("userId_" + userId)
             if (obj) {
@@ -42,34 +42,34 @@ console.log("param userIds: " + userIds)
         console.log("userIds "
                     + " HIT(" + Object.keys(hitUserObjs).length 
                     + ")+MISS(" + missUserIds.length 
-                    + ")=ALL(" + userIds.length + ")")
+                    + ")/ALL(" + userIds.length + ")")
 
-        // return $http.get('data/idsearch.json')
+                    // return $http.get('data/idsearch.json')
 
-        if ( missUserIds.length > 0 ){
-            $http
-            .post(APIURL,{idlist:missUserIds})
-            .success(function(data){
-                missUserObjs    = data.b
-                for (var id in data.b) {
-                    storage.set('userId_'+id, data.b[id])
-                }
+                    if ( missUserIds.length > 0 ){
+                        $http
+                        .post(APIURL,{idlist:missUserIds})
+                        .success(function(data){
+                            missUserObjs    = data.b
+                            for (var id in data.b) {
+                                storage.set('userId_'+id, data.b[id])
+                            }
 
-                console.log("userId_"+id + " saved")
+                            console.log("userId_"+id + " saved")
 
-                data.b = angular.extend({},hitUserObjs,data.b)
-                deferred.resolve(data)
+                            data.b = angular.extend({},hitUserObjs,data.b)
+                            deferred.resolve(data)
 
-                return promise
-            })
-            return promise
-        }else{
-            var data = {}
-            data['h'] = {'ret':0}
-            data['b'] = hitUserObjs
-            deferred.resolve(data)
-            return promise
-        }
+                            return promise
+                        })
+                        return promise
+                    }else{
+                        var data = {}
+                        data['h'] = {'ret':0}
+                        data['b'] = hitUserObjs
+                        deferred.resolve(data)
+                        return promise
+                    }
     }
 
     function getIdUsername(idlist,fulllist){

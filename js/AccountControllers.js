@@ -17,7 +17,7 @@ angular.module('starter.accountcontrollers', [])
         .then(function(res){
             if (res.ret === true) {
                 //console.log("resresres");
-                //console.log(res);
+                console.log(res);
                 $rootScope.$broadcast(res);
             }
             else{

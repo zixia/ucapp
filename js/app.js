@@ -78,18 +78,23 @@ angular.module('starter', [
     })
 }])
 
-/* 
- * Error: $rootScope:infdig Infinite $digest Loop - https://docs.angularjs.org/error/$rootScope/infdig?p0=10&p1=%5B%5D
- *
-.run(['$rootScope','$location','AuthService','$state', function($rootScope, $location, AuthService,$state) {
-    $rootScope.$on("$stateChangeStart",function(event,toState,b,c,d,e){
-        if(toState.name=='login')   
-            return // 如果是进入登录界面则允许
-        if (!AuthService.isAuthenticated()) {
-            event.preventDefault()// 取消默认跳转行为
-            $state.go("login")
-            // $location.path("/tab/user") //uiroute和ngroute的区别 uiroute是angularjs的扩展
+.run(['$rootScope','$location','AuthService','$state','$timeout','$log', function($rootScope, $location, AuthService,$state,$timeout,$log) {
+    $rootScope.$on("$stateChangeStart",function(event,toState,toParams,fromState,fromParams){
+        console.log("$stateChangeStart (toState:" + toState.name + ",fromState:" + fromState.name + ")" )
+
+        if ( ! fromState.name ){
+            $log.log( "$log: fromState.name empty, return" )
+            return
         }
+
+        if ( AuthService.isAuthenticated() )
+            return
+        
+        if ( 'login'===toState.name )
+            return
+
+        event.preventDefault()
+        //$timeout($state.go,100,true,'login')
+        $state.go('login')
     })
 }])
-*/
