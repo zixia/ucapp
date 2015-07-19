@@ -88,7 +88,8 @@ angular.module('starter.homepagecontrollers', [])
 
 .controller('PersonalContactHomepageCtrl', function($http, $scope,$state,$ionicLoading,$stateParams,PersonalHomepageService,Format) {
     // console.log($stateParams.contact);
-    var num = JSON.parse($stateParams.contact);
+    var num = $stateParams.contact;
+    console.log(num);
     // var num = $stateParams.contact;
 
 
@@ -108,15 +109,13 @@ angular.module('starter.homepagecontrollers', [])
         template:'<i class = "ion-load-c"><br></i>Loading...'
     });
 
-    PersonalHomepageService.getContactUserInfo(num.id).success(function(data) {
+    PersonalHomepageService.getContactUserInfo(num).success(function(data) {
         $scope.userBasicInfo = data;
         $scope.title = $scope.userBasicInfo.user_name;
         passPara.contactId = $scope.userBasicInfo.user_id;
     });
 
-    PersonalHomepageService.getContentInfo(num.id).success(function(data) {
-        console.log(typeof(num));
-        console.log(num.id)
+    PersonalHomepageService.getContentInfo(num).success(function(data) {
         $scope.userContentInfo = data;
         console.log(data);
     }).then(function(){

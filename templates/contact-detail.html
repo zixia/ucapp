@@ -33,7 +33,7 @@
           <div class = "col col-75" ng-bind-html = "contactitem.contact_sign"></div>
         </div>
 
-       <ion-item class = "contact_content_list_big" href="#/personalContactHomepage/{{contactpath}}">
+       <ion-item class = "contact_content_list_big" href="#/personalContactHomepage/{{user_id}}">
         <div>个人相册</div>
           <img ng-repeat='contact_pic_src in contactitem.contact_pic track by $index' ng-src="{{contact_pic_src}}">
       </ion-item >
