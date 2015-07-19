@@ -82,11 +82,6 @@ angular.module('starter', [
     $rootScope.$on("$stateChangeStart",function(event,toState,toParams,fromState,fromParams){
         console.log("$stateChangeStart (toState:" + toState.name + ",fromState:" + fromState.name + ")" )
 
-        if ( ! fromState.name ){
-            $log.log( "$log: fromState.name empty, return" )
-            return
-        }
-
         if ( AuthService.isAuthenticated() )
             return
         
@@ -94,7 +89,6 @@ angular.module('starter', [
             return
 
         event.preventDefault()
-        //$timeout($state.go,100,true,'login')
         $state.go('login')
     })
 }])

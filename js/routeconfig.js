@@ -124,8 +124,13 @@ angular.module('RouteConfig', [])
 
 
     // if none of the above states are matched, use this as the fallback
-    //console.log("$urlRouterProvider.otherwise('/tab/event')")
-    //$urlRouterProvider.otherwise('/tab/event')
-    $urlRouterProvider.otherwise('/chatroom')
+
+    /*
+     * http://stackoverflow.com/questions/25065699/why-does-angularjs-with-ui-router-keep-firing-the-statechangestart-event
+     */
+    $urlRouterProvider.otherwise( function($injector, $location) {
+        var $state = $injector.get("$state");
+        $state.go("tab.event");
+    });
 
 })
