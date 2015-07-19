@@ -46,12 +46,14 @@ angular.module('starter.contactcontrollers', [])
     });
 
     ContactService.getMainInfo().success(function(data){
-        $scope.contactpath = {};
+        // $scope.contactpath = {};
+
         for (var i = 0; i < data.length; i++) {
             if(data[i].contact_id == num){
                 $scope.contactitem = data[i];
-                $scope.contactpath.id = $scope.contactitem.contact_id;
-                $scope.contactpath.path = "contact-detail";
+                // $scope.contactpath.id = $scope.contactitem.contact_id;
+                // $scope.contactpath.path = "contact-detail";
+                $scope.user_id = $scope.contactitem.contact_id;
             }
         }
         //console.log($scope.contactitem)

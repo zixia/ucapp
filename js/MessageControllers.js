@@ -91,7 +91,7 @@ angular.module('starter.messagecontrollers', ['luegg.directives'])
     $scope.gocontact = function(){
         // $state.go("contact-detail",{'contactId':contact_id});
         console.log(contact_id);
-         $state.go("contact",{'contact':contact_id});
+         $state.go("contact-detail",{'contact':contact_id});
     }
 
     $scope.format_img = function(id){

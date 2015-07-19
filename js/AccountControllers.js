@@ -2,10 +2,15 @@ angular.module('starter.accountcontrollers', [])
 
 .controller('AccountCtrl', function($scope,AuthService,$state,$window) {
     $scope.user = $window.sessionStorage;
+    console.log($scope.user);
 
     $scope.logout = function(){
         AuthService.logout();
         $state.go("login");
+    }
+
+    $scope.gofriendcircle = function(){
+        $state.go("personalContactHomepage",{'contact':$scope.user.user_id});
     }
 })
 
