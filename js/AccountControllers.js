@@ -18,6 +18,7 @@ angular.module('starter.accountcontrollers', [])
 
 .controller('LoginCtrl',function($scope,$rootScope,AuthService,$ionicPopup){
     $scope.checklogin = false;
+    $scope.err_txt = '';
     $scope.login = function(username,password){
          AuthService.login(username,password)
         .then(function(res){
@@ -27,9 +28,16 @@ angular.module('starter.accountcontrollers', [])
                 $rootScope.$broadcast(res);
             }
             else{
+                $scope.err_txt = '用户名密码错误'
+
+                if (res.txt) 
+                    $scope.err_txt = res.txt
+
+                $scope.checklogin = true;
+
+
                 $rootScope.$broadcast("login failed");
                 // showAlert();
-                $scope.checklogin = true;
             }
             
         },function(){

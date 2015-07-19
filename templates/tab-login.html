@@ -10,9 +10,8 @@
 			<input type="password" placeholder="密码" ng-model="password">
 		</label>
 
-		<label class="bar bar-energized item" ng-show = checklogin>
-		  <h1 class="title">用户名密码错误</h1>
-		</label>
+            <br />
+            <p style="color:red; " ng-show=checklogin>{{err_txt}}</p>
 
 
         <button class = "button button-block greenblockbutton" type="submit">提交</button>
