@@ -6,7 +6,7 @@ $req = json_decode($res,true);//生成array数组
 
 $uid = intval( $req['user_id'] );
 
-//$uid = 0;
+//$uid = 8;
 
 if ( $uid > 0 ) {
     /*
@@ -31,8 +31,6 @@ if ( $uid > 0 ) {
         $resp['h']['ret'] = ERR_NEEDLOGIN;
     }
 }
-
-//print_r($resp);
 
 $resp[h][uid] = $uid;
 $resp_json = json_encode($resp);//生成json数据

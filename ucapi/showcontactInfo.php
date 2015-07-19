@@ -33,7 +33,8 @@ function showcontactInfo($data){
 
 	//下面是我瞎填的东西
 	$response['user_id']        = $userid;
-	$response['user_name']      = $m_space['name'];
+	$response['user_name']      = $m_space['username'];
+	$response['user_nick']      = $m_space['name'] ? $m_space['name'] : $m_space['username'] ;
 	$response['user_avatar']    = avatar($userid, 'middle', true);
 	$response['user_headpic']   = avatar($userid, 'big', true);
 	$response['user_sign']      = preg_replace('/\<img[^>]+>/', '', $m_space['note']) ;

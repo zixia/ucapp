@@ -148,7 +148,8 @@ function showcontact($data)
     foreach ( $list as $friend_id => $friend_arr ) {
         $friend = array();
 
-    	$friend["contact_name"] = $friend_arr['name'];
+        $friend["contact_name"] = $friend_arr['username'];
+        $friend["contact_nick"] = $friend_arr['name'] ? $friend_arr['name'] : $friend_arr['username'] ;
     	$friend["contact_id"] = $friend_id;
     	$friend["contact_region"] =  $friend_arr['resideprovince'] . " " . $friend_arr['residecity'];
     	$friend["contact_sign"] = $friend_arr['spacenote'];
