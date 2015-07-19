@@ -54,7 +54,7 @@ angular.module('starter.contactcontrollers', [])
                 $scope.contactpath.path = "contact-detail";
             }
         }
-        console.log($scope.contactitem)
+        //console.log($scope.contactitem)
     }).then(function(){
             $ionicLoading.hide();
     });
