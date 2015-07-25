@@ -16,11 +16,19 @@ angular.module('starter.accountcontrollers', [])
 
 
 
-.controller('LoginCtrl',function($scope,$rootScope,AuthService,$ionicPopup){
+.controller('LoginCtrl',function($scope,$rootScope,AuthService,$ionicPopup,$ionicLoading){
+
+
     $scope.checklogin = false;
     $scope.login = function(username,password){
+        $ionicLoading.show({
+            template:'<i class = "ion-load-c"><br></i>登陆中...'
+        });
+    
          AuthService.login(username,password)
         .then(function(res){
+            
+            $ionicLoading.hide();
             if (res.ret === true) {
                 //console.log("resresres");
                 console.log(res);

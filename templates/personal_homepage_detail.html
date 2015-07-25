@@ -20,20 +20,20 @@
                <img class="full-image"    ng-src="{{img}}">
           </li>
         </ul>
-      </div> 
+      </div>
 
       <span class = "homepage_detail_head_time">{{getstandardtime(InfoItem.ts)}}</span>
-      <span class = "homepage_detail_head_delete">删除</span>
+<!--       <span class = "homepage_detail_head_delete">删除</span> -->
 
-      <span class="friendcircle-choose" ng-show=0>
-           <a href="#" ng-click = "sendheart()"><i class="ion-ios-heart-outline"></i>点赞</a>
+      <span class="friendcircle-choose" ng-show="showchat">
+           <a ng-click = "sendheart()"><i class="ion-ios-heart-outline"></i>点赞</a>
            <span>|</span>
-         <a href="#" ng-click = "remark('{{info.avatar_name}}' )"><i class="ion-ios-chatbubble-outline"></i>评论</a>
+         <a ng-click = "clickremark()"><i class="ion-ios-chatbubble-outline"></i>评论</a>
       </span>
 
-      <a href="#" class="friendcircle-tab-click" ng-click="clickfun({{$index}})">
+      <!-- <a class="friendcircle-tab-click" ng-click="clickfun()">
         <i class="ion-chatbox"></i>
-      </a>
+      </a> -->
     </div>
 
     <div class = "homepage_detail_content">
@@ -50,10 +50,10 @@
       </div>
     </div>
   </ion-content>
-  <ion-footer-bar>
+  <ion-footer-bar ng-show = "showremark">
    <label class="item-input-wrapper">
     <input type="text" class = "friendcircle_input" ng-model = "message_detail_send"> 
    </label>
-   <button class = "friendcircle_inputbutton" ng-click = "sendmessagedetail()">发送</button>
+   <button class = "friendcircle_inputbutton" ng-click = "sendremark()">发送</button>
   </ion-footer-bar>
 </ion-view>
