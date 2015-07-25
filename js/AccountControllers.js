@@ -12,6 +12,10 @@ angular.module('starter.accountcontrollers', [])
     $scope.gofriendcircle = function(){
         $state.go("personalContactHomepage",{'contact':$scope.user.user_id});
     }
+
+    $scope.gosetting = function(){
+        $state.go("setting")
+    }
 })
 
 
@@ -20,6 +24,7 @@ angular.module('starter.accountcontrollers', [])
 
 
     $scope.checklogin = false;
+    $scope.err_txt = '';
     $scope.login = function(username,password){
         $ionicLoading.show({
             template:'<i class = "ion-load-c"><br></i>登陆中...'
@@ -35,9 +40,16 @@ angular.module('starter.accountcontrollers', [])
                 $rootScope.$broadcast(res);
             }
             else{
+                $scope.err_txt = '用户名密码错误'
+
+                if (res.txt) 
+                    $scope.err_txt = res.txt
+
+                $scope.checklogin = true;
+
+
                 $rootScope.$broadcast("login failed");
                 // showAlert();
-                $scope.checklogin = true;
             }
             
         },function(){

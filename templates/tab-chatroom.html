@@ -1,33 +1,33 @@
 <style>
-
-.frame-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 30px;
-    height: 100%;
-    overflow: hidden;
+    .frame-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 30px;
+        height: 100%;
+        overflow: hidden;
 }
 </style>
 
-
-
+<script>
+document.getElementById("iframe").height = window.innerHeight
+console.log(window.innerHeight)
+</script>
 
 <ion-view view-title="聊天室">
-<ion-nav-bar class="bar-dark">
-	    <ion-nav-buttons class = "button-icon">
-	    <button class="button-stable button-clear" ng-click="godiscover()">
-	      <i class="ion-ios-arrow-left"></i>返回
-	    </button>
-	  </ion-nav-buttons>
-	</ion-nav-bar>
+    <ion-nav-bar class="bar-dark">
+        <ion-nav-buttons class = "button-icon">
+            <button class="button-stable button-clear" ng-click="godiscover()">
+                <i class="ion-ios-arrow-left"></i>返回
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
 
-	<ion-content style="background: #e8ebf1;" class="padding" >
-	<div class="frame-container">
-	
-	<iframe src="http://17salsa.com:3000/" style="height:300px">
-	</iframe>
-	</div>
-	
-	
-	</ion-content> 
+    <ion-content style="background: #e8ebf1;" class="padding" >
+        <div class="frame-container">
+
+            <iframe id="iframe" ng-src="http://17salsa.com:3000/" style="width:100%">
+            </iframe>
+
+        </div>
+    </ion-content> 
 </ion-view>

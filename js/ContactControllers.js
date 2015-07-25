@@ -56,7 +56,7 @@ angular.module('starter.contactcontrollers', [])
                 $scope.user_id = $scope.contactitem.contact_id;
             }
         }
-        console.log($scope.contactitem)
+        //console.log($scope.contactitem)
     }).then(function(){
             $ionicLoading.hide();
     });
