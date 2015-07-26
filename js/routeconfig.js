@@ -128,11 +128,8 @@ angular.module('RouteConfig', [])
         controller: 'SettingCtrl'
     })
 
-
-
-    // if none of the above states are matched, use this as the fallback
-
     /*
+     * if none of the above states are matched, use this as the fallback
      * http://stackoverflow.com/questions/25065699/why-does-angularjs-with-ui-router-keep-firing-the-statechangestart-event
      */
     $urlRouterProvider.otherwise( function($injector, $location) {
