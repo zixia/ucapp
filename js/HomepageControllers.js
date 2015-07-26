@@ -190,6 +190,18 @@ angular.module('starter.homepagecontrollers', [])
     var Paraarray = $stateParams.infoId;
     var ParaObj = JSON.parse(Paraarray);
 
+    $scope.showchat = false;
+
+    $scope.showremark = false;
+
+    $scope.clickfun = function(){
+        $scope.showchat = !$scope.showchat;
+    }
+
+    $scope.clickremark = function(){
+        $scope.showremark = !$scope.showremark;
+        $scope.showchat = !$scope.showchat;
+    }
 
     var num = ParaObj.infoId;
     var contactId = ParaObj.contactId;
@@ -247,6 +259,84 @@ angular.module('starter.homepagecontrollers', [])
     $scope.goback = function(){
         history.back();
     }
-    
+
+
+var user = $window.sessionStorage['user_id'];
+console.log(user);
+
+
+     //发送评论 和zixia调
+        $scope.sendremark = function(){
+            // var username = $window.sessionStorage['user_name'];
+            // var user = $window.sessionStorage['user_id'];
+            // var remark_content = $scope.inputContent;
+            // var remark_json = [user,remark_content];
+            // var serial = $scope.serial_num;//整个数据流中的第几个数据
+            
+            // contact_id = $scope.infos[serial].p[0];
+            // item_id = $scope.infos[serial].id;      
+
+            // PersonalHomepageService.sendremark(contact_id,item_id,remark_content).success(function(data){
+
+            //     if(data.h.r == 0){
+
+            //         console.log('success!!');
+            //         console.log($scope.infos[serial].reply);
+            //         $scope.infos[serial].reply.push(remark_json);
+            //         console.log($scope.infos[serial].reply);
+
+
+            //         IdSearch.getMainInfo($scope.infos[serial].reply[2]).success(function(data) {
+
+
+            //         var fullarray = data.b;
+            //         var list = {'username':username};
+
+            //         $scope.infos[serial].replylist[user]=list;
+            //         console.log($scope.infos[serial]);                   
+            //         });  
+
+            //     }
+            //     else{
+            //         alert("评论失败"+data.h.ret);
+            //     }
+                
+            // }); 
+            
+        }
+
+        //点赞 和zixia调
+        $scope.sendheart = function(){
+            $scope.showchat = !$scope.showchat;
+
+            PersonalHomepageService.sendlike($scope.InfoItem.id).success(function(data){
+                if(data.h.ret == 0){
+                    console.log('success!!');
+          
+                    console.log($scope.InfoItem);
+                    if($scope.InfoItem.like.indexOf(user)>-1){
+                        var reply_heart_index = $scope.InfoItem.like.indexOf(user);
+                        $scope.InfoItem.like.splice(reply_heart_index, 1);
+                    }
+                    else{
+                        console.log($scope.InfoItem);
+                        $scope.InfoItem.like.push(user);
+                    }
+                    IdSearch.getMainInfo($scope.InfoItem.like).success(function(data) {
+                    var fullarray = data.b;
+                    console.log(fullarray);
+                    console.log(fullarray.username);
+                    $scope.InfoItem.likelist = fullarray[user].username;
+                    });  
+                }
+                else{
+                    alert("点赞失败"+data.h.r);
+                }
+                
+                
+             }); 
+            
+             
+        }
 
 })
