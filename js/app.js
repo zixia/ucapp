@@ -44,13 +44,13 @@ angular.module('starter', [
 ])
 
 /*
-.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
-localStorageServiceProvider
-.setPrefix('17SALSA')
-.setStorageType('localStorage')
-.setNotify(true, true)
-}])
-*/
+ .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+ localStorageServiceProvider
+ .setPrefix('17SALSA')
+ .setStorageType('localStorage')
+ .setNotify(true, true)
+ }])
+ */
 
 .config(['$ionicAppProvider', function($ionicAppProvider) {
   // Identify app
