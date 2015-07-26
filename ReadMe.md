@@ -8,6 +8,6 @@ use jscs:
 vim:
   pathogen
   color-theme distinguished
-  syntastic vim-js-indent vim-sensible
+  syntastic vim-js-indent vim-sensible html5.vim
 
 
