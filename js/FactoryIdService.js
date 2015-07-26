@@ -21,28 +21,20 @@ angular.module('IdSearchFactroy', [])
 
         var hitUserObjs     = {}
 
-        /*
-           userIds.keys.foreach(function(key,index){
-           })
-           */
-
-        /*
-           for (var i=0; i<userIds.length; i++){
-           var userId = userIds[i]
-           */
-        for ( userId of userIds ){
+        for ( var id in userIds ) {
+            var userId = userIds[id];
             var obj = storage.get("userId_" + userId)
             if (obj) {
                 hitUserObjs[userId] = obj
-            }else{
+            } else {
                 missUserIds.push(userId)
             }
         }
 
-        console.log("userIds "
-                    + " HIT(" + Object.keys(hitUserObjs).length 
-                    + ")+MISS(" + missUserIds.length 
-                    + ")/ALL(" + userIds.length + ")")
+        console.log("userIds " + 
+                    " HIT(" + Object.keys(hitUserObjs).length +
+                    ")+MISS(" + missUserIds.length +
+                    ")/ALL(" + userIds.length + ")")
 
                     // return $http.get('data/idsearch.json')
 
@@ -65,8 +57,8 @@ angular.module('IdSearchFactroy', [])
                         return promise
                     }else{
                         var data = {}
-                        data['h'] = {'ret':0}
-                        data['b'] = hitUserObjs
+                        data.h = {'ret':0}
+                        data.b = hitUserObjs
                         deferred.resolve(data)
                         return promise
                     }
@@ -88,8 +80,8 @@ angular.module('IdSearchFactroy', [])
     }
 
     return {
-        getIdUsername: getIdUsername
-        , getIdUsernameReply: getIdUsernameReply
-        , getMainInfo: getMainInfo
+        getIdUsername: getIdUsername,
+            getIdUsernameReply: getIdUsernameReply,
+            getMainInfo: getMainInfo
     }
 })
