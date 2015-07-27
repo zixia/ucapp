@@ -11,3 +11,6 @@ vim:
   syntastic vim-js-indent vim-sensible html5.vim
 
 
+
+
+[![Join the chat at https://gitter.im/lijiarui/ucapp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lijiarui/ucapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
