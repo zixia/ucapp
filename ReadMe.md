@@ -1,15 +1,17 @@
-17SALSA
+# 17SALSA
 
 
-code style from: https://github.com/showdownjs/code-style
-use jscs: 
+## code style from: https://github.com/showdownjs/code-style
+## use jscs: 
   https://github.com/showdownjs/code-style/blob/master/.jscs.json
   preset: google
-vim:
+## vim:
   pathogen
   color-theme distinguished
   syntastic vim-js-indent vim-sensible html5.vim
 
+
+ionic browser add crosswalk
 
 
 
