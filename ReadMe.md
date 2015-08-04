@@ -23,6 +23,7 @@ Additional labels for pre-release and build metadata are available as extensions
 Reference: [http://semver.org/](http://semver.org/)
 
 ## Init Project After Check Out
+1. cd app
 1. npm install
 1. bower install
 1. ionic platform add ios android
