@@ -35,10 +35,8 @@ angular.module('starter', [
   'RouteConfig',
 
   //globalpara
-  'GlobalPath',
+  'GlobalPath'
 
-  //zixia
-  'angularLocalStorage'
 ])
 
 /*
