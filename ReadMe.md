@@ -23,12 +23,12 @@ Additional labels for pre-release and build metadata are available as extensions
 Reference: [http://semver.org/](http://semver.org/)
 
 ## Init Project After Check Out
+1. cd app
 1. npm install
 1. bower install
 1. ionic platform add ios android
 1. ionic resources
 1. ionic browser add crosswalk
-
 
 
 [![Join the chat at https://gitter.im/lijiarui/ucapp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lijiarui/ucapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
