@@ -1,38 +1,40 @@
 <ion-view view-title="设置">
-    <ion-nav-bar class="bar-dark">
-        <ion-nav-buttons class = "button-icon">
-            <button class="button-stable button-clear" ng-click="back()">
-                <i class="ion-ios-arrow-left"></i> 返回
-            </button>
-        </ion-nav-buttons>
-    </ion-nav-bar>
+  <ion-content style="background: #e8ebf1;">
 
-    <ion-content style="background: #e8ebf1;">
+    <div class = "item discover-list" ng-click="about()">
+      <p class = "black">
+        关于17SALSA
+        <i class = "ion-chevron-right discover_right_i"></i>
+      </p>
+    </div>
 
-        <div class = "item discover-list" ng-click="about()">
-            <p class = "black">
-                关于17SALSA
-                <i class = "ion-chevron-right discover_right_i"></i>
-            </p>
-        </div>
+    <div class = "item" ng-click="upgrade()">
+      <p class = "black">
+        升级
+        <i class = "ion-chevron-right discover_right_i"></i>
+      </p>
+      <progress max="100" ng-show="showDownloadProgress" value="{{downloadProgress}}"></progress>
+      <span ng-show="showDownloadProgress">更新中：当前进度{{downloadProgress}}%...</span>
+    </div>
 
-        <div class = "item" ng-click="upgrade()">
-            <p class = "black">
-                升级
-                <i class = "ion-chevron-right discover_right_i"></i>
-            </p>
-        </div>
+    <div class = "item discover-list" ng-click="clearStorage()">
+      <p class = "black">
+        清理17SALSA存储空间
+        <i class = "ion-chevron-right discover_right_i"></i>
+      </p>
+    </div>
 
-        <div class = "item discover-list" ng-click="clearStorage()">
-            <p class = "black">
-                清理17SALSA存储空间
-                <i class = "ion-chevron-right discover_right_i"></i>
-            </p>
-        </div>
+    <button class="button button-block button-dark" ng-click="identifyUser()">
+      Identify a user
+    </button>
 
-	    <div class = "account-content" ng-click = "logout()">
-  			<p class = "logout">退出登录</p>
-  		</div>
+    <button class="button button-block button-positive" ng-if="identified" ng-click="pushRegister()">
+      Register for Push
+    </button>
 
-    </ion-content>
+    <div class = "account-content" ng-click = "logout()">
+      <p class = "logout">退出登录</p>
+    </div>
+
+  </ion-content>
 </ion-view>

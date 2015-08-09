@@ -15,12 +15,24 @@
     <link href="css/personal_homepage_detail.css" rel="stylesheet">
     <link href="css/event.css" rel="stylesheet">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <!-- White List -->
+    <!-- Enable all requests, inline styles, and eval() -->
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src &apos;self&apos; &apos;unsafe-inline&apos;; script-src * &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;">
+
+    <!-- A wildcard can be used to whitelist the entire network, over HTTP and HTTPS.  *NOT RECOMMENDED* -->
+    <allow-navigation href="*"></allow-navigation>
+
+    <!-- Allow all unrecognized URLs to open installed apps *NOT RECOMMENDED* -->
+    <allow-intent href="*"></allow-intent>
+
+    <!-- Don't block any requests -->
+    <access origin="*"></access>
+
 
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
 
-    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <!-- script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script -->
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -66,7 +78,8 @@
   <body ng-app="starter">
 
     <ion-nav-bar class="bar-dark">
-      <ion-nav-buttons></ion-nav-buttons>
+      <!-- ion-nav-buttons></ion-nav-buttons -->
+      <ion-nav-back-button></ion-nav-back-button>
     </ion-nav-bar>
 
     <ion-nav-view></ion-nav-view>
