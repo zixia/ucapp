@@ -16,7 +16,13 @@ angular.module('SystemCtrls', [])
     })
     .then(function(res) {
       if (res) {
-        //storage.clearAll()
+        //persistentStorage.$reset()
+        for (var i = 0; i < localStorage.length; i++) {
+          var key = localStorage.key(i)
+          $log.log('localStorage deleting ' + i + ' key:' + key)
+          localStorage.removeItem(key)
+        }
+
         $ionicPopup.alert({
           title: '存储空间清理完毕',
           template: '本程序第一次加载数据会较慢，请耐心等待。'

@@ -42,7 +42,7 @@ angular.module('starter', [
 ])
 
 .config (['$httpProvider', function($httpProvider) {
-  //$httpProvider.defaults.withCredentials = true
+  $httpProvider.defaults.withCredentials = true
 }])
 
 .run(['$ionicPlatform', '$ionicAnalytics', function($ionicPlatform, $ionicAnalytics) {

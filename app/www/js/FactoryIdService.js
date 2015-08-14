@@ -1,5 +1,5 @@
 angular.module('IdSearchFactroy', [])
-.factory('IdSearch', function($http, UrlPath, $q, persistentStorage) {
+.factory('IdSearch', function($http, UrlPath, $q) {
   var APIURL = UrlPath.getIdtransferurlPath()
 
   function getMainInfo(userIds) {
@@ -23,7 +23,7 @@ angular.module('IdSearchFactroy', [])
 
     for (var id in userIds) {
       var userId = userIds[id];
-      var obj = persistentStorage.retrieveObject('userId_' + userId)
+      var obj = JSON.parse(localStorage.getItem('userId_' + userId))
       if (obj) {
         hitUserObjs[userId] = obj
       } else {
@@ -40,7 +40,7 @@ angular.module('IdSearchFactroy', [])
       .success(function(data) {
         missUserObjs    = data.b
         for (var id in data.b) {
-          persistentStorage.storeObject('userId_' + id, data.b[id])
+          localStorage.setItem('userId_' + id, JSON.stringify(data.b[id]))
         }
 
         console.log('userId_' + id + ' saved')
