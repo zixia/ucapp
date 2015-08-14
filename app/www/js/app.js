@@ -42,7 +42,7 @@ angular.module('starter', [
 ])
 
 .config (['$httpProvider', function($httpProvider) {
-  $httpProvider.defaults.withCredentials = true
+  //$httpProvider.defaults.withCredentials = true
 }])
 
 .run(['$ionicPlatform', '$ionicAnalytics', function($ionicPlatform, $ionicAnalytics) {
@@ -58,7 +58,8 @@ angular.module('starter', [
       window.StatusBar.styleDefault()
     }
 
-    $ionicAnalytics.register()
+    // XXX without register analytics works?
+    // $ionicAnalytics.register()
   })
 }])
 
@@ -73,7 +74,7 @@ angular.module('starter', [
   $rootScope.$on('$stateChangeError', console.log.bind(console))
 
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-    $log.log('$stateChangeStart (toState:' + toState.name + ',fromState:' + fromState.name + ')' + fromParams)
+    //$log.log('$stateChangeStart (toState:' + toState.name + ',fromState:' + fromState.name + ')' + fromParams)
 
     if (AuthService.isAuthenticated()) {
       return
