@@ -9,28 +9,6 @@
 	border: 0 !important;
 }
 
-.message-search{
-	background: #e8ebf1;
-	margin-top:-10px;
-	margin-left: -10px;
-	margin-right: -10px;
-	margin-bottom:0px;
-	padding: 5px;
-}
-
-.message-search input{
-	border-radius: 5px;
-	width: 100%;
-}
-
-.message-search input[type="text"]{
-	height: 20px;
-}
-
-.message-search input::-webkit-input-placeholder{
-	text-align: center;
-}
-
 .message-list{
 	border-bottom: 1px solid #ddd;
 	padding-top: 5px !important;

@@ -1,26 +1,4 @@
 /*tab-contact.html */
-.contact-search{
-	background: #e8ebf1;
-	margin-top:-10px;
-	margin-left: -10px;
-	margin-right: -10px;
-	margin-bottom:0px;
-	padding: 5px;
-}
-
-.contact-search input{
-	border-radius: 5px;
-	width: 100%;
-}
-
-.contact-search input[type="text"]{
-	height: 30px;
-}
-
-.contact-search input::-webkit-input-placeholder{
-	text-align: center;
-}
-
 .contact-ion-list{
 	border-left: none !important;
 	border-right: none !important;
