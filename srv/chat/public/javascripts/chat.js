@@ -2,6 +2,7 @@
     var content = $('#content');
     var status = $('#status');
     var input = $('#input');
+    var button = $('#button');
     var myName = false;
 
     //建立websocket连接
