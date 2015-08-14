@@ -30,10 +30,6 @@ angular.module('starter.messagecontrollers', ['luegg.directives'])
         }
 
     $scope.refresh = function(){
-        $ionicLoading.show({
-        template:'<i class = "ion-load-c"><br></i>Loading...'
-    });
-
     MessageService.getMainInfo().success(function(data){
         var idlistarray = new Array();
         for (var i = 0; i < data.b.length; i++) {
@@ -48,11 +44,11 @@ angular.module('starter.messagecontrollers', ['luegg.directives'])
                     $scope.messages[jj].userinfo = temp.b[$scope.messages[jj].fid];
         })(j);
         }
-        });
+        })
 
         }).then(function(){
-            $ionicLoading.hide();
-    })
+            $scope.$broadcast('scroll.refreshComplete');
+         })
 
     }
 })
