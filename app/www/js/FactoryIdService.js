@@ -3,7 +3,20 @@ angular.module('IdSearchFactroy', [])
   var APIURL = UrlPath.getIdtransferurlPath()
 
   function getMainInfo(userIds) {
-    console.log('param userIds: ' + userIds)
+    /*
+     * unique duplicated ids in array
+     */
+    var uniqueUserIds = userIds.filter(function(value, index, self) {
+      return self.indexOf(value) === index
+    })
+
+    if (uniqueUserIds.length !== userIds.length) {
+      console.log('param userIds: ' + userIds.length + ', duplicate:' + (userIds.length - uniqueUserIds.length))
+      userIds = uniqueUserIds
+    } else {
+      console.log('param userIds: ' + userIds)
+    }
+
     var deferred    = $q.defer()
     var promise     = deferred.promise
 
@@ -38,7 +51,7 @@ angular.module('IdSearchFactroy', [])
       $http
       .post(APIURL, {idlist:missUserIds})
       .success(function(data) {
-        missUserObjs    = data.b
+        missUserObjs = data.b
         for (var id in data.b) {
           localStorage.setItem('userId_' + id, JSON.stringify(data.b[id]))
         }
