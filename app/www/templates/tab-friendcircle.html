@@ -1,4 +1,4 @@
-<ion-view title="朋友圈">
+<ion-view title="SALSA圈">
 	<ion-nav-bar class="bar-dark">
 	    <ion-nav-buttons class = "button-icon">
 	    <button class="button-stable button-clear" ng-click="godiscover()">
@@ -46,12 +46,13 @@
 	     	<span class = "friendcircle-publish-time">{{getstandardtime(info.ts)}}</span>
 
     		<span class="friendcircle-choose" ng-show="searchclick({{$index}})">
-	     		 <a href="#" ng-click = "sendheart()"><i class="ion-ios-heart-outline"></i>{{heart_tag}}</a>
-	     		 <span>|</span>
-				 <a href="#" ng-click = "remark('{{info.p[2]}}' )"><i class="ion-ios-chatbubble-outline"></i>评论</a>
+    			<div class = "friendcircle-cell">		     		 
+		     		<a ng-click = "sendheart()"><i class="ion-ios-heart-outline"></i>{{heart_tag}}</a>
+		     		<span>|</span>
+					<a ng-click = "remark('{{info.p[2]}}' )"><i class="ion-ios-chatbubble-outline"></i>评论</a>
+    			</div>
 	     	</span>
-
-		    <a href="#" class="friendcircle-tab-click" ng-click="clickfun({{$index}})">
+		    <a class="friendcircle-tab-click" ng-click="clickfun({{$index}})">
 		      <i class="ion-chatbox"></i>
 		    </a>
 
