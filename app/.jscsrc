@@ -1,0 +1,11 @@
+{
+  "preset": "google",
+  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+  "maximumLineLength": {
+    "value": 180,
+    "allExcept": ["comments", "regex"],
+    "allowUrlComments": true,
+    "allowRegex": true,
+    "allowComments": true
+  }
+}
