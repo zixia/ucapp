@@ -8,9 +8,11 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', [
   'ionic',
-  'ngCordova',
   'ionic.service.core',
+  'ionic.service.analytics',
   'ionic.service.push',
+  'ngCordova',
+
   'ionic.service.deploy',
 
   //controllers
@@ -39,51 +41,40 @@ angular.module('starter', [
 
 ])
 
-/*
- .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
- localStorageServiceProvider
- .setPrefix('17SALSA')
- .setStorageType('localStorage')
- .setNotify(true, true)
- }])
- */
-
-.config(['$ionicAppProvider', function($ionicAppProvider) {
-  // Identify app
-  $ionicAppProvider.identify({
-    // The App ID (from apps.ionic.io) for the server
-    // jscs:disable
-    app_id: '301dd65b',
-    // The public API key all services will use for this app
-    api_key: 'd76bc552414571ce7024ed7a642e2c08a77c2c357f4647d2',
-    // jscs:enable
-
-    // TheGCMproject ID (project number) from your Google Developer Console (un-comment if used)
-    //gcm_id: 'GCM_ID',
-  })
-}])
-
 .config (['$httpProvider', function($httpProvider) {
   $httpProvider.defaults.withCredentials = true
 }])
 
-.run(['$ionicPlatform', function($ionicPlatform) {
+.run(['$ionicPlatform', '$ionicAnalytics', function($ionicPlatform, $ionicAnalytics) {
   $ionicPlatform.ready(function() {
+
     // Hide the accessory bar by default remove this to show
     // the accessory bar above the keyboard
     // for form inputs
-    if (window.cordova && window.cordova.plugins.Keyboard) {
+    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true)
     }
     if (window.StatusBar) {
       window.StatusBar.styleDefault()
     }
+
+    // XXX without register analytics works?
+    // $ionicAnalytics.register()
   })
 }])
 
+.config(['$ionicConfigProvider', function($ionicConfigProvider) {
+  $ionicConfigProvider.navBar.alignTitle('center') // center view title of ionic-view
+  $ionicConfigProvider.tabs.position('bottom'); //Places them at the bottom for all OS
+  $ionicConfigProvider.tabs.style('standard'); //Makes them all look the same across all OS
+}])
+
 .run(function($rootScope, $location, AuthService, $state, $timeout, $log) {
+
+  $rootScope.$on('$stateChangeError', console.log.bind(console))
+
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-    $log.log('$stateChangeStart (toState:' + toState.name + ',fromState:' + fromState.name + ')' + fromParams)
+    //$log.log('$stateChangeStart (toState:' + toState.name + ',fromState:' + fromState.name + ')' + fromParams)
 
     if (AuthService.isAuthenticated()) {
       return
@@ -92,8 +83,25 @@ angular.module('starter', [
     if (toState.name === 'login') {
       return
     }
+    if (!toState.data || !toState.data.need_login) {
+      return
+    }
 
+    /*
+     * https://github.com/angular-ui/ui-router/issues/1158
+     *
+    if (toState.retryInProgress) {
+      toState.retryInProgress = false;
+      return;
+    }
+    */
     event.preventDefault()
+
+    // Optionally set option.notify to false if you don't want
+    // to retrigger another $stateChangeStart event
+    $log.log('redirect to login')
     $state.go('login')
+    //$state.go('login', undefined, {notify: false})
+    //$state.go('login', toParams, {notify: false, location: false})
   })
 })

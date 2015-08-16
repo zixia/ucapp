@@ -14,6 +14,29 @@
 	white-space: normal !important;
 }
 
+/*顶部搜索栏*/
+.ucsearch{
+    background: #e8ebf1;
+    margin-top:-10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom:0px;
+    padding: 5px;
+}
+
+.ucsearch input{
+    border-radius: 5px;
+    width: 100%;
+}
+
+.ucsearch input[type="text"]{
+    height: 30px;
+}
+
+.ucsearch input::-webkit-input-placeholder{
+    text-align: center;
+}
+
 /*改写原生ionic样式*/
 .item-complex .item-content{
 	margin: 0px !important;

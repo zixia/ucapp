@@ -37,7 +37,6 @@ angular.module('starter.friendcirclecontrollers', [])
     $scope.clickarray[num] = !$scope.clickarray[num];
     $scope.serial_num = num;
 
-
   }
 
   $scope.searchclick = function(num) {
@@ -50,7 +49,6 @@ angular.module('starter.friendcirclecontrollers', [])
     console.log('id:' + id);
   }
 
-  //发送评论 和zixia调
   $scope.sendremark = function() {
     var username = $window.sessionStorage['user_name'];
     var user = $window.sessionStorage['user_id'];
@@ -83,17 +81,22 @@ angular.module('starter.friendcirclecontrollers', [])
     })
   }
 
-  //点赞 和zixia调
-  $scope.sendheart = function() {
+  $scope.sendheart = function(num) {
     var user = $window.sessionStorage['user_id'];
     var serial = $scope.serial_num;//整个数据流中的第几个数据
 
-    item_id =  $scope.infos[serial].id;
+    item_id =  $scope.infos[serial].id;   
+
+    if ($scope.infos[num].like.indexOf(user) > -1) {
+       islike = false;
+    }
+    else
+       islike = true;
+
     console.log(item_id);
 
-    PersonalHomepageService.sendlike(item_id).success(function(data) {
+    PersonalHomepageService.sendlike(item_id,islike).success(function(data) {
       if (data.h.ret === 0) {
-        console.log('success!!');
         if ($scope.infos[serial].like.indexOf(user) > -1) {
           var reply_heart_index = $scope.infos[serial].like.indexOf(user);
           $scope.infos[serial].like.splice(reply_heart_index, 1);

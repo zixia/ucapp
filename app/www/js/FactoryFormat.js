@@ -15,9 +15,10 @@ angular.module('FactoryFormat', [])
   };
 
   function formattimestamp (time){
-    // var unixtime=1433420932;
     var unixTimestamp = new Date(time* 1000); 
+
     commonTime = unixTimestamp.toLocaleString();
+    commonTime = commonTime.replace('GMT+8',' ');
     return commonTime;
   };
 

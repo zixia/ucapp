@@ -6,51 +6,50 @@ angular.module('starter.messagecontrollers', ['luegg.directives'])
     });
 
     MessageService.getMainInfo().success(function(data){
-        console.log(data);
+        var idlistarray = new Array();
+        for (var i = 0; i < data.b.length; i++) {
+            idlistarray.push(data.b[i]['fid']);
+        };
         $scope.messages = data.b;
+
+        var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp){
 
         for (var j = 0; j < $scope.messages.length; j++) {       
                 (function(jj){
-                    IdSearch.getMainInfo([$scope.messages[jj].fid]).success(function(data) {
-                    var fullarray = data.b;
-                    $scope.messages[jj].userinfo = fullarray;
-                });
-
+                    $scope.messages[jj].userinfo = temp.b[$scope.messages[jj].fid];
         })(j);
-}
-
+        }
+        });
 
         }).then(function(){
             $ionicLoading.hide();
-    });
+    })
 
     $scope.getstandardtime = function(ts){
             return Format.formattimestamp(ts);
         }
 
-    $scope.test = function(){
-        console.log('aaa');
-    }
-
-    // $scope.getuserinfo = function(id){
-    //     //var idlist = [parseInt(id),2,3];
-    //     var idlist = new Array(parseInt(id),2,3);
-    //     console.log(idlist);
-    //     console.log(typeof(idlist))
-    //     IdSearch.getMainInfo(idlist);
-    //     /*.success(function(data) {
-    //         // console.log(data);
-    //         // var userinfo = data.b[id];
-    //     });*/
-    //     // return userinfo;
-    // }
-
     $scope.refresh = function(){
-            MessageService.getMainInfo().success(function(data){
-            $scope.messages = data.b;
-            }).then(function(){
-                $scope.$broadcast('scroll.refreshComplete');
-            });
+    MessageService.getMainInfo().success(function(data){
+        var idlistarray = new Array();
+        for (var i = 0; i < data.b.length; i++) {
+            idlistarray.push(data.b[i]['fid']);
+        };
+        $scope.messages = data.b;
+
+        var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp){
+
+        for (var j = 0; j < $scope.messages.length; j++) {       
+                (function(jj){
+                    $scope.messages[jj].userinfo = temp.b[$scope.messages[jj].fid];
+        })(j);
+        }
+        })
+
+        }).then(function(){
+            $scope.$broadcast('scroll.refreshComplete');
+         })
+
     }
 })
 

@@ -34,10 +34,12 @@ angular.module('RouteConfig', [])
   .state('event-detail', {
     url:'/event/:eventId',
     templateUrl:'templates/event-detail.html',
+    //template: '<ion-view view-title="haha"><ion-content><h1>haha</h1></ion-content></ion-view>',
     controller:'EventDetailCtrl'
   })
 
   .state('tab.message', {
+    data: {need_login: true},
     url: '/message',
     views: {
       'tab-message': {
@@ -48,18 +50,21 @@ angular.module('RouteConfig', [])
   })
 
   .state('message-detail', {
+    data: {need_login: true},
     url: '/message/:messageId',
     templateUrl: 'templates/message-detail.html',
     controller: 'MessageDetailCtrl'
   })
 
   .state('contact', {
+    data: {need_login: true},
     url: '/contact',
     templateUrl: 'templates/tab-contact.html',
     controller: 'ContactCtrl'
   })
 
   .state('contact-detail', {
+    data: {need_login: true},
     url: '/contact/:contact',
     templateUrl: 'templates/contact-detail.html',
     controller: 'ContactDetailCtrl'
@@ -89,6 +94,7 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.account', {
+    data: {need_login: true},
     url: '/account',
     views: {
       'tab-account': {
@@ -99,18 +105,21 @@ angular.module('RouteConfig', [])
   })
 
   .state('personalHomepage', {
+    data: {need_login: true},
     url: '/personalHomepage',
     templateUrl: 'templates/personal_homepage.html',
     controller: 'PersonalHomepageCtrl'
   })
 
   .state('personalContactHomepage', {
+    data: {need_login: true},
     url: '/personalContactHomepage/:contact',
     templateUrl: 'templates/personal_homepage.html',
     controller: 'PersonalContactHomepageCtrl'
   })
 
   .state('personalHomepage-detail', {
+    data: {need_login: true},
     url: '/personalHomepage/:infoId',
     templateUrl: 'templates/personal_homepage_detail.html',
     controller: 'PersonalHomepageDetailCtrl'
@@ -118,6 +127,7 @@ angular.module('RouteConfig', [])
 
   // 设置
   .state('setting', {
+    data: {need_login: true},
     url: '/setting',
     templateUrl: 'templates/setting.html',
     controller: 'SettingCtrl'

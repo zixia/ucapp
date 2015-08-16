@@ -1,9 +1,22 @@
-angular.module('IdSearchFactroy', ['LocalStorageModule'])
-.factory('IdSearch', function($http, UrlPath, localStorageService, $q) {
+angular.module('IdSearchFactroy', [])
+.factory('IdSearch', function($http, UrlPath, $q) {
   var APIURL = UrlPath.getIdtransferurlPath()
 
   function getMainInfo(userIds) {
-    console.log('param userIds: ' + userIds)
+    /*
+     * unique duplicated ids in array
+     */
+    var uniqueUserIds = userIds.filter(function(value, index, self) {
+      return self.indexOf(value) === index
+    })
+
+    if (uniqueUserIds.length !== userIds.length) {
+      console.log('param userIds: ' + userIds.length + ', duplicate:' + (userIds.length - uniqueUserIds.length))
+      userIds = uniqueUserIds
+    } else {
+      console.log('param userIds: ' + userIds)
+    }
+
     var deferred    = $q.defer()
     var promise     = deferred.promise
 
@@ -23,7 +36,7 @@ angular.module('IdSearchFactroy', ['LocalStorageModule'])
 
     for (var id in userIds) {
       var userId = userIds[id];
-      var obj = localStorageService.get('userId_' + userId)
+      var obj = JSON.parse(localStorage.getItem('userId_' + userId))
       if (obj) {
         hitUserObjs[userId] = obj
       } else {
@@ -38,9 +51,9 @@ angular.module('IdSearchFactroy', ['LocalStorageModule'])
       $http
       .post(APIURL, {idlist:missUserIds})
       .success(function(data) {
-        missUserObjs    = data.b
+        missUserObjs = data.b
         for (var id in data.b) {
-          localStorageService.set('userId_' + id, data.b[id])
+          localStorage.setItem('userId_' + id, JSON.stringify(data.b[id]))
         }
 
         console.log('userId_' + id + ' saved')
