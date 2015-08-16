@@ -47,7 +47,7 @@
 
     		<span class="friendcircle-choose" ng-show="searchclick({{$index}})">
     			<div class = "friendcircle-cell">		     		 
-		     		<a ng-click = "sendheart()"><i class="ion-ios-heart-outline"></i>{{heart_tag}}</a>
+		     		<a ng-click = "sendheart({{$index}})"><i class="ion-ios-heart-outline"></i>{{heart_tag}}</a>
 		     		<span>|</span>
 					<a ng-click = "remark('{{info.p[2]}}' )"><i class="ion-ios-chatbubble-outline"></i>评论</a>
     			</div>

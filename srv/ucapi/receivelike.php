@@ -7,7 +7,9 @@ $item_id = $req['item_id'];
 
 //$item_id = '22395@blogid';
 
-$resp = receivelike($item_id);
+//islike=false 取消点赞
+//islike=true 点赞
+$resp = receivelike($item_id,$islike);
 $resp_json = json_encode($resp);//生成json数据
 
 //print_r($resp_json);
@@ -23,7 +25,7 @@ die($resp_json);
  */
 
 
-function receivelike($item_id){
+function receivelike($item_id,$islike){
     global $_SGLOBAL;
 
     $resp = array();

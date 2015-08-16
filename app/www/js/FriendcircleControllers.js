@@ -49,7 +49,6 @@ angular.module('starter.friendcirclecontrollers', [])
     console.log('id:' + id);
   }
 
-  //发送评论 和zixia调
   $scope.sendremark = function() {
     var username = $window.sessionStorage['user_name'];
     var user = $window.sessionStorage['user_id'];
@@ -82,19 +81,17 @@ angular.module('starter.friendcirclecontrollers', [])
     })
   }
 
-  //点赞 和zixia调
-  $scope.sendheart = function() {
+  $scope.sendheart = function(num) {
     var user = $window.sessionStorage['user_id'];
     var serial = $scope.serial_num;//整个数据流中的第几个数据
 
-    item_id =  $scope.infos[serial].id;
-   
+    item_id =  $scope.infos[serial].id;   
 
     if ($scope.infos[num].like.indexOf(user) > -1) {
        islike = false;
     }
     else
-      islike = true;
+       islike = true;
 
     console.log(item_id);
 
