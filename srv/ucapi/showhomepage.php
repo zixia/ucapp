@@ -42,10 +42,8 @@ die($resp_json);
  * @description: 根据用户id显示个人发布过的状态
  * @para:        $data['']              如果是null，则是朋友圈信息，如果有id展示某个用户的homepage
  * @return:      $response				object	所有发布过的信息
- *               $response[]["p"]      array   发布人
- *               $response[]["p"][0]      int   发布人id
- *               $response[]["p"][1]      string   发布人用户名
- *               $response[]["p"][2]      string   发布人头像
+ *               $response[]["id"]      array   发布人id
+ *             
  *				 $response[]["ts"]		array	发布时间戳
  *				 $response[]["type"]	array	'img'代表发布内容包含图片 'txt'代表发布内容为纯文本
  *				 $response[]["txt"]		array	发布内容
