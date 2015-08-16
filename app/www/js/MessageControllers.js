@@ -2,7 +2,7 @@ angular.module('starter.messagecontrollers', ['luegg.directives'])
 
 .controller('MessageCtrl', function($http, $scope,$ionicLoading,MessageService,Format,IdSearch) {
     $ionicLoading.show({
-        template:'<i class = "ion-load-c"><br></i>Loading...'
+        template:'<i class = "ion-load-c"><br></i>加载中，请稍后...'
     });
 
     MessageService.getMainInfo().success(function(data){

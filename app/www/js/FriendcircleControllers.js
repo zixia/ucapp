@@ -28,12 +28,17 @@ angular.module('starter.friendcirclecontrollers', [])
   $scope.clickfun = function(num) {
     var user = $window.sessionStorage['user_id'];
 
-    if ($scope.infos[num].like.indexOf(user) > -1) {
-      $scope.heart_tag =  '取消';
-    } else {
+    if($scope.infos[num].like){
+      if ($scope.infos[num].like.indexOf(user) > -1) {
+        $scope.heart_tag =  '取消';
+      } else {
+        $scope.heart_tag =  '点赞';
+      }
+    }
+    else {
       $scope.heart_tag =  '点赞';
     }
-
+  
     $scope.clickarray[num] = !$scope.clickarray[num];
     $scope.serial_num = num;
 
@@ -56,7 +61,7 @@ angular.module('starter.friendcirclecontrollers', [])
     var remark_json = [user,remark_content];
     var serial = $scope.serial_num;//整个数据流中的第几个数据
 
-    contact_id = $scope.infos[serial].p[0];
+    contact_id = $scope.infos[serial].uid;
     item_id = $scope.infos[serial].id
 
     PersonalHomepageService.sendremark(contact_id,item_id,remark_content).success(function(data) {
@@ -67,12 +72,11 @@ angular.module('starter.friendcirclecontrollers', [])
         $scope.infos[serial].reply.push(remark_json);
         console.log($scope.infos[serial].reply);
 
-        IdSearch.getMainInfo($scope.infos[serial].reply[2]).success(function(data) {
+        IdSearch.getMainInfo($scope.infos[serial].reply[0]).success(function(data) {
 
           var fullarray = data.b;
           var list = {'username':username};
 
-          $scope.infos[serial].replylist[user] = list
           console.log($scope.infos[serial])
         })
       } else {
@@ -86,13 +90,18 @@ angular.module('starter.friendcirclecontrollers', [])
     var serial = $scope.serial_num;//整个数据流中的第几个数据
     var is_like;//发送是否已经点赞
 
-    item_id =  $scope.infos[serial].id;   
+    item_id =  $scope.infos[serial].id; 
 
-    if ($scope.infos[num].like.indexOf(user) > -1) {
+    if ($scope.infos[num].like) {
+      if ($scope.infos[num].like.indexOf(user) > -1) {
        is_like = false;
-    }
-    else
-       is_like = true;
+      }
+      else
+         is_like = true;
+    }  
+    else{
+      is_like = true;
+    }  
 
     console.log(item_id);
 
@@ -125,28 +134,37 @@ angular.module('starter.friendcirclecontrollers', [])
     if ($scope.infos === undefined) {
       $scope.content = '他很懒，还没有发表过状态';
     } else {
-      for (var j = 0; j < $scope.infos.length; j++) {
-        (function(jj) {
-          IdSearch.getMainInfo($scope.infos[jj].like).success(function(data) {
-
-            var fullarray = data.b;
-            $scope.infos[jj].likelist = fullarray;
-          });
-        })(j);
-
-        (function(qq) {
-          $scope.infos[qq].replylist = new Array();
-          for (m = 0; m < $scope.infos[qq].reply.length; m++) {
-            $scope.infos[qq].replylist.push($scope.infos[qq].reply[m][0]);
-
+      //将发布朋友圈的人、点赞、评论人id丢入idcache
+      var idlistarray = new Array();
+      for (var i = 0; i < data.b.length; i++) {
+        if (idlistarray.indexOf(data.b[i].uid)== -1) {
+          idlistarray.push(data.b[i]['uid']);
+        }
+        if (data.b[i].like) {
+          for(var j = 0; j<data.b[i].like.length;j++){
+            if(idlistarray.indexOf(data.b[i].like[j])== -1){
+              idlistarray.push(data.b[i].like[j]);
+            }
           }
-          IdSearch.getMainInfo($scope.infos[qq].replylist).success(function(data) {
+        }
+        if (data.b[i].reply) {
+          for(var m = 0; m<data.b[i].reply.length;m++){
+            if(idlistarray.indexOf(data.b[i].reply[m][0])==-1){
+              idlistarray.push(data.b[i].reply[m][0]);
+            }
+          }
+        }    
+      };
 
-            var fullarray = data.b;
-            $scope.infos[qq].replylist = fullarray;
-          });
-        })(j)
-      }
+      var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp){
+        $scope.idcache = temp.b;
+        //  for (var j = 0; j < $scope.infos.length; j++) {       
+        //     (function(jj){
+        //       $scope.infos[jj].userinfo = temp.b[$scope.infos[jj].uid];
+        //     })(j);
+        //     $scope.idcache = temp.b
+        // }
+      })
     }
   })
 
@@ -157,6 +175,26 @@ angular.module('starter.friendcirclecontrollers', [])
   $scope.getstandardtime = function(ts) {
     var timearray = Format.formattimefriendcircle(ts);
     return timearray.timestandard;
+  }
+
+  $scope.likeshow = function(like){
+    if(like){
+      if(like.length >0){
+        return true;
+      }
+      else
+        return false;
+    }
+    else
+      return false;
+  }
+
+  $scope.showcomma = function(id,idarray){
+    if(idarray.indexOf(id) == idarray.length-1){
+      return false;
+    }
+    else
+      return true;
   }
 
   //格式化类,根据收到的图片展示不同的样式

@@ -39,6 +39,9 @@ angular.module('starter', [
   //globalpara
   'GlobalPath'
 
+  //historybutton
+  // 'HistoryBar'
+
 ])
 
 .config (['$httpProvider', function($httpProvider) {

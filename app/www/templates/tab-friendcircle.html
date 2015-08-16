@@ -28,8 +28,8 @@
     <div class = "friendcircle-list" ng-repeat="info in infos">
 	  <!-- <div class="item item-avatar"> -->
 	  <div class="friendcircle-no-border item item-avatar">
-	    <img class="friendcircle-square" ng-src="{{info.p[2]}}" ng-click="gopublisherpage(info.p[0])">
-	    <h2 class = "friendcirle-friendname">{{info.p[1]}}</h2>
+	    <img class="friendcircle-square" ng-src="{{idcache[info.uid].avatar}}" ng-click="gopublisherpage(info.uid)">
+	    <h2 class = "friendcirle-friendname">{{idcache[info.uid].nick}}</h2>
 	    
 	    <h3 class = "friendcircle-h3">{{info.txt}}</h3>
 	    
@@ -49,7 +49,7 @@
     			<div class = "friendcircle-cell">		     		 
 		     		<a ng-click = "sendheart({{$index}})"><i class="ion-ios-heart-outline"></i>{{heart_tag}}</a>
 		     		<span>|</span>
-					<a ng-click = "remark('{{info.p[2]}}' )"><i class="ion-social-twitch-outline"></i>评论</a>
+					<a ng-click = "remark('{{idcache[info.uid].nick}}' )"><i class="ion-social-twitch-outline"></i>评论</a>
     			</div>
 	     	</span>
 	     	<div class="friendcircle-tab-click" ng-click="clickfun({{$index}})">
@@ -60,13 +60,13 @@
 	    </div>
 
 	    <div class="friendcircle-answer">
-	    	<p class="friendcircle-first-p">
+	    	<p class="friendcircle-first-p" ng-show = "likeshow(info.like)">
 	    	  <i class="ion-ios-heart-outline"></i>
-	    	  <a ng-repeat='id in info.likelist track by $index' >{{id.nick}},</a>
+	    	  <a ng-repeat='id in info.like track by $index' >{{idcache[id].nick}}<span ng-show = 'showcomma(id,info.like)'>,</span></a>
 		    </p>
 		    
 		    <p class="friendcircle-answer-body" ng-repeat='item in info.reply track by $index'>
-	    	  <a>{{info.replylist[item[0]].nick}}</a>:
+	    	  <a>{{idcache[item[0]].nick}}</a>:
 	    	  <span ng-bind-html="item[1]"></span>
 		    </p>
 	    </div>
