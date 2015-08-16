@@ -64,18 +64,19 @@
 .friendcirle-friendname{
 	color:#387ef5;
 	margin-bottom: 5px!important;
+	font-size: 1.2em !important;
 }
 
 .friendcircle-h3{
 	word-wrap: break-word !important; 
 	word-break: break-all !important;
 	white-space: normal !important;
-	font-weight: 400 !important;
-
+	font-size: 1em !important;
 }
 
 .friendcircle-publish-time{
-	font-size: 50% !important;
+	font-size: 0.9em !important;
+	color: #888;
 }
 
 .friendcircle-answer-tab{
@@ -86,36 +87,45 @@
 	position: absolute;
 	right:15px;
 	color:rgba(79, 145, 247, 0.59);
+	font-size: 1.5em;
+	display: inline;
+	margin: -30px -30px 0px -30px;
+	padding: 30px 30px 0px 30px;
 }
 
 .friendcircle-choose{
 	background-color:#444;
-	height:30px;
-	width: 120px;
+	height:38px;
+	width: 180px;
 	color:white;
-	font-size:8px;
+	font-size:0.8em;
 	position: absolute;
 	right:30px;
-/*	margin-right:5px;
-*/	/*padding:8px 10px;*/
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-left: 20px;
-	padding-right: 20px;
 	border-radius:5px;
- 	/* display:none; */ 
+	margin-top: -30px;
+	margin-right: 5px;
+ 	display:table;  
 }
-
+.friendcircle-cell{
+	display:table-cell; 
+    vertical-align:middle;
+    text-align: center;
+}
 .friendcircle-choose a{
-/*	padding:0px 5px;
-*/	color:#fff;
+	color:#fff;
 	text-decoration: none;
+	font-size: 1.2em;
+	padding-right: 10px;
+	padding-left: 10px;
 }
 
+.friendcircle-choose a > i{
+	margin-right: 10px;
+}
 
-/*.friendcircle-choose >span >i{
-	padding:20px;
-}*/
+.friendcircle-choose span{
+	color:#242424;
+}
 
 .friendcircle-answer{
 	background-color:#F0F3F8;
@@ -137,6 +147,7 @@
 .friendcircle-first-p a{
 	color:#387ef5;
 	margin-right:5px;
+	font-size: 1.1em !important;
 }
 
 .friendcircle-answer-body{
@@ -146,10 +157,18 @@
 	word-wrap: break-word !important; 
 	word-break: break-all !important;
 	white-space: normal !important;
+
+
 }
 
 .friendcircle-answer-body > a{
 	color:#387ef5;
+	font-size: 1.1em !important;
+}
+
+.friendcircle-answer-body > span{
+	color:#000;
+	font-size: 1.1em !important;
 }
 
 .friendcircle-row{

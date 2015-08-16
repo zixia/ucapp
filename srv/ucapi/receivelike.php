@@ -4,10 +4,12 @@ require_once('inc/config.inc.php');
 $res = file_get_contents('php://input');
 $req = json_decode($res,true);//生成array数组
 $item_id = $req['item_id'];
-
+$is_like = $req['is_like'];
 //$item_id = '22395@blogid';
 
-$resp = receivelike($item_id);
+//islike=false 取消点赞
+//islike=true 点赞
+$resp = receivelike($item_id,$is_like);
 $resp_json = json_encode($resp);//生成json数据
 
 //print_r($resp_json);
@@ -22,8 +24,7 @@ die($resp_json);
  *					$resp['b']
  */
 
-
-function receivelike($item_id){
+function receivelike($item_id,$is_like){
     global $_SGLOBAL;
 
     $resp = array();
@@ -44,7 +45,7 @@ function receivelike($item_id){
     $id         = $matches[1];
     $idtype     = $matches[2];
 
-    cp_click_flower($id, $idtype);
+    cp_click_flower($id, $idtype, $is_like);
 
     //处理成功
     $resp['h']['ret'] = ERR_OK;
@@ -52,7 +53,7 @@ function receivelike($item_id){
  }
 
 
-function cp_click_flower($id, $idtype)
+function cp_click_flower($id, $idtype, $is_like)
 {
     global $_SGLOBAL;
 
@@ -165,6 +166,11 @@ if(!$item = $_SGLOBAL['db']->fetch_array($query)) {
 	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('clickuser')." WHERE uid='$space[uid]' AND id='$id' AND idtype='$idtype'");
 	if($value = $_SGLOBAL['db']->fetch_array($query)) {
 		// showmessage('click_have');
+
+        if (!$is_like) {
+	        $_SGLOBAL['db']->query("DELETE FROM ".tname('clickuser')." WHERE uid='$space[uid]' AND id='$id' AND idtype='$idtype'");
+        }
+
         return 0;
 	}
 

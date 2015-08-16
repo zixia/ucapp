@@ -1,18 +1,18 @@
 angular.module('starter.messagecontrollers', ['luegg.directives'])
 
-.controller('MessageCtrl', function($http, $scope, $ionicLoading, MessageService, Format, IdSearch) {
+.controller('MessageCtrl', function($http, $scope,$ionicLoading,MessageService,Format,IdSearch) {
   $ionicLoading.show({
-    template:'<i class = "ion-load-c"><br></i>Loading...'
+    template:'<i class = "ion-load-c"><br></i>加载中，请稍后...'
   });
 
-  MessageService.getMainInfo().success(function(data) {
+  MessageService.getMainInfo().success(function(data){
     var idlistarray = new Array();
     for (var i = 0; i < data.b.length; i++) {
-      idlistarray.push(data.b[i].fid);
+      idlistarray.push(data.b[i]['fid']);
     };
     $scope.messages = data.b;
 
-    var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp) {
+    var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp){
 
       for (var j = 0; j < $scope.messages.length; j++) {       
         (function(jj){

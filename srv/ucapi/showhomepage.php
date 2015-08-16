@@ -42,10 +42,8 @@ die($resp_json);
  * @description: 根据用户id显示个人发布过的状态
  * @para:        $data['']              如果是null，则是朋友圈信息，如果有id展示某个用户的homepage
  * @return:      $response				object	所有发布过的信息
- *               $response[]["p"]      array   发布人
- *               $response[]["p"][0]      int   发布人id
- *               $response[]["p"][1]      string   发布人用户名
- *               $response[]["p"][2]      string   发布人头像
+ *               $response[]["uid"]      array   发布人id
+ *             
  *				 $response[]["ts"]		array	发布时间戳
  *				 $response[]["type"]	array	'img'代表发布内容包含图片 'txt'代表发布内容为纯文本
  *				 $response[]["txt"]		array	发布内容
@@ -591,7 +589,8 @@ function getAllFeeds(){
             $feed['txt'] = strip_tags ( html_entity_decode( $feed['txt'], ENT_QUOTES, "utf-8" ) );
             if ( empty($feed['txt']) ) continue;
 
-            $feed["p"] = array($value['uid'],$value['username'],avatar($value['uid'],'middle',true) );
+            //$feed["p"] = array($value['uid'],$value['username'],avatar($value['uid'],'middle',true) );
+            $feed["uid"] = $value['uid'];
 
 
             $feed["ts"] = $value['dateline'];
@@ -1055,7 +1054,8 @@ function getUserFeeds($uid) {
         $feed['txt'] = strip_tags ( html_entity_decode( $feed['txt'], ENT_QUOTES, "utf-8" ) );
         if ( empty($feed['txt']) ) continue;
 
-        $feed["p"] = array($value['uid'],$value['username'],avatar($value['uid'],'middle',true) );
+        //$feed["p"] = array($value['uid'],$value['username'],avatar($value['uid'],'middle',true) );
+        $feed["uid"] = $value['uid'];
 
 
         $feed["ts"] = $value['dateline'];
@@ -1521,7 +1521,8 @@ function getFriendFeeds($uid) {
             $feed['txt'] = strip_tags ( html_entity_decode( $feed['txt'], ENT_QUOTES, "utf-8" ) );
             if ( empty($feed['txt']) ) continue;
 
-            $feed["p"] = array($value['uid'],$value['username'],avatar($value['uid'],'middle',true) );
+            //$feed["p"] = array($value['uid'],$value['username'],avatar($value['uid'],'middle',true) );
+            $feed["uid"] = $value['uid'];
 
 
             $feed["ts"] = $value['dateline'];

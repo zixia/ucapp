@@ -7,6 +7,7 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content  class="padding">
+  <ion-refresher on-refresh="refresh()"></ion-refresher>
   
   	<div class = "ucsearch">
       <input ng-model="query" type="text" placeholder="搜索"/>
