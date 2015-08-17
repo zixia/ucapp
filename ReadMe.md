@@ -38,8 +38,8 @@ Reference: [http://semver.org/](http://semver.org/)
 ## Debug
  * Inspector: [A Concise Guide to Remote Debugging on iOS, Android, and Windows Phone][http://developer.telerik.com/featured/a-concise-guide-to-remote-debugging-on-ios-android-and-windows-phone/]
  * Console Log: 
- ```bash
- ionic run android --livereload --consolelogs --serverlogs
- ```
+```bash
+ionic run android --livereload --consolelogs --serverlogs
+```
 
 [![Join the chat at https://gitter.im/lijiarui/ucapp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lijiarui/ucapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
