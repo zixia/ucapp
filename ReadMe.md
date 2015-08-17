@@ -36,7 +36,7 @@ Reference: [http://semver.org/](http://semver.org/)
 1. ionic serve --lab
 
 ## Debug
- * Inspector: [A Concise Guide to Remote Debugging on iOS, Android, and Windows Phone][http://developer.telerik.com/featured/a-concise-guide-to-remote-debugging-on-ios-android-and-windows-phone/]
+ * Inspector: [Guide to Remote Debugging on iOS & Android](http://developer.telerik.com/featured/a-concise-guide-to-remote-debugging-on-ios-android-and-windows-phone/)
  * Console Log: 
 ```bash
 ionic run android --livereload --consolelogs --serverlogs
