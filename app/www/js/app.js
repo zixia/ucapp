@@ -55,39 +55,59 @@ angular.module('starter', [
     // the accessory bar above the keyboard
     // for form inputs
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-      window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true)
+      window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if (window.StatusBar) {
-      window.StatusBar.styleDefault()
+      window.StatusBar.styleDefault();
     }
 
     // XXX without register analytics works?
     // $ionicAnalytics.register()
-  })
+  });
 }])
 
+/*
+.run(['$ionicHistory', function($ionicHistory) {
+  // XXX 201508 by zixia
+  // get back button work between inside tab and outside tab view switch
+  // http://stackoverflow.com/questions/26980222/ionic-no-back-button-when-navigating-away-from-tab-view
+  $ionicHistory.enabledBack = function(view) {
+    var backView = $ionicHistory.viewHistory().backView;
+    return backView != null;
+  };
+}])
+*/
+
 .config(['$ionicConfigProvider', function($ionicConfigProvider) {
-  $ionicConfigProvider.navBar.alignTitle('center') // center view title of ionic-view
+  $ionicConfigProvider.navBar.alignTitle('center'); // center view title of ionic-view
   $ionicConfigProvider.tabs.position('bottom'); //Places them at the bottom for all OS
   $ionicConfigProvider.tabs.style('standard'); //Makes them all look the same across all OS
 }])
 
 .run(function($rootScope, $location, AuthService, $state, $timeout, $log) {
+  $rootScope.$on('$ionicView.beforeEnter', function() {
+    if ($state.current.data && $state.current.data.hide_tab) {
+      $rootScope.hideTab = true;
+    } else {
+      $rootScope.hideTab = false;
+    }
+    $log.log('hideTab: ' + $rootScope.hideTab);
+  });
 
-  $rootScope.$on('$stateChangeError', console.log.bind(console))
+  $rootScope.$on('$stateChangeError', console.log.bind(console));
 
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
     //$log.log('$stateChangeStart (toState:' + toState.name + ',fromState:' + fromState.name + ')' + fromParams)
 
     if (AuthService.isAuthenticated()) {
-      return
+      return;
     }
 
     if (toState.name === 'login') {
-      return
+      return;
     }
     if (!toState.data || !toState.data.need_login) {
-      return
+      return;
     }
 
     /*
@@ -98,13 +118,13 @@ angular.module('starter', [
       return;
     }
     */
-    event.preventDefault()
+    event.preventDefault();
 
     // Optionally set option.notify to false if you don't want
     // to retrigger another $stateChangeStart event
-    $log.log('redirect to login')
-    $state.go('login')
+    $log.log('redirect to login');
+    $state.go('login');
     //$state.go('login', undefined, {notify: false})
     //$state.go('login', toParams, {notify: false, location: false})
-  })
-})
+  });
+});

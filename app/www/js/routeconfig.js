@@ -31,11 +31,15 @@ angular.module('RouteConfig', [])
     }
   })
 
-  .state('event-detail', {
-    url:'/event/:eventId',
-    templateUrl:'templates/event-detail.html',
-    //template: '<ion-view view-title="haha"><ion-content><h1>haha</h1></ion-content></ion-view>',
-    controller:'EventDetailCtrl'
+  .state('tab.event-detail', {
+    data: {hide_tab: true},
+    url: '/event/:eventId',
+    views: {
+      'tab-event': {
+        templateUrl: 'templates/event-detail.html',
+        controller: 'EventDetailCtrl'
+      }
+    }
   })
 
   .state('tab.message', {
@@ -49,25 +53,46 @@ angular.module('RouteConfig', [])
     }
   })
 
-  .state('message-detail', {
-    data: {need_login: true},
+  .state('tab.message-detail', {
     url: '/message/:messageId',
-    templateUrl: 'templates/message-detail.html',
-    controller: 'MessageDetailCtrl'
+    data: {
+      need_login: true,
+      hide_tab:   true
+    },
+    views: {
+      'tab-message': {
+        templateUrl: 'templates/message-detail.html',
+        controller: 'MessageDetailCtrl'
+      }
+    }
   })
 
-  .state('contact', {
-    data: {need_login: true},
+  .state('tab.contact', {
     url: '/contact',
-    templateUrl: 'templates/tab-contact.html',
-    controller: 'ContactCtrl'
+    data: {
+      need_login: true,
+      hide_tab:   false
+    },
+    views: {
+      'tab-discovery': {
+        templateUrl: 'templates/tab-contact.html',
+        controller: 'ContactCtrl'
+      }
+    }
   })
 
-  .state('contact-detail', {
-    data: {need_login: true},
+  .state('tab.contact-detail', {
     url: '/contact/:contact',
-    templateUrl: 'templates/contact-detail.html',
-    controller: 'ContactDetailCtrl'
+    data: {
+      need_login: true,
+      hide_tab:   true
+    },
+    views: {
+      'tab-discovery': {
+        templateUrl: 'templates/contact-detail.html',
+        controller: 'ContactDetailCtrl'
+      }
+    }
   })
 
   .state('tab.discovery', {
@@ -80,10 +105,17 @@ angular.module('RouteConfig', [])
     }
   })
 
-  .state('friendcircle', {
+  .state('tab.friendcircle', {
+    data: {
+      hide_tab: true
+    },
     url: '/friendcircle',
-    templateUrl: 'templates/tab-friendcircle.html',
-    controller: 'FriendcircleCtrl',
+    views: {
+      'tab-discovery': {
+        templateUrl: 'templates/tab-friendcircle.html',
+        controller: 'FriendcircleCtrl',
+      }
+    }
   })
 
   // 聊天室 tab
@@ -131,7 +163,7 @@ angular.module('RouteConfig', [])
     url: '/setting',
     templateUrl: 'templates/setting.html',
     controller: 'SettingCtrl'
-  })
+  });
 
   /*
    * if none of the above states are matched, use this as the fallback
@@ -141,4 +173,4 @@ angular.module('RouteConfig', [])
     var $state = $injector.get('$state');
     $state.go('tab.event');
   });
-})
+});
