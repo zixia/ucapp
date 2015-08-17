@@ -28,10 +28,18 @@ Reference: [http://semver.org/](http://semver.org/)
 1. npm install
 1. bower install
 1. ionic resources
-1. ionic platform add ios android
 1. ionic browser add crosswalk
 1. ionic config build
+1. ionic platform add ios android
+1. ionic hooks add
+1. ionic build ios android
 1. ionic serve --lab
 
+## Debug
+ * Inspector: [A Concise Guide to Remote Debugging on iOS, Android, and Windows Phone][http://developer.telerik.com/featured/a-concise-guide-to-remote-debugging-on-ios-android-and-windows-phone/]
+ * Console Log: 
+ ```bash
+ ionic run android --livereload --consolelogs --serverlogs
+ ```
 
 [![Join the chat at https://gitter.im/lijiarui/ucapp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lijiarui/ucapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
