@@ -20,7 +20,7 @@ angular.module('starter.accountcontrollers', [])
 
 
 
-.controller('LoginCtrl',function($scope,$rootScope,AuthService,$ionicPopup,$ionicLoading,$log){
+.controller('LoginCtrl',function($scope,$rootScope,AuthService,$ionicPopup,$ionicLoading,$log,$state){
     $scope.checklogin = false;
     $scope.errTxt = '';
     $scope.login = function(username,password){
@@ -56,6 +56,10 @@ angular.module('starter.accountcontrollers', [])
 
     $scope.logout = function(){
         AuthService.logout();
+    }
+
+    $scope.goevent = function(){
+        $state.go('tab.event');
     }
 
 })
