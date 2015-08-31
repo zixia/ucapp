@@ -64,6 +64,8 @@ angular.module('RouteConfig', [])
       'tab-message': {
         templateUrl: 'templates/message-detail.html',
         controller: 'MessageDetailCtrl',
+      }
+    }
   })
 
   .state('tab.contact', {
