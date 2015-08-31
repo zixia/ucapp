@@ -35,7 +35,7 @@ angular.module('RouteConfig', [])
   .state('tab.event-detail', {
     // hideTabs: false,
     hideTabs: true,
-    url:'/event/:eventId',
+    url: '/event/:eventId',
     views: {
       'tab-event': {
         templateUrl: 'templates/event-detail.html',
@@ -64,22 +64,34 @@ angular.module('RouteConfig', [])
       'tab-message': {
         templateUrl: 'templates/message-detail.html',
         controller: 'MessageDetailCtrl',
+  })
+
+  .state('tab.contact', {
+    url: '/contact',
+    data: {
+      need_login: true,
+      hide_tab:   false
+    },
+    views: {
+      'tab-discovery': {
+        templateUrl: 'templates/tab-contact.html',
+        controller: 'ContactCtrl'
       }
     }
   })
 
-  .state('contact', {
-    data: {need_login: true},
-    url: '/contact',
-    templateUrl: 'templates/tab-contact.html',
-    controller: 'ContactCtrl'
-  })
-
-  .state('contact-detail', {
-    data: {need_login: true},
+  .state('tab.contact-detail', {
     url: '/contact/:contact',
-    templateUrl: 'templates/contact-detail.html',
-    controller: 'ContactDetailCtrl'
+    data: {
+      need_login: true,
+      hide_tab:   true
+    },
+    views: {
+      'tab-discovery': {
+        templateUrl: 'templates/contact-detail.html',
+        controller: 'ContactDetailCtrl'
+      }
+    }
   })
 
   .state('tab.discovery', {
@@ -92,10 +104,17 @@ angular.module('RouteConfig', [])
     }
   })
 
-  .state('friendcircle', {
+  .state('tab.friendcircle', {
+    data: {
+      hide_tab: true
+    },
     url: '/friendcircle',
-    templateUrl: 'templates/tab-friendcircle.html',
-    controller: 'FriendcircleCtrl',
+    views: {
+      'tab-discovery': {
+        templateUrl: 'templates/tab-friendcircle.html',
+        controller: 'FriendcircleCtrl',
+      }
+    }
   })
 
   // 聊天室 tab
@@ -143,7 +162,7 @@ angular.module('RouteConfig', [])
     url: '/setting',
     templateUrl: 'templates/setting.html',
     controller: 'SettingCtrl'
-  })
+  });
 
   /*
    * if none of the above states are matched, use this as the fallback
@@ -153,4 +172,4 @@ angular.module('RouteConfig', [])
     var $state = $injector.get('$state');
     $state.go('tab.event');
   });
-})
+});

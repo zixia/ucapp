@@ -1,6 +1,6 @@
 angular.module('starter.friendcirclecontrollers', [])
 
-.controller('FriendcircleCtrl', function($scope, $http, $ionicPopup, Format, $ionicLoading, $state, $rootScope, $window, PersonalHomepageService, IdSearch) {
+.controller('FriendcircleCtrl', function($scope, $http, $ionicPopup, Format, $ionicLoading, $state, $rootScope, $window, PersonalHomepageService, IdSearch, $timeout) {
   $scope.clickarray = new Array();
   $scope.friend_id = null;
   $scope.inputshow = false;
@@ -52,7 +52,12 @@ angular.module('starter.friendcirclecontrollers', [])
     $scope.friend_id = id;
     $scope.inputshow = true;
     console.log('id:' + id);
-  }
+    $timeout(function() {
+      // 201508 zixia
+      // very strange, focus will not work without timeout
+      document.getElementById('inputContent').focus();
+    }, 50);
+  };
 
   $scope.sendremark = function() {
     var username = $window.sessionStorage['user_name'];

@@ -1,11 +1,4 @@
 <ion-view view-title="通讯录">
-  <ion-nav-bar class="bar-dark">
-      <ion-nav-buttons class = "button-icon">
-      <button class="button-stable button-clear" ng-click="godiscover()">
-        <i class="ion-ios-arrow-left"></i>返回
-      </button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
   <ion-content  class="padding">
   <ion-refresher on-refresh="refresh()"></ion-refresher>
   
@@ -14,7 +7,7 @@
     </div>
 
 
-    <ion-item  class = "contact-ion-list" ng-repeat = "contact in contacts| filter:query" href="#/contact/{{contact.contact_id}}">
+    <ion-item  class = "contact-ion-list" ng-repeat = "contact in contacts| filter:query" href="#/tab/contact/{{contact.contact_id}}">
  <!--    href="#/contact/{{passcontact(contact.contact_id)}}"> -->
       <div class="contact-list">
       <div class = "contact-list-img">

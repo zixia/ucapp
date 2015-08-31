@@ -1,24 +1,22 @@
 angular.module('starter.accountcontrollers', [])
 
-.controller('AccountCtrl', function($scope,AuthService,$state,$window) {
-    $scope.user = $window.sessionStorage;
-    console.log($scope.user);
+.controller('AccountCtrl', function($scope, AuthService, $state, $window) {
+  $scope.user = $window.sessionStorage;
+  console.log($scope.user);
 
-    $scope.logout = function(){
-        AuthService.logout();
-        $state.go("login");
-    }
+  $scope.logout = function() {
+    AuthService.logout();
+    $state.go('login');
+  };
 
-    $scope.gofriendcircle = function(){
-        $state.go("personalContactHomepage",{'contact':$scope.user.user_id});
-    }
+  $scope.gofriendcircle = function() {
+    $state.go('personalContactHomepage',{'contact': $scope.user.user_id});
+  };
 
-    $scope.gosetting = function(){
-        $state.go("setting")
-    }
+  $scope.gosetting = function() {
+    $state.go('setting');
+  };
 })
-
-
 
 .controller('LoginCtrl',function($scope,$rootScope,AuthService,$ionicPopup,$ionicLoading,$log,$state){
     $scope.checklogin = false;
@@ -63,3 +61,4 @@ angular.module('starter.accountcontrollers', [])
     }
 
 })
+

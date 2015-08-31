@@ -1,6 +1,5 @@
 
 <ion-view view-title="用户登录">
-
 <ion-nav-bar class="bar-dark">
 	<ion-nav-buttons class = "button-icon">
 		<button class="button-stable button-clear" ng-click="goevent()">
@@ -25,13 +24,12 @@
 			<input type="password" placeholder="密码" ng-model="password">
 		</label>
 
-            <br />
-            <p style="color:red; " ng-show=checklogin>{{errTxt}}</p>
+    <br />
+      <p style="color:red; " ng-show=checklogin>{{errTxt}}</p>
 
+      <button class = "button button-block greenblockbutton" type="submit">登录</button>
 
-        <button class = "button button-block greenblockbutton" type="submit">登录</button>
-    
-	</form>
+    </form>
 
-</ion-content>
+  </ion-content>
 </ion-view>

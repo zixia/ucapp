@@ -70,14 +70,14 @@ console.log("~~~~~~~~~");
   // };
 })
 
-.controller('DiscoveryCtrl', function($scope,$state) {
-  $scope.gofriendcircle = function(){
-    $state.go("friendcircle");
-  }
+.controller('DiscoveryCtrl', function($scope, $state) {
+  $scope.gofriendcircle = function() {
+    $state.go('tab.friendcircle');
+  };
 
-  $scope.gocontact = function(){
-    $state.go("contact");
-  }
+  $scope.gocontact = function() {
+    $state.go("tab.contact");
+  };
 
   $scope.gochat = function(){
     $state.go("chatroom");

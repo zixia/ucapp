@@ -1,12 +1,5 @@
-
-<ion-view view-title="详细资料">
-	<ion-nav-bar class="bar-dark">
-      <ion-nav-buttons class = "button-icon">
-      <button class="button-stable button-clear" ng-click="goback()">
-        <i class="ion-ios-arrow-left"></i>返回
-      </button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
+<ion-view>
+  <ion-nav-title></ion-nav-title>
   <ion-content style="background: #e8ebf1;">
 
   	<div class = "contact_item_div">
@@ -33,7 +26,7 @@
           <div class = "col col-75" ng-bind-html = "contactitem.contact_sign"></div>
         </div>
 
-       <ion-item class = "contact_content_list_big" href="#/personalContactHomepage/{{user_id}}">
+       <ion-item class = "contact_content_list_big" href="#/tab/personalContactHomepage/{{user_id}}">
         <div>个人相册</div>
           <img ng-repeat='contact_pic_src in contactitem.contact_pic track by $index' ng-src="{{contact_pic_src}}">
       </ion-item >
@@ -45,7 +38,7 @@
   	</ion-item> -->
 
     <div style = 'margin:10px;'>
-          <a class = "button button-block greenblockbutton" href="#/message/{{contactitem.contact_id}}">发消息</a>
+      <a class = "button button-block greenblockbutton" ng-click="sendmessage(contactitem.contact_id)">发消息</a>
     </div>
 
 

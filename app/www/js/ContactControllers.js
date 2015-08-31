@@ -26,8 +26,7 @@ angular.module('starter.contactcontrollers', [])
 
 })
 
-.controller('ContactDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,ContactService,$window,$location) {
-
+.controller('ContactDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,ContactService,$window,$location, $ionicHistory, $ionicViewSwitcher) {
     // var contactPath = JSON.parse($stateParams.contact);
     // console.log(contactPath);
     console.log($stateParams);
@@ -68,11 +67,15 @@ angular.module('starter.contactcontrollers', [])
             history.back()
     }
 
+    // XXX by zixia 201508
+    $scope.sendmessage = function(contact_id){
+      $ionicViewSwitcher.nextDirection('forward');  
 
-    
+      $ionicHistory.nextViewOptions({
+        historyRoot: false,
+        disableBack: false
+      });
 
-    // $scope.sendmessage = function(contact_id){
-    //     $state.go("tab.message",{contact_id:contact_id});
-    // }
-
+      $state.go("tab.message-detail", {messageId: contact_id});
+    }
 })

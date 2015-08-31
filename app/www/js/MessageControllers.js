@@ -53,7 +53,11 @@ angular.module('starter.messagecontrollers', ['luegg.directives'])
   }
 })
 
-.controller('MessageDetailCtrl', function($timeout,$scope,$stateParams,$state,$ionicLoading,MessageService,$window,IdSearch)  {
+.controller('MessageDetailCtrl', function($timeout, $scope, $stateParams, $state, $ionicLoading, MessageService, $window, IdSearch, $ionicHistory, $ionicNavBarDelegate) {
+
+  // XXX by zixia 201508
+  console.log('ft')
+  $ionicNavBarDelegate.showBackButton(true);
 
   // var num = $stateParams.messageId;
   $scope.glued = true;
@@ -144,5 +148,5 @@ angular.module('starter.messagecontrollers', ['luegg.directives'])
         $scope.messageitem.push($message_json);
     });
 
-  }
+  };
 })
