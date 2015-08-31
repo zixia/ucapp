@@ -1,30 +1,29 @@
 <ion-view>
   <ion-nav-title>{{contact_info.nick}}</ion-nav-title>
 
-  <ion-content style="background: #e8ebf1;">
-  <ion-refresher on-refresh="refresh()"></ion-refresher>
+  <ion-content style="background: #e8ebf1;" id='glueContent'>
+    <ion-refresher on-refresh="refresh()"></ion-refresher>
 
-  <p class = 'message-detail-empty'>{{message_array.empty}}</p>
+    <p class = 'message-detail-empty'>{{message_array.empty}}</p>
 
-    <div scroll-glue-bottom="glued"  style = "height:{{height}}px;overflow-y:scroll;">
+    <!-- why track by: http://www.bennadel.com/blog/2556-using-track-by-with-ngrepeat-in-angularjs-1-2.htm -->
+    <div scroll-glue style="height:{{height}}px;overflow-y:scroll;">
       <div ng-repeat='item in messageitem track by $index'>
-         <ion-item class = "message-detail-list">
+        <ion-item class = "message-detail-list">
           <img ng-src="{{format_img(item.fid)}}" class = "message-detail-img-{{format_class(item.fid)}}" ng-click="gocontact()">
-            <div class = "message-detail-span-{{format_class(item.fid)}}" ng-bind-html="item.txt">
-              <div class = "arrow-{{format_class(item.fid)}}"></div>
-            </div>
-            <div class = "message-detail-sendfail" ng-show = "sendfail">fail!</div>
+          <div class = "message-detail-span-{{format_class(item.fid)}}" ng-bind-html="item.txt">
+            <div class = "arrow-{{format_class(item.fid)}}"></div>
+          </div>
+          <div class = "message-detail-sendfail" ng-show = "sendfail">fail!</div>
         </ion-item>
       </div>
     </div>  
-
-
   </ion-content>
 
   <ion-footer-bar>
-   <label class="item-input-wrapper">
-    <input type="text" class = "friendcircle_input" ng-model = "message_detail_send"> 
-   </label>
-   <button class = "friendcircle_inputbutton" ng-click = "sendmessagedetail()">发送</button>
+    <label class="item-input-wrapper">
+      <input type="text" class = "friendcircle_input" ng-model = "message_detail_send"> 
+    </label>
+    <button class = "friendcircle_inputbutton" ng-click = "sendmessagedetail()">发送</button>
   </ion-footer-bar>
 </ion-view>
