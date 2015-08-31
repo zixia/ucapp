@@ -1,18 +1,18 @@
 angular.module('starter.messagecontrollers', ['luegg.directives'])
 
-.controller('MessageCtrl', function($http, $scope,$ionicLoading,MessageService,Format,IdSearch) {
+.controller('MessageCtrl', function($http, $scope, $ionicLoading, MessageService, Format, IdSearch) {
   $ionicLoading.show({
-    template:'<i class = "ion-load-c"><br></i>加载中，请稍后...'
+    template: '<i class = "ion-load-c"><br></i>加载中，请稍侯...'
   });
 
-  MessageService.getMainInfo().success(function(data){
+  MessageService.getMainInfo().success(function(data) {
     var idlistarray = new Array();
     for (var i = 0; i < data.b.length; i++) {
-      idlistarray.push(data.b[i]['fid']);
+      idlistarray.push(data.b[i].fid);
     };
     $scope.messages = data.b;
 
-    var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp){
+    var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp) {
 
       for (var j = 0; j < $scope.messages.length; j++) {       
         (function(jj){
@@ -55,12 +55,9 @@ angular.module('starter.messagecontrollers', ['luegg.directives'])
 
 .controller('MessageDetailCtrl', function($timeout, $scope, $stateParams, $state, $ionicLoading, MessageService, $window, IdSearch, $ionicHistory, $ionicNavBarDelegate) {
 
-  // XXX by zixia 201508
-  console.log('ft')
-  $ionicNavBarDelegate.showBackButton(true);
-
   // var num = $stateParams.messageId;
-  $scope.glued = true;
+  
+    $scope.height = document.getElementById('glueContent').offsetHeight;
 
   $scope.sendfail = false;
   var contact_id = $stateParams.messageId;
@@ -82,7 +79,7 @@ angular.module('starter.messagecontrollers', ['luegg.directives'])
 
   MessageService.getDetailInfo(contact_id).success(function(data) {
     $scope.messageitem = data.b.reverse();
-    $scope.height = document.getElementsByTagName('ion-content')[0].scrollHeight-20;
+    $scope.height = document.getElementById('glueContent').offsetHeight;
   }).then(function(){
     $ionicLoading.hide();
   });
