@@ -23,6 +23,7 @@ angular.module('RouteConfig', [])
 
   .state('tab.event', {
     url: '/event',
+    hideTabs: false,
     views: {
       'tab-event': {
         templateUrl: 'templates/tab-event.html',
@@ -32,7 +33,8 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.event-detail', {
-    data: {hide_tab: true},
+    // hideTabs: false,
+    hideTabs: true,
     url: '/event/:eventId',
     views: {
       'tab-event': {
@@ -43,6 +45,7 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.message', {
+    hideTabs: false,
     data: {need_login: true},
     url: '/message',
     views: {
@@ -54,15 +57,13 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.message-detail', {
+    hideTabs: true,
+    data: {need_login: true},
     url: '/message/:messageId',
-    data: {
-      need_login: true,
-      hide_tab:   true
-    },
     views: {
       'tab-message': {
         templateUrl: 'templates/message-detail.html',
-        controller: 'MessageDetailCtrl'
+        controller: 'MessageDetailCtrl',
       }
     }
   })

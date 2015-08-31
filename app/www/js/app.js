@@ -39,14 +39,20 @@ angular.module('starter', [
   //globalpara
   'GlobalPath'
 
-  //historybutton
-  // 'HistoryBar'
 
 ])
 
 .config(['$httpProvider', function($httpProvider) {
   $httpProvider.defaults.withCredentials = true;
 }])
+
+.run(function($rootScope, $state) {
+  console.log("!!!!!!!!!!!!!!!!!");
+  console.log($state.current);
+  $rootScope.$on('$ionicView.beforeEnter', function() {
+  $rootScope.hideTabs = !!$state.current.hideTabs;
+  });
+})
 
 .run(['$ionicPlatform', '$ionicAnalytics', function($ionicPlatform, $ionicAnalytics) {
   $ionicPlatform.ready(function() {
