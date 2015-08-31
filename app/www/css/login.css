@@ -1,0 +1,11 @@
+.loin_imgdiv{
+	margin-top: 60px;
+	text-align:center; 
+}
+
+.login_img{
+	height: 80px;
+	width: 80px;
+	border:4px solid #FFF;
+	border-radius: 60px;	
+}

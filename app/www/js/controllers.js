@@ -28,7 +28,22 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('EventDetailCtrl', function($state, $scope, $stateParams, $ionicLoading, EventService, Format) {
+.controller('EventDetailCtrl', function($state, $scope, $stateParams, $ionicHistory,$ionicLoading, EventService, Format) {
+
+// 未完待续的history back
+  console.log('EventDetailCtrl hideTabs: ' );
+  console.log($state);
+  $scope.$on('$ionicView.enter',function(){
+    var history = $ionicHistory.viewHistory();
+    $scope.data = "";
+    $scope.history = function(){
+      console.log(history); 
+      $scope.data = history;
+    };
+  });
+
+console.log("~~~~~~~~~");
+
   var num = $stateParams.eventId;
 
   $scope.getstandardtime = function(ts) {
@@ -50,9 +65,9 @@ angular.module('starter.controllers', [])
   //     return txt.replace(/<[^>]+>/g,"");
   // }
 
-  $scope.goback = function() {
-    $state.go('tab.event');
-  };
+  // $scope.goback = function() {
+  //   $state.go('tab.event');
+  // };
 })
 
 .controller('DiscoveryCtrl', function($scope,$state) {

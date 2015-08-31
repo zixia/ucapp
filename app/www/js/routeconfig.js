@@ -23,6 +23,7 @@ angular.module('RouteConfig', [])
 
   .state('tab.event', {
     url: '/event',
+    hideTabs: false,
     views: {
       'tab-event': {
         templateUrl: 'templates/tab-event.html',
@@ -31,14 +32,20 @@ angular.module('RouteConfig', [])
     }
   })
 
-  .state('event-detail', {
+  .state('tab.event-detail', {
+    // hideTabs: false,
+    hideTabs: true,
     url:'/event/:eventId',
-    templateUrl:'templates/event-detail.html',
-    //template: '<ion-view view-title="haha"><ion-content><h1>haha</h1></ion-content></ion-view>',
-    controller:'EventDetailCtrl'
+    views: {
+      'tab-event': {
+        templateUrl: 'templates/event-detail.html',
+        controller: 'EventDetailCtrl'
+      }
+    }
   })
 
   .state('tab.message', {
+    hideTabs: false,
     data: {need_login: true},
     url: '/message',
     views: {
@@ -49,11 +56,16 @@ angular.module('RouteConfig', [])
     }
   })
 
-  .state('message-detail', {
+  .state('tab.message-detail', {
+    hideTabs: true,
     data: {need_login: true},
     url: '/message/:messageId',
-    templateUrl: 'templates/message-detail.html',
-    controller: 'MessageDetailCtrl'
+    views: {
+      'tab-message': {
+        templateUrl: 'templates/message-detail.html',
+        controller: 'MessageDetailCtrl',
+      }
+    }
   })
 
   .state('contact', {
