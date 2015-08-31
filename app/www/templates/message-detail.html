@@ -1,14 +1,5 @@
-<ion-view>
-  <ion-nav-title>{{contact_info.nick}}</ion-nav-title>
-
 <ion-view view-title="{{contact_info.nick}}">
-	<ion-nav-bar class="bar-dark">
-      <ion-nav-buttons class = "button-icon">
-      <button class="button-stable button-clear">
-        <i class="ion-ios-arrow-left"></i>消息
-      </button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
+<ion-nav-title>{{contact_info.nick}}</ion-nav-title>
   <ion-content style="background: #e8ebf1;">
   <ion-refresher on-refresh="refresh()"></ion-refresher>
 
