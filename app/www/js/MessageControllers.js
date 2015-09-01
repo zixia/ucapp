@@ -55,9 +55,12 @@ angular.module('starter.messagecontrollers', ['luegg.directives'])
 
 .controller('MessageDetailCtrl', function($timeout, $scope, $stateParams, $state, $ionicLoading, MessageService, $window, IdSearch, $ionicHistory, $ionicNavBarDelegate) {
 
-  // var num = $stateParams.messageId;
-  
-    $scope.height = document.getElementById('glueContent').offsetHeight;
+  $scope.setGlueHeight = function() {
+    $scope.glueHeight = angular.element(document.querySelector('#glueContent')).prop('clientHeight') - 15;
+    //document.getElementById('glueContent').clientHeight - 15;
+  };
+
+  $scope.setGlueHeight();
 
   $scope.sendfail = false;
   var contact_id = $stateParams.messageId;
@@ -79,7 +82,7 @@ angular.module('starter.messagecontrollers', ['luegg.directives'])
 
   MessageService.getDetailInfo(contact_id).success(function(data) {
     $scope.messageitem = data.b.reverse();
-    $scope.height = document.getElementById('glueContent').offsetHeight;
+    $scope.setGlueHeight();
   }).then(function(){
     $ionicLoading.hide();
   });
