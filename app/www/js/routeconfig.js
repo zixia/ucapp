@@ -69,6 +69,7 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.contact', {
+    hideTabs: true,
     url: '/contact',
     data: {
       need_login: true,
@@ -83,6 +84,7 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.contact-detail', {
+    hideTabs: true,
     url: '/contact/:contact',
     data: {
       need_login: true,
@@ -107,6 +109,7 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.friendcircle', {
+    hideTabs: true,
     data: {
       hide_tab: true
     },
@@ -138,24 +141,39 @@ angular.module('RouteConfig', [])
   })
 
   .state('personalHomepage', {
+    hideTabs: true,
     data: {need_login: true},
     url: '/personalHomepage',
-    templateUrl: 'templates/personal_homepage.html',
-    controller: 'PersonalHomepageCtrl'
+    views: {
+      'tab-discovery': {
+        templateUrl: 'templates/personal_homepage.html',
+        controller: 'PersonalHomepageCtrl'
+      }
+    }
   })
 
   .state('personalContactHomepage', {
+    hideTabs: true,
     data: {need_login: true},
     url: '/personalContactHomepage/:contact',
-    templateUrl: 'templates/personal_homepage.html',
-    controller: 'PersonalContactHomepageCtrl'
+    views: {
+      'tab-discovery': { 
+        templateUrl: 'templates/personal_homepage.html',
+        controller: 'PersonalContactHomepageCtrl'
+      }
+    }
   })
 
   .state('personalHomepage-detail', {
+    hideTabs: true,
     data: {need_login: true},
     url: '/personalHomepage/:infoId',
-    templateUrl: 'templates/personal_homepage_detail.html',
-    controller: 'PersonalHomepageDetailCtrl'
+    views: {
+      'tab-discovery': {
+        templateUrl: 'templates/personal_homepage_detail.html',
+        controller: 'PersonalHomepageDetailCtrl'
+      }
+    }
   })
 
   // 设置
