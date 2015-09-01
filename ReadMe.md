@@ -41,5 +41,74 @@ Reference: [http://semver.org/](http://semver.org/)
 ```bash
 ionic run android --livereload --consolelogs --serverlogs
 ```
+## REST API
+```shell
+curl -u token https://17salsa.com/api/v2/feed
+
+### API related HTTP header
+ * ERROR CODE
+ * X-UCAPP-CLIENT-VERSION
+ * X-UCAPP-SERVER-VERSION
+ * X-UCAPP-MESSAGE
+
+common params:
+ * before/:date
+ * after/:date
+ * limit/:limit
+  
+/api/v2/auth
+  POST
+    /login
+      {username: $username, password: $password}
+  /logout
+  
+/api/v2/user
+  GET
+    /me - current user
+    /:id - {name, nick, sex, avatar, location, ...}
+    /:id/detail - {... ...}
+
+/api/v2/event
+  GET
+    / - lastest event id list
+    /:id - {...}
+    /:id/detail - {... ...}
+
+    /api/v2/message
+    GET
+    / {uid, date}
+    /:uid - { {date,msg}, {}, ... }
+
+    POST
+    /:uid - {msg}
+
+    /api/v2/feed
+    / - [ {...} ]
+    /api/v2/reply
+    /api/v2/like
+    /api/v2/contact
+
+    /api/v2/batch
+      POST
+      [
+        {
+          "method": "POST",
+          "path": "/1.1/classes/Post",
+          "body": {
+            xx: 'xx',
+            xx: 'xx'
+          }
+        },
+        {
+          "method": "POST",
+          "path": "/1.1/classes/Post",
+          "body": {
+            "content": "",
+            "user": ""
+          }
+        }
+      ]
+      
+
 
 [![Join the chat at https://gitter.im/lijiarui/ucapp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lijiarui/ucapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
