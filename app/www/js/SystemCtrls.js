@@ -176,4 +176,4 @@ angular.module('SystemCtrls', [])
       $log.log('Identified user ' + user.name + '\n ID ' + user.user_id);
     })
   }
-})
+});

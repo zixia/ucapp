@@ -1,10 +1,9 @@
 angular.module('FactoryAuthService', [])
 
-.factory('AuthService', function($http, $location, $window, UrlPath, $state, $ionicHistory) {
+.factory('AuthService', function($http, $location, $window, UrlPath, $state, $ionicHistory, $log, $ionicConfig, $timeout) {
   var loginpath = UrlPath.getLoginpath();
 
   function login (username, password) {
-    clean()
     return $http
     // .post('http://127.0.0.1/17salsa_serve/login.php',{username:username,password:password})
       .post(loginpath, {username:username, password:password})
@@ -32,9 +31,10 @@ angular.module('FactoryAuthService', [])
   }
 
   function logout() {
-    clean()
+    clean();
+
     console.log('logout successful');
-  }
+  };
 
   return {
     login: login,
@@ -43,8 +43,23 @@ angular.module('FactoryAuthService', [])
   }
 
   function clean() {
-    $ionicHistory.clearCache()      // destory all view caches
-    $window.sessionStorage.clear()  //清空所有内容，我还是不用了把 = =
+    $timeout(function() {
+      $ionicHistory.clearHistory();
+      $ionicHistory.clearCache();      // destory all view caches
+    });
+
+    $ionicConfig.views.maxCache(0);
+    $ionicConfig.views.maxCache(10);
+
+    $window.sessionStorage.clear();  //清空所有内容，我还是不用了把 = =
+
+    for (var i = 0; i < localStorage.length; i++) {
+      var key = localStorage.key(i);
+      $log.log('localStorage deleting ' + i + ' key:' + key);
+      localStorage.removeItem(key);
+    }
+
+    $window.location.reload(true); // force reload to try to destory all view caches
   }
-})
+});
 
