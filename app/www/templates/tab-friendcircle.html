@@ -2,6 +2,7 @@
   <!-- <ion-content style="background: #e8ebf1;" class="padding"> -->
   <ion-content class="padding" on-tap="clearclick()">
   	<ion-refresher on-refresh="refresh()"></ion-refresher>
+
   	<div class = "friendcircle-header">
   		<div class = "friendcircle-header-div">
   			<img ng-src={{userbasic.user_headpic}}>
@@ -25,7 +26,6 @@
 	    <h2 class = "friendcirle-friendname">{{idcache[info.uid].nick}}</h2>
 	    
 	    <h3 class = "friendcircle-h3">{{info.txt}}</h3>
-	    
 
 	    <div class="row friendcircle-row" >
 		    <ul class="friendcircle-cell-list">
@@ -49,7 +49,6 @@
 			      <i class="ion-chatbox-working"></i>
 	     	</div>
 	
-
 	    </div>
 
 	    <div class="friendcircle-answer">
@@ -66,6 +65,7 @@
 
 	  </div>
 	</div>
+
 
   </ion-content>
 
