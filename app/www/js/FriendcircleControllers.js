@@ -9,16 +9,16 @@ angular.module('starter.friendcirclecontrollers', [])
 
   $scope.gomypage = function() {
     $state.go('personalHomepage');
-  }
+  };
 
   $scope.gopublisherpage = function(u_id) {
     console.log(u_id);
     $state.go('personalContactHomepage', {contact:u_id})
-  }
+  };
 
   $scope.godiscover = function() {
     $state.go('tab.discovery');
-  }
+  };
 
   $scope.clearclick = function() {
     $scope.clickarray = new Array();
@@ -52,11 +52,11 @@ angular.module('starter.friendcirclecontrollers', [])
     $scope.friend_id = id;
     $scope.inputshow = true;
     console.log('id:' + id);
+
+    // focus will not work without timeout by zixia 201508
     $timeout(function() {
-      // 201508 zixia
-      // very strange, focus will not work without timeout
-      document.getElementById('inputContent').focus();
-    }, 50);
+      document.querySelector('#inputContent').focus();
+    });
   };
 
   $scope.sendremark = function() {

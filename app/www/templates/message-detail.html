@@ -6,7 +6,7 @@
     <p class = 'message-detail-empty'>{{message_array.empty}}</p>
 
     <!-- why track by: http://www.bennadel.com/blog/2556-using-track-by-with-ngrepeat-in-angularjs-1-2.htm -->
-    <div scroll-glue style="height:{{height}}px;overflow-y:scroll;">
+    <div scroll-glue id='glueContent' style="height:{{glueHeight}}px;overflow-y:scroll;">
       <div ng-repeat='item in messageitem track by $index'>
         <ion-item class = "message-detail-list">
           <img ng-src="{{format_img(item.fid)}}" class = "message-detail-img-{{format_class(item.fid)}}" ng-click="gocontact()">
