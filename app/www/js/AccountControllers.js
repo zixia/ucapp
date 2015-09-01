@@ -18,47 +18,60 @@ angular.module('starter.accountcontrollers', [])
   };
 })
 
-.controller('LoginCtrl',function($scope,$rootScope,AuthService,$ionicPopup,$ionicLoading,$log,$state){
-    $scope.checklogin = false;
-    $scope.errTxt = '';
-    $scope.login = function(username,password){
-        $log.log("logining, username: " + username );
-        $ionicLoading.show({
-            template:'<i class = "ion-load-c"><br></i>登陆中...'
-        });
+.controller('LoginCtrl',function($scope, $rootScope, AuthService, $ionicPopup, $ionicLoading, $log, $state, $stateParams) {
+  $scope.checklogin = false;
+  $scope.errTxt = '';
 
-        AuthService.login(username,password)
-        .then(function(res){
-            $log.log('AuthService.login.then...' );
-            $ionicLoading.hide();
+  // jump back state after login
+  if ( $stateParams.refer_state ) {
+    $scope.referState = $stateParams.refer_state; 
+  } else {
+    $scope.referState = 'tab.event';
+  }
+  $log.log('refer: ' + $scope.referState);
 
-            if (res.ret === true) {
-                //console.log("resresres");
-                $log.log(res);
-                $rootScope.$broadcast(res);
-            } else {
-                $scope.errTxt = '用户名密码错误'
+  $scope.login = function(username, password) {
+    $log.log('logining, username: ' + username);
 
-                if (res.txt) 
-                    $scope.errTxt = res.txt
+    $ionicLoading.show({
+      template: '<i class = "ion-load-c"><br></i>登陆中...'
+    });
 
-                $scope.checklogin = true;
+    AuthService.login(username,password)
+    .then(function(res) {
+      $log.log('AuthService.login.then...');
+      $ionicLoading.hide();
 
-                $rootScope.$broadcast("login failed");
-                // showAlert();
-            }
-        },function(){
-            $rootScope.$broadcast("transimit failed wuwuwu");
-        });
-    }
+      if (res.ret === true) {
+        //console.log("resresres");
+        $log.log(res);
+        //$rootScope.$broadcast(res);
+        
+        $state.go($scope.referState);
+      } else {
+        $scope.errTxt = '用户名密码错误';
 
-    $scope.logout = function(){
-        AuthService.logout();
-    }
+        if (res.txt) {
+          $scope.errTxt = res.txt;
+        }
 
-    $scope.goevent = function(){
-        $state.go('tab.event');
-    }
+        $scope.checklogin = true;
 
-})
+        $rootScope.$broadcast('login failed');
+        // showAlert();
+      }
+    },function() {
+      //$rootScope.$broadcast('transimit failed wuwuwu');
+    });
+  };
+
+  $scope.logout = function() {
+    AuthService.logout();
+  };
+
+  $scope.goevent = function() {
+    $state.go('tab.event');
+  };
+
+});
 
