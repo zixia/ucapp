@@ -2021,7 +2021,8 @@ die("FT");
         // change quota string to @username
         $comment[message] = preg_replace('#<div class="quote"><span class="q"><b>(.+?)</b>.*?</span></div>#', '@\1 ',   $comment['message']);
 
-        array_push( $resp[comment], array( $comment[uid], $comment[message] ) );
+        array_push( $resp[comment], array( $comment[authorid], $comment[message] ) );
+//print_r($comment);
     }
 
     return $resp;
