@@ -196,6 +196,16 @@ angular.module('starter.homepagecontrollers', [])
 
     $scope.clickfun = function(){
         $scope.showchat = !$scope.showchat;
+        if($scope.infos[num].like){
+          if ($scope.infos[num].like.indexOf(user) > -1) {
+            $scope.heart_tag =  '取消';
+          } else {
+            $scope.heart_tag =  '点赞';
+          }
+        }
+        else {
+          $scope.heart_tag =  '点赞';
+        }
     }
 
     $scope.clickremark = function(){
@@ -205,6 +215,10 @@ angular.module('starter.homepagecontrollers', [])
 
     var num = ParaObj.infoId;
     var contactId = ParaObj.contactId;
+
+    // var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp){
+    //     $scope.idcache = temp.b;
+    //   })
 
     $ionicLoading.show({
         template:'<i class = "ion-load-c"><br></i>Loading...'
@@ -218,32 +232,28 @@ angular.module('starter.homepagecontrollers', [])
         $scope.userBasic = data;
         });
     }
-
-    
-
     PersonalHomepageService.getContentInfo(contactId).success(function(data) {
+      $scope.InfoItem = data.b[num];
+      var idlistarray = new Array();
 
-        $scope.InfoItem = data.b[num];
-        var idreplylist = new Array();
-        var idlikelist = $scope.InfoItem.like;
-
-        for(var i =0; i<$scope.InfoItem.reply.length;i++){
-            idreplylist[i] = $scope.InfoItem.reply[i][0];
+        if (data.b[num].like) {
+          for(var j = 0; j<data.b[num].like.length;j++){
+            if(idlistarray.indexOf(data.b[num].like[j])== -1){
+              idlistarray.push(data.b[num].like[j]);
+            }
+          }
         }
-
-        // 处理like相关的东西
-        IdSearch.getMainInfo(idlikelist).success(function(data) {
-            $scope.InfoItem.fullarray = data.b;
-            // console.log($scope.InfoItem.fullarray);
-            $scope.InfoItem.likelist = IdSearch.getIdUsername($scope.InfoItem.like,$scope.InfoItem.fullarray);
-        });
-
-        //处理reply相关的东西
-        IdSearch.getMainInfo(idreplylist).success(function(data) {
-            $scope.InfoItem.fullarray = data.b;
-            $scope.InfoItem.replylist = IdSearch.getIdUsernameReply($scope.InfoItem.reply,$scope.InfoItem.fullarray);
-        });
-
+        if (data.b[num].reply) {
+          for(var m = 0; m<data.b[num].reply.length;m++){
+            if(idlistarray.indexOf(data.b[num].reply[m][0])==-1){
+              idlistarray.push(data.b[num].reply[m][0]);
+            }
+          }
+        }    
+      console.log(idlistarray);
+      var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp){
+        $scope.idcache = temp.b;
+      })
 
     }).then(function(){
         $ionicLoading.hide();
@@ -267,41 +277,6 @@ console.log(user);
 
      //发送评论 和zixia调
         $scope.sendremark = function(){
-            // var username = $window.sessionStorage['user_name'];
-            // var user = $window.sessionStorage['user_id'];
-            // var remark_content = $scope.inputContent;
-            // var remark_json = [user,remark_content];
-            // var serial = $scope.serial_num;//整个数据流中的第几个数据
-            
-            // contact_id = $scope.infos[serial].p[0];
-            // item_id = $scope.infos[serial].id;      
-
-            // PersonalHomepageService.sendremark(contact_id,item_id,remark_content).success(function(data){
-
-            //     if(data.h.r == 0){
-
-            //         console.log('success!!');
-            //         console.log($scope.infos[serial].reply);
-            //         $scope.infos[serial].reply.push(remark_json);
-            //         console.log($scope.infos[serial].reply);
-
-
-            //         IdSearch.getMainInfo($scope.infos[serial].reply[2]).success(function(data) {
-
-
-            //         var fullarray = data.b;
-            //         var list = {'username':username};
-
-            //         $scope.infos[serial].replylist[user]=list;
-            //         console.log($scope.infos[serial]);                   
-            //         });  
-
-            //     }
-            //     else{
-            //         alert("评论失败"+data.h.ret);
-            //     }
-                
-            // }); 
             
         }
 

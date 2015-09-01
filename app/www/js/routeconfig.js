@@ -140,7 +140,7 @@ angular.module('RouteConfig', [])
     }
   })
 
-  .state('personalHomepage', {
+  .state('tab.personalHomepage', {
     hideTabs: true,
     data: {need_login: true},
     url: '/personalHomepage',
@@ -152,7 +152,7 @@ angular.module('RouteConfig', [])
     }
   })
 
-  .state('personalContactHomepage', {
+  .state('tab.personalContactHomepage', {
     hideTabs: true,
     data: {need_login: true},
     url: '/personalContactHomepage/:contact',
@@ -164,7 +164,7 @@ angular.module('RouteConfig', [])
     }
   })
 
-  .state('personalHomepage-detail', {
+  .state('tab.personalHomepage-detail', {
     hideTabs: true,
     data: {need_login: true},
     url: '/personalHomepage/:infoId',

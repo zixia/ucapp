@@ -163,12 +163,6 @@ angular.module('starter.friendcirclecontrollers', [])
 
       var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp){
         $scope.idcache = temp.b;
-        //  for (var j = 0; j < $scope.infos.length; j++) {       
-        //     (function(jj){
-        //       $scope.infos[jj].userinfo = temp.b[$scope.infos[jj].uid];
-        //     })(j);
-        //     $scope.idcache = temp.b
-        // }
       })
     }
   })

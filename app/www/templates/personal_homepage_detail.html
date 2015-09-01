@@ -22,14 +22,27 @@
         </ul>
       </div>
 
-      <span class = "homepage_detail_head_time">{{getstandardtime(InfoItem.ts)}}</span>
+      <!-- <span class = "homepage_detail_head_time">{{getstandardtime(InfoItem.ts)}}</span> -->
 <!--       <span class = "homepage_detail_head_delete">删除</span> -->
 
+    <!-- <span class = "homepage_detail_head_time">{{getstandardtime(InfoItem.ts)}}</span> -->
+
+    <div class="friendcircle-answer-tab">
+
+      <span class = "homepage_detail_head_time">{{getstandardtime(InfoItem.ts)}}</span>
+
       <span class="friendcircle-choose" ng-show="showchat">
-           <a ng-click = "sendheart()"><i class="ion-ios-heart-outline"></i>点赞</a>
-           <span>|</span>
-         <a ng-click = "clickremark()"><i class="ion-ios-chatbubble-outline"></i>评论</a>
+        <div class = "friendcircle-cell">            
+          <a ng-click = "sendheart({{$index}})"><i class="ion-ios-heart-outline"></i>{{heart_tag}}</a>
+          <span>|</span>
+          <a ng-click = "remark('{{idcache[info.uid].nick}}' )"><i class="ion-social-twitch-outline"></i>评论</a>
+        </div>
       </span>
+        
+      <div class="friendcircle-tab-click" ng-click="clickfun({{$index}})">
+        <i class="ion-chatbox-working"></i>
+      </div>
+    </div>
 
       <!-- <a class="friendcircle-tab-click" ng-click="clickfun()">
         <i class="ion-chatbox"></i>
@@ -40,12 +53,12 @@
       <div class="friendcircle-answer">
           <p class="friendcircle-first-p">
             <i class="ion-ios-heart-outline"></i>
-            <a ng-repeat='id in InfoItem.likelist track by $index' > {{id}}</a>
+            <a ng-repeat='id in InfoItem.like track by $index' > {{idcache[id].nick}}</a>
           </p>
           
-          <p class="friendcircle-answer-body" ng-repeat='replycontent in InfoItem.replylist track by $index'>
-            <a>{{replycontent[0]}}</a>:
-            <span ng-bind-html="replycontent[1]"></span>
+          <p class="friendcircle-answer-body" ng-repeat='item in InfoItem.reply track by $index'>
+            <a>{{idcache[item[0]].nick}}</a>:
+            <span ng-bind-html="item[1]"></span>
           </p>
       </div>
     </div>
