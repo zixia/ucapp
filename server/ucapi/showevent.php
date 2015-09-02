@@ -5,23 +5,26 @@ $res = file_get_contents('php://input');
 $data = json_decode($res,true);//生成array数组
 
 
-$since_id = $data['since_id'];
-$event_num = $data['num'];
-// $since_id = "2666";
-// $event_num = 5;
+$num        = $data['num'];
+$startId    = $data['start_id'];
+$order      = $data['order'];
 
+if (!$num) $num = 5;
+if (!$startId) $startId = 2147483646;
+if (!$order) $order = 'DESC';
 
-if($since_id!=null && $event_num!=null){
-    //since_id:最后一个event_id序号， $envent_num:刷新每次返回的event个数
-    $response = showevent($since_id,$event_num);
-}
-else{
-    //初次进入页面后传递的活动列表
-   $response = showevent1(); 
-}
+/*
+$startId = "2666";
+$num = 5;
+*/
+//$order
 
-$response_json = json_encode($response);//生成json数据
-die($response_json);
+//echo "$num, $startId, $order | \n";
+//print_r(getEventList(2666,5,'DESC'));
+$resp = getEventList($num, $startId, $order);
+
+$resp_json = json_encode($resp);//生成json数据
+die($resp_json);
 
 
 /**
@@ -39,38 +42,32 @@ die($response_json);
  *               $response['event_participate']  string  活动参与人数
  *               $response['event_attention']    string  活动关注人数
  */
-function showevent($since_id,$event_num){
-    $resp['b'] = array();
-    for($i=0; $i<$event_num; $i++){
-            $item = array();
-
-            $item['event_id']       = "2666".$i;
-            $item['event_title']    = "北京SALSA俱乐部 八月 （一周课程安排 和舞会）";
-            $item['event_img']      = "http://17salsa.com/home/attachment/201508/3/8874_1438591400BhFI.jpg";
-            $item['event_time']     = "1438599600";
-            $item['event_spot']     = "";
-            $item['event_people']   = "DancelifeJoy";
-            $item['event_view']     = "324";
-            $item['event_participate']  = "1";
-            $item['event_attention']    = "0";
-
-            $resp['b'][] = $item;
-
-    }
-    $resp['h']['ret'] = ERR_OK;
-
-    return $resp;
-}
-
-
-
-
-function showevent1(){
-    global $_SGLOBAL;
-
+function getEventList($num, $startId, $order) {
     $resp = array();
     $resp['b'] = array();
     $resp['h'] = array();
+
+    $resp['h']['ret'] = ERR_UNKNOWN;
+
+    if (!$num) $num = 5;
+    if (!$startId) $startId = 2147483646;
+    if (!$order) $order = 'DESC';
+
+    $num = intval($num);
+
+    $startId = intval($startId);
+    $order = strtoupper($order);
+
+    switch ($order) {
+        case 'ASC':
+        case 'DESC':
+            break;
+        default:
+            $order = 'DESC';
+    }
+
+
+    global $_SGLOBAL;
 
     $eventid = isset($_GET['id']) ? intval($_GET['id']) : 0;
     $view = isset($_GET['view']) ? $_GET['view'] : "all";
@@ -659,7 +656,20 @@ function showevent1(){
         }
         if($count){
             if($needquery) {
-                $sql = "SELECT e.* FROM $fromsql $joinsql WHERE ".implode(" AND ", $wherearr) ." ORDER BY $orderby LIMIT $start, $perpage";
+                //$sql = "SELECT e.* FROM $fromsql $joinsql WHERE ".implode(" AND ", $wherearr) ." ORDER BY $orderby LIMIT $start, $perpage";
+                // 处理 startId & num & order by zixia 201509
+                $sql = "SELECT e.* FROM uchome_event e WHERE ";
+                switch ($order) {
+                    case 'DESC':
+                        $sql .= " e.eventid < '$startId' ";
+                        break;
+                    case 'ASC':
+                    default:
+                        $sql .= " e.eventid > '$startId' ";
+                        break;
+                }
+                $sql .= " ORDER BY e.eventid $order LIMIT 0, $num";
+//print_r($sql);
             }
             $query = $_SGLOBAL['db']->query($sql);
             while($event = $_SGLOBAL['db']->fetch_array($query)){
