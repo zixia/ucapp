@@ -3,14 +3,34 @@ angular.module('starter.controllers', [])
 .controller('EventCtrl', function($scope,EventService,$ionicLoading,Format) {
 
   $ionicLoading.show({
-    template: '<i class = "ion-load-c"><br></i>Loading...'
+    template: '<i class = "ion-load-c"><br></i>加载中...'
   });
 
   EventService.getMainInfo().success(function(data) {
-    $scope.eventlist = data;
+    $scope.eventlist = data.b.reverse();
+    $scope.since_id = $scope.eventlist[$scope.eventlist.length-1].event_id;
   }).then(function() {
     $ionicLoading.hide();
   });
+
+
+  $scope.loadMore = function() {
+    console.log("#######");
+    EventService.getMainInfo($scope.since_id,5).success(function(data) {
+      var testarray = new Array();
+      testarray = $scope.eventlist;
+      
+      for(var i = data.b.length; i>0; i--){
+        testarray.push(data.b[i-1]);
+      }
+
+      $scope.eventlist = testarray;
+      console.log($scope.eventlist);
+      
+    }).then(function() {
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    });      
+  }
 
   $scope.getstandardtime = function(ts) {
     var timearray = Format.formattimefriendcircle(ts);
