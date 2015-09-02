@@ -131,48 +131,52 @@ angular.module('starter.friendcirclecontrollers', [])
     })
   }
 
-
-
   $ionicLoading.show({
     template:'<i class = "ion-load-c"><br></i>Loading...'
   });
+
   PersonalHomepageService.getContentInfo().success(function(data) {
-    $scope.infos = data.b;
-    console.log($scope.infos);
-    if ($scope.infos === undefined) {
-      $scope.content = '他很懒，还没有发表过状态';
-    } else {
-      //将发布朋友圈的人、点赞、评论人id丢入idcache
-      var idlistarray = new Array();
-      for (var i = 0; i < data.b.length; i++) {
-        if (idlistarray.indexOf(data.b[i].uid)== -1) {
-          idlistarray.push(data.b[i]['uid']);
-        }
-        if (data.b[i].like) {
-          for(var j = 0; j<data.b[i].like.length;j++){
-            if(idlistarray.indexOf(data.b[i].like[j])== -1){
-              idlistarray.push(data.b[i].like[j]);
-            }
-          }
-        }
-        if (data.b[i].reply) {
-          for(var m = 0; m<data.b[i].reply.length;m++){
-            if(idlistarray.indexOf(data.b[i].reply[m][0])==-1){
-              idlistarray.push(data.b[i].reply[m][0]);
-            }
-          }
-        }    
-      };
-
-      var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp){
-        $scope.idcache = temp.b;
-      })
-    }
-  })
-
-  .then(function() {
+    showfriendcircle(data);
+  }).then(function() {
     $ionicLoading.hide();
   });
+
+
+  function showfriendcircle(data){
+      $scope.infos = data.b;
+      if ($scope.infos === undefined) {
+        $scope.content = '他很懒，还没有发表过状态';
+      } else {
+        //将发布朋友圈的人、点赞、评论人id丢入idcache
+        var idlistarray = new Array();
+        for (var i = 0; i < data.b.length; i++) {
+          if (idlistarray.indexOf(data.b[i].uid)== -1) {
+            idlistarray.push(data.b[i]['uid']);
+          }
+          if (data.b[i].like) {
+            for(var j = 0; j<data.b[i].like.length;j++){
+              if(idlistarray.indexOf(data.b[i].like[j])== -1){
+                idlistarray.push(data.b[i].like[j]);
+              }
+            }
+          }
+          if (data.b[i].reply) {
+            for(var m = 0; m<data.b[i].reply.length;m++){
+              if(idlistarray.indexOf(data.b[i].reply[m][0])==-1){
+                idlistarray.push(data.b[i].reply[m][0]);
+              }
+            }
+          }    
+        };
+
+        var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp){
+          $scope.idcache = temp.b;
+        })
+      }
+  }
+
+
+  
 
   $scope.getstandardtime = function(ts) {
     var timearray = Format.formattimefriendcircle(ts);
@@ -205,8 +209,10 @@ angular.module('starter.friendcirclecontrollers', [])
   }
 
   $scope.refresh = function() {
-    alert('faint')
-      $scope.infos = data;
+    PersonalHomepageService.getContentInfo().success(function(data) {
+      showfriendcircle(data);
+    }).then(function() {
       $scope.$broadcast('scroll.refreshComplete');
+    });      
   }
 })
