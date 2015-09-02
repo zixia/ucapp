@@ -40,7 +40,6 @@ die($response_json);
  *               $response['event_attention']    string  活动关注人数
  */
 function showevent($since_id,$event_num){
-    printf("~~~~~~~~");
     for($i=0; $i<$event_num; $i++){
             $item = array();
 
@@ -54,11 +53,8 @@ function showevent($since_id,$event_num){
             $item['event_participate']  = "1";
             $item['event_attention']    = "0";
 
-            printf("!!!!!");
 
-            printf($i);
-
-            printf($item);
+            var_dump($item);
 
             array_push($resp['b'], $item);
     }
