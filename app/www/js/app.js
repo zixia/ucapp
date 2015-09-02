@@ -50,9 +50,7 @@ angular.module('starter', [
 }])
 
 .run(function($rootScope, $state) {
-  console.log("!!!!!!!!!!!!!!!!!");
-  console.log($state.current);
-  $rootScope.$on('oionicView.beforeEnter', function() {
+  $rootScope.$on('$ionicView.beforeEnter', function() {
     $rootScope.hideTab = !!$state.current.data.hide_tab;
   });
 })
