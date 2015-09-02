@@ -1,6 +1,6 @@
 angular.module('starter.contactcontrollers', [])
 
-.controller('ContactCtrl', function($http, $scope,$ionicLoading,$state,ContactService) {
+.controller('ContactCtrl', function($scope,$ionicLoading,$state,ContactService) {
     $ionicLoading.show({
         template:'<i class = "ion-load-c"><br></i>加载中，请稍后...'
     });

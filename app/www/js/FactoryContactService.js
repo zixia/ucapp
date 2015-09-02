@@ -7,10 +7,13 @@ angular.module('ContactServiceFactory', [])
 
   var contenturl = UrlPath.getContactpath();
 
-  service.getMainInfo = function(){
-    // return $http.get('data/contact.json');
-    return $http
-    .post(contenturl,{user_id:user_id});
+  service.getMainInfo = function() {
+    return $http({
+      url: contenturl,
+      method: 'POST',
+      data: JSON.stringify({ user_id: user_id }),
+      withCredentials: true,
+    })
   }
 
   return service;

@@ -1,6 +1,6 @@
 angular.module('starter.homepagecontrollers', [])
 
-.controller('PersonalHomepageCtrl', function($window,$http, $scope,$state,$ionicLoading,PersonalHomepageService,Format) {
+.controller('PersonalHomepageCtrl', function($window, $scope,$state,$ionicLoading,PersonalHomepageService,Format) {
     var passPara = {};
     var user_own_id = $window.sessionStorage['user_id'];
 
@@ -86,7 +86,7 @@ angular.module('starter.homepagecontrollers', [])
     };
 })
 
-.controller('PersonalContactHomepageCtrl', function($http, $scope,$state,$ionicLoading,$stateParams,PersonalHomepageService,Format) {
+.controller('PersonalContactHomepageCtrl', function($scope,$state,$ionicLoading,$stateParams,PersonalHomepageService,Format) {
     // console.log($stateParams.contact);
     var num = $stateParams.contact;
     console.log(num);

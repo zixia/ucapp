@@ -43,7 +43,10 @@ angular.module('starter', [
 ])
 
 .config(['$httpProvider', function($httpProvider) {
-  $httpProvider.defaults.withCredentials = true;
+  // [Error] Failed to load resource: Cannot use wildcard in Access-Control-Allow-Origin 
+  // when credentials flag is true. (check, line 0)
+  
+  //$httpProvider.defaults.withCredentials = true;
 }])
 
 .run(function($rootScope, $state) {

@@ -1,6 +1,6 @@
 angular.module('starter.friendcirclecontrollers', [])
 
-.controller('FriendcircleCtrl', function($scope, $http, $ionicPopup, Format, $ionicLoading, $state, $rootScope, $window, PersonalHomepageService, IdSearch, $timeout) {
+.controller('FriendcircleCtrl', function($scope, $ionicPopup, Format, $ionicLoading, $state, $rootScope, $window, PersonalHomepageService, IdSearch, $timeout) {
   $scope.clickarray = new Array();
   $scope.friend_id = null;
   $scope.inputshow = false;
@@ -202,10 +202,8 @@ angular.module('starter.friendcirclecontrollers', [])
   }
 
   $scope.refresh = function() {
-    $http.get('http://17salsa.com/home/s.php?rewrite=home-view-all').success(function(data) {
+    alert('faint')
       $scope.infos = data;
-    }).then(function() {
       $scope.$broadcast('scroll.refreshComplete');
-    });
   }
 })
