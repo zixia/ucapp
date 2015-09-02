@@ -343,4 +343,24 @@ angular.module('starter.homepagecontrollers', [])
           }
         })
     }
+
+    $scope.likeshow = function(like){
+        if(like){
+          if(like.length >0){
+            return true;
+          }
+          else
+            return false;
+        }
+        else
+          return false;
+      }
+
+    $scope.showcomma = function(id,idarray){
+        if(idarray.indexOf(id) == idarray.length-1){
+            return false;
+        }
+        else
+            return true;
+    }
 })

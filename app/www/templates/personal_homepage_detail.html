@@ -49,9 +49,9 @@
 
     <div class = "homepage_detail_content">
       <div class="friendcircle-answer">
-          <p class="friendcircle-first-p">
+          <p class="friendcircle-first-p" ng-show = "likeshow(InfoItem.like)">
             <i class="ion-ios-heart-outline"></i>
-            <a ng-repeat='id in InfoItem.like track by $index' > {{idcache[id].nick}}</a>
+            <a ng-repeat='id in InfoItem.like track by $index' >{{idcache[id].nick}}<span ng-show = 'showcomma(id,InfoItem.like)'>,</span></a>
           </p>
           
           <p class="friendcircle-answer-body" ng-repeat='item in InfoItem.reply track by $index'>
@@ -61,12 +61,6 @@
       </div>
     </div>
   </ion-content>
-  <!-- <ion-footer-bar ng-show = "showremark">
-   <label class="item-input-wrapper">
-    <input type="text" class = "friendcircle_input" ng-model = "message_detail_send"> 
-   </label>
-   <button class = "friendcircle_inputbutton" ng-click = "sendremark()">发送</button>
-  </ion-footer-bar> -->
 
   <ion-footer-bar ng-show="inputshow">
    <label class="item-input-wrapper">
