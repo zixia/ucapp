@@ -11,7 +11,8 @@ $event_num = $data['num'];
 // $event_num = 5;
 
 
-if($since_id && $event_num){
+if($since_id!=null && $event_num!=null){
+    var_dump($since_id);
     //since_id:最后一个event_id序号， $envent_num:刷新每次返回的event个数
     $response = showevent($since_id,$event_num);
 }
@@ -44,7 +45,7 @@ function showevent($since_id,$event_num){
     for($i=0; $i<$event_num; $i++){
             $item = array();
 
-            $item['event_id']       = "2666";
+            $item['event_id']       = "2666".$i;
             $item['event_title']    = "北京SALSA俱乐部 八月 （一周课程安排 和舞会）";
             $item['event_img']      = "http://17salsa.com/home/attachment/201508/3/8874_1438591400BhFI.jpg";
             $item['event_time']     = "1438599600";
