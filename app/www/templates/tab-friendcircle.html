@@ -23,7 +23,7 @@
 	  <!-- <div class="item item-avatar"> -->
 	  <div class="friendcircle-no-border item item-avatar">
 	    <img class="friendcircle-square" ng-src="{{idcache[info.uid].avatar}}" ng-click="gopublisherpage(info.uid)">
-	    <h2 class = "friendcirle-friendname">{{idcache[info.uid].nick}}</h2>
+	    <a class = "friendcirle-friendname" href="#/tab/personalContactHomepage/{{info.uid}}">{{idcache[info.uid].nick}}</a>
 	    
 	    <h3 class = "friendcircle-h3">{{info.txt}}</h3>
 

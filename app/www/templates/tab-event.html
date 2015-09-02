@@ -1,7 +1,7 @@
 <ion-view view-title="活动列表">
   <ion-content class="padding">
-
-    <ion-item class="list card" ng-repeat = "item in eventlist.b | filter:query" href = "#/tab/event/{{item.event_id}}">
+  <ion-list>
+    <ion-item class="list card" ng-repeat = "item in eventlist | filter:query" href = "#/tab/event/{{item.event_id}}">
       <div class="item">
         <h3 class = "event_title_h3">{{item.event_title}}</h3>
       </div>
@@ -20,6 +20,9 @@
       </div>
 
     </ion-item>
+
+    <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+  </ion-list>
 
   </ion-content>
 </ion-view>

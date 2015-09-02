@@ -1,12 +1,30 @@
 <?php
 require_once('inc/config.inc.php');
 
-// $res = file_get_contents('php://input');
-// $data = json_decode($res,true);//生成array数组
+$res = file_get_contents('php://input');
+$data = json_decode($res,true);//生成array数组
 
-$response = showevent();
-$response_json = json_encode($response);//生成json数据
-die($response_json);
+
+$num        = $data['num'];
+$startId    = $data['start_id'];
+$order      = $data['order'];
+
+if (!$num) $num = 5;
+if (!$startId) $startId = 2147483646;
+if (!$order) $order = 'DESC';
+
+/*
+$startId = "2666";
+$num = 5;
+*/
+//$order
+
+//echo "$num, $startId, $order | \n";
+//print_r(getEventList(2666,5,'DESC'));
+$resp = getEventList($num, $startId, $order);
+
+$resp_json = json_encode($resp);//生成json数据
+die($resp_json);
 
 
 /**
@@ -24,13 +42,32 @@ die($response_json);
  *               $response['event_participate']  string  活动参与人数
  *               $response['event_attention']    string  活动关注人数
  */
-
-function showevent(){
-    global $_SGLOBAL;
-
+function getEventList($num, $startId, $order) {
     $resp = array();
     $resp['b'] = array();
     $resp['h'] = array();
+
+    $resp['h']['ret'] = ERR_UNKNOWN;
+
+    if (!$num) $num = 5;
+    if (!$startId) $startId = 2147483646;
+    if (!$order) $order = 'DESC';
+
+    $num = intval($num);
+
+    $startId = intval($startId);
+    $order = strtoupper($order);
+
+    switch ($order) {
+        case 'ASC':
+        case 'DESC':
+            break;
+        default:
+            $order = 'DESC';
+    }
+
+
+    global $_SGLOBAL;
 
     $eventid = isset($_GET['id']) ? intval($_GET['id']) : 0;
     $view = isset($_GET['view']) ? $_GET['view'] : "all";
@@ -619,7 +656,20 @@ function showevent(){
         }
         if($count){
             if($needquery) {
-                $sql = "SELECT e.* FROM $fromsql $joinsql WHERE ".implode(" AND ", $wherearr) ." ORDER BY $orderby LIMIT $start, $perpage";
+                //$sql = "SELECT e.* FROM $fromsql $joinsql WHERE ".implode(" AND ", $wherearr) ." ORDER BY $orderby LIMIT $start, $perpage";
+                // 处理 startId & num & order by zixia 201509
+                $sql = "SELECT e.* FROM uchome_event e WHERE ";
+                switch ($order) {
+                    case 'DESC':
+                        $sql .= " e.eventid < '$startId' ";
+                        break;
+                    case 'ASC':
+                    default:
+                        $sql .= " e.eventid > '$startId' ";
+                        break;
+                }
+                $sql .= " ORDER BY e.eventid $order LIMIT 0, $num";
+//print_r($sql);
             }
             $query = $_SGLOBAL['db']->query($sql);
             while($event = $_SGLOBAL['db']->fetch_array($query)){

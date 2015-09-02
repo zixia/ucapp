@@ -3,7 +3,7 @@ Create tabs with an icon and label, using the tabs-dark style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
- <ion-tabs class="tabs-icon-top tabs-background-stable tabs-color-dark" ng-class="{'slide-out-left tabs-item-hide': $root.hideTabs, 'slide-in-right': !$root.hideTabs}">
+ <ion-tabs class="tabs-icon-top tabs-background-stable tabs-color-dark" ng-class="{'slide-out-left tabs-item-hide': $root.hideTab, 'slide-in-right': !$root.hideTab}">
   <ion-tab title="活动" icon-off="ion-ios-pricetags-outline" icon-on="ion-ios-pricetags" href="#/tab/event">
     <ion-nav-view name="tab-event"></ion-nav-view>
   </ion-tab>
