@@ -19,8 +19,8 @@ angular.module('starter.controllers', [])
       var testarray = new Array();
       if ($scope.eventlist) {
         testarray = $scope.eventlist;
-      };
-      
+      }
+
       for(var i = data.b.length; i>0; i--){
         testarray.push(data.b[i-1]);
       }
