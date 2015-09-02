@@ -8,7 +8,7 @@ $item_id = $req['item_id'];
 $content = $req ['content'];
 
 /*
-$item_id = '5697@tid';
+$item_id = '58702@picid';
 $content = 'test 123';
 $contact_id = 1;
 */
@@ -52,14 +52,15 @@ function receiveremark($item_id,$comment){
 
 //print_r($ret);
     //处理成功
-    //$resp['h']['r'] = ERR_OK;
-    $resp[h][r] = ERR_UNKNOWN;
+    $resp['h']['r'] = ERR_OK;
 
     if ( is_int($ret) ) {
         $resp['h']['r'] = $ret;
     } else if ( is_array($ret) ) {
         $resp['h']['r'] = $ret[0];
         $resp['h']['msg'] = $ret[1];
+    } else {
+        $resp['h']['r'] = ERR_UNKNOWN;
     }
 
     return $resp;
@@ -84,7 +85,7 @@ if(empty($_SGLOBAL['supe_uid'])) {
 		ssetcookie('_refer', rawurlencode('cp.php?ac='.$ac));
 	}
 	//showmessage('to_login', 'do.php?ac='.$_SCONFIG['login_action']);
-    return ERR_NEEDLOGIN;
+    return array(ERR_NEEDLOGIN, '需要登录');
 }
 
 //获取空间信息
@@ -575,6 +576,7 @@ if( true /* submitcheck('commentsubmit') */ ) {
 		}
 	}
 
+    return array(ERR_OK, 'OK');
 	//showmessage($msg, $_POST['refer'], 0, $magvalues);
 }
 
