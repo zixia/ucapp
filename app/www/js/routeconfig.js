@@ -23,7 +23,7 @@ angular.module('RouteConfig', [])
 
   .state('tab.event', {
     url: '/event',
-    hideTabs: false,
+    data: {hide_tab: false},
     views: {
       'tab-event': {
         templateUrl: 'templates/tab-event.html',
@@ -33,8 +33,7 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.event-detail', {
-    // hideTabs: false,
-    hideTabs: true,
+    data: {hide_tab: true},
     url: '/event/:eventId',
     views: {
       'tab-event': {
@@ -45,8 +44,10 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.message', {
-    hideTabs: false,
-    data: {need_login: true},
+    data: {
+      need_login: true,
+      hide_tab:  false
+    },
     url: '/message',
     views: {
       'tab-message': {
@@ -57,8 +58,7 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.message-detail', {
-    hideTabs: true,
-    data: {need_login: true},
+    data: {need_login: true, hide_tab: true},
     url: '/message/:messageId',
     views: {
       'tab-message': {
@@ -69,11 +69,10 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.contact', {
-    hideTabs: true,
     url: '/contact',
     data: {
       need_login: true,
-      hide_tab:   false
+      hide_tab:   true
     },
     views: {
       'tab-discovery': {
@@ -84,7 +83,6 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.contact-detail', {
-    hideTabs: true,
     url: '/contact/:contact',
     data: {
       need_login: true,
@@ -109,7 +107,6 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.friendcircle', {
-    hideTabs: true,
     data: {
       hide_tab: true
     },
@@ -141,8 +138,7 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.personalHomepage', {
-    hideTabs: true,
-    data: {need_login: true},
+    data: {need_login: true, hide_tab: true},
     url: '/personalHomepage',
     views: {
       'tab-discovery': {
@@ -153,11 +149,10 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.personalContactHomepage', {
-    hideTabs: true,
-    data: {need_login: true},
+    data: {need_login: true, hide_tab: true},
     url: '/personalContactHomepage/:contact',
     views: {
-      'tab-discovery': { 
+      'tab-discovery': {
         templateUrl: 'templates/personal_homepage.html',
         controller: 'PersonalContactHomepageCtrl'
       }
@@ -165,8 +160,7 @@ angular.module('RouteConfig', [])
   })
 
   .state('tab.personalHomepage-detail', {
-    hideTabs: true,
-    data: {need_login: true},
+    data: {need_login: true, hide_tab: true},
     url: '/personalHomepage/:infoId',
     views: {
       'tab-discovery': {
