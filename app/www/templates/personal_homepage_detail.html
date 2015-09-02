@@ -8,7 +8,7 @@
     </ion-nav-buttons>
   </ion-nav-bar>
 
-  <ion-content style="background: #e8ebf1;">
+  <ion-content style="background: #e8ebf1;" on-tap="clearclick()">
     <div class = "homepage_detail_head">
       <img class = "homepage_detail_head_avatar" ng-src={{userBasic.user_avatar}}>
       <p class = "homepage_detail_head_name">{{userBasic.user_name}}</p>
@@ -30,16 +30,14 @@
     <div class="friendcircle-answer-tab">
 
       <span class = "homepage_detail_head_time">{{getstandardtime(InfoItem.ts)}}</span>
-
       <span class="friendcircle-choose" ng-show="showchat">
         <div class = "friendcircle-cell">            
-          <a ng-click = "sendheart({{$index}})"><i class="ion-ios-heart-outline"></i>{{heart_tag}}</a>
+          <a ng-click = "sendheart()"><i class="ion-ios-heart-outline"></i>{{heart_tag}}</a>
           <span>|</span>
           <a ng-click = "remark('{{idcache[info.uid].nick}}' )"><i class="ion-social-twitch-outline"></i>评论</a>
         </div>
       </span>
-        
-      <div class="friendcircle-tab-click" ng-click="clickfun({{$index}})">
+      <div class="friendcircle-tab-click" ng-click="clickfun()">
         <i class="ion-chatbox-working"></i>
       </div>
     </div>
@@ -63,10 +61,18 @@
       </div>
     </div>
   </ion-content>
-  <ion-footer-bar ng-show = "showremark">
+  <!-- <ion-footer-bar ng-show = "showremark">
    <label class="item-input-wrapper">
     <input type="text" class = "friendcircle_input" ng-model = "message_detail_send"> 
    </label>
+   <button class = "friendcircle_inputbutton" ng-click = "sendremark()">发送</button>
+  </ion-footer-bar> -->
+
+  <ion-footer-bar ng-show="inputshow">
+   <label class="item-input-wrapper">
+    <input id="inputContent" type="text" class = "friendcircle_input" placeholder="评论" ng-model = "inputContent"> 
+   </label>
+   
    <button class = "friendcircle_inputbutton" ng-click = "sendremark()">发送</button>
   </ion-footer-bar>
 </ion-view>

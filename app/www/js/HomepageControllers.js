@@ -184,7 +184,7 @@ angular.module('starter.homepagecontrollers', [])
 })
 
 
-.controller('PersonalHomepageDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,PersonalHomepageService,$window,Format,IdSearch) {
+.controller('PersonalHomepageDetailCtrl', function($scope,$stateParams,$state,$ionicLoading,PersonalHomepageService,$window,Format,IdSearch,$timeout) {
 
     
     var Paraarray = $stateParams.infoId;
@@ -195,9 +195,10 @@ angular.module('starter.homepagecontrollers', [])
     $scope.showremark = false;
 
     $scope.clickfun = function(){
-        $scope.showchat = !$scope.showchat;
-        if($scope.infos[num].like){
-          if ($scope.infos[num].like.indexOf(user) > -1) {
+        var user = $window.sessionStorage['user_id'];
+
+        if($scope.InfoItem.like){
+          if ($scope.InfoItem.like.indexOf(user) > -1) {
             $scope.heart_tag =  '取消';
           } else {
             $scope.heart_tag =  '点赞';
@@ -206,6 +207,11 @@ angular.module('starter.homepagecontrollers', [])
         else {
           $scope.heart_tag =  '点赞';
         }
+        $scope.showchat = !$scope.showchat;
+    }
+
+    $scope.clearclick = function(){
+        $scope.showchat = false;
     }
 
     $scope.clickremark = function(){
@@ -213,12 +219,18 @@ angular.module('starter.homepagecontrollers', [])
         $scope.showchat = !$scope.showchat;
     }
 
+    $scope.remark = function(id) {
+        $scope.friend_id = id;
+        $scope.inputshow = true;
+        console.log('id:' + id);
+        // focus will not work without timeout by zixia 201508
+        $timeout(function() {
+          document.querySelector('#inputContent').focus();
+        });
+    };
+
     var num = ParaObj.infoId;
     var contactId = ParaObj.contactId;
-
-    // var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp){
-    //     $scope.idcache = temp.b;
-    //   })
 
     $ionicLoading.show({
         template:'<i class = "ion-load-c"><br></i>Loading...'
@@ -234,6 +246,7 @@ angular.module('starter.homepagecontrollers', [])
     }
     PersonalHomepageService.getContentInfo(contactId).success(function(data) {
       $scope.InfoItem = data.b[num];
+
       var idlistarray = new Array();
 
         if (data.b[num].like) {
@@ -250,7 +263,6 @@ angular.module('starter.homepagecontrollers', [])
             }
           }
         }    
-      console.log(idlistarray);
       var idcache = IdSearch.getMainInfo(idlistarray).success(function(temp){
         $scope.idcache = temp.b;
       })
@@ -258,8 +270,6 @@ angular.module('starter.homepagecontrollers', [])
     }).then(function(){
         $ionicLoading.hide();
     });
-
-
 
     $scope.getstandardtime = function(ts){
         var timearray = Format.formattimefriendcircle(ts);
@@ -271,47 +281,66 @@ angular.module('starter.homepagecontrollers', [])
     }
 
 
-var user = $window.sessionStorage['user_id'];
-console.log(user);
+    var user = $window.sessionStorage['user_id'];
 
+    $scope.sendremark = function() {
+        var username = $window.sessionStorage['user_name'];
+        var user = $window.sessionStorage['user_id'];
+        var remark_content = $scope.inputContent;
+        var remark_json = [user,remark_content];
 
-     //发送评论 和zixia调
-        $scope.sendremark = function(){
-            
-        }
+        contact_id = $scope.InfoItem.uid;
+        item_id = $scope.InfoItem.id
 
-        //点赞 和zixia调
-        $scope.sendheart = function(){
-            $scope.showchat = !$scope.showchat;
+        PersonalHomepageService.sendremark(contact_id,item_id,remark_content).success(function(data) {
+          if (data.h.r === 0) {
+            $scope.InfoItem.reply.push(remark_json);
 
-            PersonalHomepageService.sendlike($scope.InfoItem.id).success(function(data){
-                if(data.h.ret == 0){
-                    console.log('success!!');
-          
-                    console.log($scope.InfoItem);
-                    if($scope.InfoItem.like.indexOf(user)>-1){
-                        var reply_heart_index = $scope.InfoItem.like.indexOf(user);
-                        $scope.InfoItem.like.splice(reply_heart_index, 1);
-                    }
-                    else{
-                        console.log($scope.InfoItem);
-                        $scope.InfoItem.like.push(user);
-                    }
-                    IdSearch.getMainInfo($scope.InfoItem.like).success(function(data) {
-                    var fullarray = data.b;
-                    console.log(fullarray);
-                    console.log(fullarray.username);
-                    $scope.InfoItem.likelist = fullarray[user].username;
-                    });  
-                }
-                else{
-                    alert("点赞失败"+data.h.r);
-                }
-                
-                
-             }); 
-            
-             
-        }
+            var userarray = new Array();
+            userarray.push(user);
 
+            var idcache = IdSearch.getMainInfo(userarray).success(function(temp){
+                angular.extend($scope.idcache,temp.b);
+            })
+          } else {
+            alert('评论失败' + data.h.ret)
+          }
+        })
+        $scope.inputshow = false;
+        $scope.inputContent = null;
+    }
+
+    $scope.sendheart = function() {
+        var user = $window.sessionStorage['user_id'];
+        var is_like;//发送是否已经点赞
+
+        if ($scope.InfoItem.like) {
+          if ($scope.InfoItem.like.indexOf(user) > -1) {
+           is_like = false;
+          }
+          else
+             is_like = true;
+        }  
+        else{
+          is_like = true;
+        }  
+
+        PersonalHomepageService.sendlike($scope.InfoItem.id,is_like).success(function(data) {
+          if (data.h.ret === 0) {
+            if ($scope.InfoItem.like.indexOf(user) > -1) {
+              var reply_heart_index = $scope.InfoItem.like.indexOf(user);
+              $scope.InfoItem.like.splice(reply_heart_index, 1);
+            } else {
+              $scope.InfoItem.like.push(user);
+            }
+            var userarray = new Array();
+            userarray.push(user);
+            var idcache = IdSearch.getMainInfo(userarray).success(function(temp){
+                angular.extend($scope.idcache,temp.b);
+            })
+          } else {
+            alert('点赞失败' + data.h.r);
+          }
+        })
+    }
 })
