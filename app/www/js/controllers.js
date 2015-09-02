@@ -2,12 +2,17 @@ angular.module('starter.controllers', [])
 
 .controller('EventCtrl', function($scope,EventService,$ionicLoading,Format) {
 
+  var DESC = "DESC";
+  var ASC = "ASC";
+  var loadNum = 5//上拉加载的个数
+  var refreshNum = 5 //下拉刷新的个数
+
   $ionicLoading.show({
     template: '<i class = "ion-load-c"><br></i>加载中...'
   });
 
   EventService.getMainInfo().success(function(data) {
-    $scope.eventlist = data.b.reverse();
+    $scope.eventlist = data.b;
     $scope.since_id = $scope.eventlist[$scope.eventlist.length-1].event_id;
   }).then(function() {
     $ionicLoading.hide();
@@ -15,19 +20,21 @@ angular.module('starter.controllers', [])
 
 
   $scope.loadMore = function() {
-    EventService.getMainInfo(5,$scope.since_id,"DESC").success(function(data) {
-      var testarray = new Array();
+      EventService.getMainInfo(loadNum,$scope.since_id,DESC).success(function(data) {
+      var eventArray = new Array();
       if ($scope.eventlist) {
-        testarray = $scope.eventlist;
+        eventArray = $scope.eventlist;
       }
 
-      for(var i = data.b.length; i>0; i--){
-        testarray.push(data.b[i-1]);
+      for(var i = 0; i < data.b.length;  i++){
+        eventArray.push(data.b[i]);
       }
 
-      $scope.eventlist = testarray;
+      $scope.eventlist = eventArray;
       console.log($scope.eventlist);
-      
+      // $scope.since_id ＝ $scope.eventlist[$scope.eventlist.length-1].event_id;
+      console.log( $scope.eventlist[$scope.eventlist.length-1].event_id);
+      $scope.since_id = $scope.eventlist[$scope.eventlist.length-1].event_id;
     }).then(function() {
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });      
