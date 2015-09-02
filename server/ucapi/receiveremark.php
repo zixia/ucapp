@@ -7,8 +7,11 @@ $contact_id = $req['contact_id'];
 $item_id = $req['item_id'];
 $content = $req ['content'];
 
-//$item_id = '22395@blogid';
-//$content = 'test fdsakl;jfas;dljfls;dafdsjfls;jfl;sajfals;jfakls;j';
+/*
+$item_id = '58702@picid';
+$content = 'test 123';
+$contact_id = 1;
+*/
 
 $response = receiveremark($item_id,$content);
 $response_json = json_encode($response);//生成json数据
@@ -45,14 +48,23 @@ function receiveremark($item_id,$comment){
     $id         = $matches[1];
     $idtype     = $matches[2];
 
-    cp_comment($id, $idtype, $comment);
+    $ret = cp_comment($id, $idtype, $comment);
 
+//print_r($ret);
     //处理成功
     $resp['h']['r'] = ERR_OK;
+
+    if ( is_int($ret) ) {
+        $resp['h']['r'] = $ret;
+    } else if ( is_array($ret) ) {
+        $resp['h']['r'] = $ret[0];
+        $resp['h']['msg'] = $ret[1];
+    } else {
+        $resp['h']['r'] = ERR_UNKNOWN;
+    }
+
     return $resp;
-
- }
-
+}
 
 function cp_comment($id, $idtype, $message)
 {
@@ -73,7 +85,7 @@ if(empty($_SGLOBAL['supe_uid'])) {
 		ssetcookie('_refer', rawurlencode('cp.php?ac='.$ac));
 	}
 	//showmessage('to_login', 'do.php?ac='.$_SCONFIG['login_action']);
-    return ERR_NEEDLOGIN;
+    return array(ERR_NEEDLOGIN, '需要登录');
 }
 
 //获取空间信息
@@ -126,12 +138,14 @@ if( true /* submitcheck('commentsubmit') */ ) {
 	//判断是否发布太快
 	$waittime = interval_check('post');
 	if($waittime > 0) {
-		showmessage('operating_too_fast','',1,array($waittime));
+        return array(ERR_UNKNOWN, '新用户见习发布太快');
+		//showmessage('operating_too_fast','',1,array($waittime));
 	}
 
 	$message = getstr($_POST['message'], 0, 1, 1, 1, 2);
 	if(strlen($message) < 2) {
-		showmessage('content_is_too_short');
+        return array(ERR_UNKNOWN, '内容太短');
+		//showmessage('content_is_too_short');
 	}
 
 	//摘要
@@ -318,8 +332,12 @@ if( true /* submitcheck('commentsubmit') */ ) {
 			$hotarr = array('eventid', $event['eventid'], $event['hotuser']);
 			$stattype = 'eventcomment';//统计
 			break;
+        case 'tid':
+            return array(ERR_UNKNOWN, '暂时不支持群组评论');
+            break;
 		default:
-			showmessage('non_normal_operation');
+            return array(ERR_UNKNOWN, '不支持的操作' . $idtype);
+			//showmessage('non_normal_operation');
 			break;
 	}
 
@@ -558,6 +576,7 @@ if( true /* submitcheck('commentsubmit') */ ) {
 		}
 	}
 
+    return array(ERR_OK, 'OK');
 	//showmessage($msg, $_POST['refer'], 0, $magvalues);
 }
 
