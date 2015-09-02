@@ -3,7 +3,7 @@
 	<ion-nav-bar class="bar-dark">
       <ion-nav-buttons class = "button-icon">
       <button class="button-stable button-clear" ng-click="goback()">
-        <i class="ion-ios-arrow-left"></i>{{userBasic.user_name}}
+        <i class="ion-ios-arrow-left"></i>{{userBasic.user_nick}}
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
@@ -11,7 +11,7 @@
   <ion-content style="background: #e8ebf1;" on-tap="clearclick()">
     <div class = "homepage_detail_head">
       <img class = "homepage_detail_head_avatar" ng-src={{userBasic.user_avatar}}>
-      <p class = "homepage_detail_head_name">{{userBasic.user_name}}</p>
+      <p class = "homepage_detail_head_name">{{userBasic.user_nick}}</p>
       <p class = "homepage_detail_head_content">{{InfoItem.txt}}</p>
 
       <div class = "homepage_detail_head_img_div_list">

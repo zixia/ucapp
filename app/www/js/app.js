@@ -51,6 +51,7 @@ angular.module('starter', [
 
 .run(function($rootScope, $state) {
   $rootScope.$on('$ionicView.beforeEnter', function() {
+    console.log($state.current);
     $rootScope.hideTab = !!$state.current.data.hide_tab;
   });
 })

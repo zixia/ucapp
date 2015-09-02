@@ -90,11 +90,6 @@ angular.module('starter.homepagecontrollers', [])
     // console.log($stateParams.contact);
     var num = $stateParams.contact;
     console.log(num);
-    // var num = $stateParams.contact;
-
-
-    // var num = contactPath.id;
-    // var urlPara = contactPath.path;
 
     $scope.urlPath = {};
     $scope.urlPath.id = num;
@@ -111,7 +106,7 @@ angular.module('starter.homepagecontrollers', [])
 
     PersonalHomepageService.getContactUserInfo(num).success(function(data) {
         $scope.userBasicInfo = data;
-        $scope.title = $scope.userBasicInfo.user_name;
+        $scope.title = $scope.userBasicInfo.user_nick;
         passPara.contactId = $scope.userBasicInfo.user_id;
     });
 

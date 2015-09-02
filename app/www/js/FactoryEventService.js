@@ -17,8 +17,5 @@ angular.module('EventServiceFactory', [])
   	return $http
     .post(getEventDetailPath,{event_id:event_id});
   };
-
-
-
   return service;
 })

@@ -1,10 +1,22 @@
 <?php
 require_once('inc/config.inc.php');
 
-// $res = file_get_contents('php://input');
-// $data = json_decode($res,true);//生成array数组
+$res = file_get_contents('php://input');
+$data = json_decode($res,true);//生成array数组
 
-$response = showevent();
+$since_id = $data['since_id'];
+$event_num = $data['num'];
+
+
+if($data){
+    //since_id:最后一个event_id序号， $envent_num:刷新每次返回的event个数
+    $response = showevent($since_id,$event_num);
+}
+else{
+    //初次进入页面后传递的活动列表
+   $response = showevent1(); 
+}
+
 $response_json = json_encode($response);//生成json数据
 die($response_json);
 
@@ -24,8 +36,29 @@ die($response_json);
  *               $response['event_participate']  string  活动参与人数
  *               $response['event_attention']    string  活动关注人数
  */
+function showevent($since_id,$event_num){
+    for($i = 0; $i++; $i<$event_num){
+            $item = array();
 
-function showevent(){
+            $item['event_id']       = "2666";
+            $item['event_title']    = "北京SALSA俱乐部 八月 （一周课程安排 和舞会）";
+            $item['event_img']      = "http://17salsa.com/home/attachment/201508/3/8874_1438591400BhFI.jpg";
+            $item['event_time']     = "1438599600";
+            $item['event_spot']     = "";
+            $item['event_people']   = "DancelifeJoy";
+            $item['event_view']     = "324";
+            $item['event_participate']  = "1";
+            $item['event_attention']    = "0";
+
+            array_push($resp['b'], $item);
+    }
+    $resp['h']['ret'] = ERR_OK;
+}
+
+
+
+
+function showevent1(){
     global $_SGLOBAL;
 
     $resp = array();

@@ -2,15 +2,6 @@ angular.module('starter.controllers', [])
 
 .controller('EventCtrl', function($scope,EventService,$ionicLoading,Format) {
 
-  // var unixtime=1433420932;
-  // var unixTimestamp = new Date(unixtime* 1000);
-  // commonTime = unixTimestamp.toLocaleString();
-
-  // console.log("commonTime:"+commonTime);
-
-  // var month = unixTimestamp.getFullYear();
-  // console.log("month:"+month);
-
   $ionicLoading.show({
     template: '<i class = "ion-load-c"><br></i>Loading...'
   });
@@ -30,10 +21,7 @@ angular.module('starter.controllers', [])
 
 .controller('EventDetailCtrl', function($state, $scope, $stateParams, $ionicHistory,$ionicLoading, EventService, Format) {
 
-// 未完待续的history back
-  console.log('EventDetailCtrl hideTabs: ' );
-  console.log($state);
-  $scope.$on('$ionicView.enter',function(){
+    $scope.$on('$ionicView.enter',function(){
     var history = $ionicHistory.viewHistory();
     $scope.data = "";
     $scope.history = function(){
@@ -41,8 +29,6 @@ angular.module('starter.controllers', [])
       $scope.data = history;
     };
   });
-
-console.log("~~~~~~~~~");
 
   var num = $stateParams.eventId;
 
@@ -61,13 +47,6 @@ console.log("~~~~~~~~~");
     $ionicLoading.hide();
   });
 
-  //     $scope.removehtmltab = function(txt){
-  //     return txt.replace(/<[^>]+>/g,"");
-  // }
-
-  // $scope.goback = function() {
-  //   $state.go('tab.event');
-  // };
 })
 
 .controller('DiscoveryCtrl', function($scope, $state) {

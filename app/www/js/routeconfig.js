@@ -98,6 +98,9 @@ angular.module('RouteConfig', [])
 
   .state('tab.discovery', {
     url: '/discovery',
+    data: {
+      hide_tab: false
+    },
     views: {
       'tab-discovery': {
         templateUrl: 'templates/tab-discovery.html',

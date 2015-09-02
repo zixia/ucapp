@@ -13,7 +13,7 @@ angular.module('starter.friendcirclecontrollers', [])
 
   $scope.gopublisherpage = function(u_id) {
     console.log(u_id);
-    $state.go('personalContactHomepage', {contact:u_id})
+    $state.go('tab.personalContactHomepage', {contact:u_id})
   };
 
   $scope.godiscover = function() {
