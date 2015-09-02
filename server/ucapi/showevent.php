@@ -53,6 +53,10 @@ function showevent($since_id,$event_num){
             $item['event_participate']  = "1";
             $item['event_attention']    = "0";
 
+            printf("!!!!!");
+
+            printf($i);
+
             printf($item);
 
             array_push($resp['b'], $item);
