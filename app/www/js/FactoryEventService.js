@@ -8,8 +8,8 @@ angular.module('EventServiceFactory', [])
   var getEventPath = UrlPath.getEventPath();
   var getEventDetailPath = UrlPath.getEventDetailPath();
 
-  service.getMainInfo = function(since_id,num){
-    return $http.post(getEventPath,{since_id:since_id,num:num});
+  service.getMainInfo = function(num,start_id,order){
+    return $http.post(getEventPath,{num:num,start_id:start_id,order:order});
   };
 
   service.getDetailInfo = function(event_id){
