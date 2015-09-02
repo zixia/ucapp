@@ -78,6 +78,7 @@ angular.module('SystemCtrls', [])
   }
 
   // Check Ionic Deploy for new code
+  // 自动更新的底层代码 OK 
   $scope.upgrade = function() {
     $ionicLoading.show({
       template: '检查更新中...请稍候...'
