@@ -70,7 +70,7 @@ angular.module('starter.friendcirclecontrollers', [])
     item_id = $scope.infos[serial].id
 
     PersonalHomepageService.sendremark(contact_id,item_id,remark_content).success(function(data) {
-
+      console.log(data);
       if (data.h.r === 0) {
         console.log('success!!');
         console.log($scope.infos[serial].reply);
@@ -85,9 +85,12 @@ angular.module('starter.friendcirclecontrollers', [])
           console.log($scope.infos[serial])
         })
       } else {
-        alert('评论失败' + data.h.ret)
+        alert('评论失败')
+        console.log(data.h.msg);
       }
     })
+    $scope.inputshow = false;
+    $scope.inputContent = null;
   }
 
   $scope.sendheart = function(num) {
