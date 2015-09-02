@@ -15,10 +15,11 @@ angular.module('starter.controllers', [])
 
 
   $scope.loadMore = function() {
-    console.log("#######");
     EventService.getMainInfo($scope.since_id,5).success(function(data) {
       var testarray = new Array();
-      testarray = $scope.eventlist;
+      if ($scope.eventlist) {
+        testarray = $scope.eventlist;
+      };
       
       for(var i = data.b.length; i>0; i--){
         testarray.push(data.b[i-1]);
