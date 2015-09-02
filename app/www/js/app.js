@@ -129,7 +129,7 @@ angular.module('starter', [
     // Optionally set option.notify to false if you don't want
     // to retrigger another $stateChangeStart event
     $log.log('redirect to login');
-    $state.go('login');
+    $state.go('login', {refer_state: fromState.name});
     //$state.go('login', undefined, {notify: false})
     //$state.go('login', toParams, {notify: false, location: false})
   });

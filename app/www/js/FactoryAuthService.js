@@ -1,6 +1,6 @@
 angular.module('FactoryAuthService', [])
 
-.factory('AuthService', function($http, $location, $window, UrlPath, $state, $ionicHistory, $log, $ionicConfig, $timeout) {
+.factory('AuthService', function($http, $location, $window, UrlPath, $ionicHistory, $log, $ionicConfig, $timeout) {
   var loginpath = UrlPath.getLoginpath();
 
   function login (username, password) {
@@ -16,8 +16,6 @@ angular.module('FactoryAuthService', [])
           $window.sessionStorage['user_gender'] = res.data.user_gender;
           $window.sessionStorage['user_area'] = res.data.user_area;
           $window.sessionStorage['user_sign'] = res.data.user_sign;
-
-          $state.go('tab.event');
         } else {
           console.log('login error');
           // alert('用户名密码错误！');

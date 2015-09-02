@@ -16,7 +16,7 @@ angular.module('RouteConfig', [])
 
   //用户登录
   .state('login', {
-    url: '/login',
+    url: '/login/:refer_state',
     controller: 'LoginCtrl',
     templateUrl: 'templates/tab-login.html',
   })
