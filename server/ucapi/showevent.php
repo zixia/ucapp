@@ -7,7 +7,6 @@ $data = json_decode($res,true);//生成array数组
 
 // $since_id = $data['since_id'];
 // $event_num = $data['num'];
-die("hehe");
 $since_id = "2666";
 $event_num = 5;
 
@@ -57,6 +56,8 @@ function showevent($since_id,$event_num){
             array_push($resp['b'], $item);
     }
     $resp['h']['ret'] = ERR_OK;
+    
+    return $resp;
 }
 
 
