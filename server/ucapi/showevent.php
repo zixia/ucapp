@@ -4,11 +4,15 @@ require_once('inc/config.inc.php');
 $res = file_get_contents('php://input');
 $data = json_decode($res,true);//生成array数组
 
-$since_id = $data['since_id'];
-$event_num = $data['num'];
+
+// $since_id = $data['since_id'];
+// $event_num = $data['num'];
+
+$since_id = "2666";
+$event_num = 5;
 
 
-if($data){
+if($since_id && $event_num){
     //since_id:最后一个event_id序号， $envent_num:刷新每次返回的event个数
     $response = showevent($since_id,$event_num);
 }
