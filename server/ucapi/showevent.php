@@ -5,10 +5,10 @@ $res = file_get_contents('php://input');
 $data = json_decode($res,true);//生成array数组
 
 
-// $since_id = $data['since_id'];
-// $event_num = $data['num'];
-$since_id = "2666";
-$event_num = 5;
+$since_id = $data['since_id'];
+$event_num = $data['num'];
+// $since_id = "2666";
+// $event_num = 5;
 
 
 if($since_id && $event_num){
