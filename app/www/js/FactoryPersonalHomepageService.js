@@ -1,6 +1,6 @@
 angular.module('FactoryPersonalHomepageService', [])
 
-.factory("PersonalHomepageService", function($http,$ionicLoading,$q,$window,UrlPath){
+.factory("PersonalHomepageService", function($http,$ionicLoading,$q,$window,UrlPath) {
 
   var service = {};
   var userInfo = {};
@@ -21,24 +21,43 @@ angular.module('FactoryPersonalHomepageService', [])
   };
 
   service.getContactUserInfo = function(user_id){
-    return $http
-    .post(getContactUserPath,{user_id:user_id});
-  };
-  
-
-  service.getContentInfo = function(contact_id){
-    return $http
-    .post(getContentPath,{user_id:contact_id});
-  };
-
-  service.sendlike = function(item_id){
-    return $http
-    .post(getSendlikePath,{item_id:item_id});
+    return $http({
+      url: getContactUserPath,
+      method: 'POST',
+      data: JSON.stringify({user_id: user_id}),
+      withCredentials: true
+    })
   }
 
-  service.sendremark = function(contact_id,item_id,content){
-    return $http
-    .post(getSendRemarkPath,{contact_id:contact_id,item_id:item_id,content:content});
+  service.getContentInfo = function(contact_id) {
+    return $http({
+      url: getContentPath,
+      method: 'POST',
+      data: JSON.stringify({user_id: contact_id}),
+      withCredentials: true
+    })
+  }
+
+  service.sendlike = function(item_id) {
+    return $http({
+      url: getSendlikePath,
+      method: 'POST',
+      data: JSON.stringify({item_id:item_id}),
+      withCredentials: true
+    })
+  }
+
+  service.sendremark = function(contact_id, item_id, content) {
+    return $http({
+      url: getSendRemarkPath,
+      method: 'POST',
+      data: JSON.stringify({
+        contact_id: contact_id,
+        item_id: item_id,
+        content: content
+      }),
+      withCredentials: true
+    })
   }
 
   return service;

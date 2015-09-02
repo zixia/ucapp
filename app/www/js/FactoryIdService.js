@@ -48,8 +48,12 @@ angular.module('IdSearchFactroy', [])
       ')+MISS(' + missUserIds.length + ')/ALL(' + userIds.length + ')')
 
     if (missUserIds.length > 0) {
-      $http
-      .post(APIURL, {idlist:missUserIds})
+      return $http({
+        url: APIURL,
+        method: 'POST',
+        data: JSON.stringify({idlist: missUserIds}),
+        withCredentials: true,
+      })
       .success(function(data) {
         missUserObjs = data.b
         for (var id in data.b) {

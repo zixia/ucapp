@@ -43,14 +43,17 @@ angular.module('starter', [
 ])
 
 .config(['$httpProvider', function($httpProvider) {
-  $httpProvider.defaults.withCredentials = true;
+  // [Error] Failed to load resource: Cannot use wildcard in Access-Control-Allow-Origin 
+  // when credentials flag is true. (check, line 0)
+  
+  //$httpProvider.defaults.withCredentials = true;
 }])
 
 .run(function($rootScope, $state) {
   console.log("!!!!!!!!!!!!!!!!!");
   console.log($state.current);
-  $rootScope.$on('$ionicView.beforeEnter', function() {
-  $rootScope.hideTabs = !!$state.current.hideTabs;
+  $rootScope.$on('oionicView.beforeEnter', function() {
+    $rootScope.hideTab = !!$state.current.data.hide_tab;
   });
 })
 
