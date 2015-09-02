@@ -12,7 +12,6 @@ $event_num = $data['num'];
 
 
 if($since_id!=null && $event_num!=null){
-    var_dump($since_id);
     //since_id:最后一个event_id序号， $envent_num:刷新每次返回的event个数
     $response = showevent($since_id,$event_num);
 }
