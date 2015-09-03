@@ -1,28 +1,30 @@
 <ion-view view-title="活动列表">
   <ion-content class="padding">
-  <ion-list>
-    <ion-item class="list card" ng-repeat = "item in eventlist | filter:query" href = "#/tab/event/{{item.event_id}}">
-      <div class="item">
-        <h3 class = "event_title_h3">{{item.event_title}}</h3>
-      </div>
 
-      <div class="item item-body">
-        <img ng-src="{{item.event_img}}" class = "full-image">
-        <p class = "event_title_p"><span>活动时间：</span>{{getstandardtime(item.event_time)}}</p>
-        <p class = "event_title_p"><span>活动地点：</span>{{item.event_spot}}</p>
-        <p class = "event_title_p"><span>发起人:</span>{{item.event_people}}</p>
-        <p>
-          <span  class="event_body_span">{{item.event_view}} 次查看</span>
-          <span  class="event_body_span">{{item.event_participate}} 人参加</span>
-          <span  class="event_body_span">{{item.event_attention}} 人关注</span>
-        </p>
-        
-      </div>
+    <ion-list>
 
-    </ion-item>
-  </ion-list>
+      <ion-item class="list card" ng-repeat = "item in eventlist | filter:query" href = "#/tab/event/{{item.event_id}}">
+        <div class="item">
+          <h3 class = "event_title_h3">{{item.event_title}}</h3>
+        </div>
 
-    <ion-infinite-scroll on-infinite="loadMore()" distance="5%">
-    </ion-infinite-scroll>
+        <div class="item item-body">
+          <img ng-src="{{item.event_img}}" class = "full-image">
+          <p class = "event_title_p"><span>活动时间：</span>{{getstandardtime(item.event_time)}}</p>
+          <p class = "event_title_p"><span>活动地点：</span>{{item.event_spot}}</p>
+          <p class = "event_title_p"><span>发起人:</span>{{item.event_people}}</p>
+          <p>
+            <span  class="event_body_span">{{item.event_view}} 次查看</span>
+            <span  class="event_body_span">{{item.event_participate}} 人参加</span>
+            <span  class="event_body_span">{{item.event_attention}} 人关注</span>
+          </p>
+        </div>
+
+      </ion-item>
+
+    </ion-list>
+
+    <ion-infinite-scroll on-infinite="loadMore()" immediate-check="false"></ion-infinite-scroll>
+
   </ion-content>
 </ion-view>
