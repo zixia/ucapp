@@ -4,23 +4,42 @@ angular.module('starter.controllers', [])
 
   var DESC = "DESC";
   var ASC = "ASC";
-  var loadNum = 5//上拉加载的个数
-  var refreshNum = 5 //下拉刷新的个数
+  var loadNum = 5;//上拉加载的个数
+  var refreshNum = 5; //下拉刷新的个数
+  var initNum = 10;//初始获取的个数
 
   $ionicLoading.show({
     template: '<i class = "ion-load-c"><br></i>加载中...'
   });
 
-  EventService.getMainInfo().success(function(data) {
+  EventService.getMainInfo(initNum).success(function(data) {
     $scope.eventlist = data.b;
-    $scope.since_id = $scope.eventlist[$scope.eventlist.length-1].event_id;
+    $scope.startId = $scope.eventlist[$scope.eventlist.length-1].event_id;
   }).then(function() {
     $ionicLoading.hide();
   });
 
+  $scope.refresh = function(){
+    EventService.getMainInfo(refreshNum).success(function(data){
+      var refreshArray = new Array();
+      if($scope.eventlist){
+        refreshArray = $scope.eventlist;
+      }
+      for(var i =0; i< data.b.length; i++){
+        refreshArray.push(data.b[i]);
+      }
+      $scope.eventlist = refreshArray;
+      $scope.startId = $scope.eventlist[$scope.eventlist.length-1].event_id;
+    }).then(function(){
+      $scope.$broadcast('scroll.refreshComplete');
+    })
+  }
+
 
   $scope.loadMore = function() {
-      EventService.getMainInfo(loadNum,$scope.since_id,DESC).success(function(data) {
+      console.log("++++++++");
+      console.log($scope.startId);
+      EventService.getMainInfo(loadNum,$scope.startId,DESC).success(function(data) {
       var eventArray = new Array();
       if ($scope.eventlist) {
         eventArray = $scope.eventlist;
@@ -32,9 +51,9 @@ angular.module('starter.controllers', [])
 
       $scope.eventlist = eventArray;
       console.log($scope.eventlist);
-      // $scope.since_id ＝ $scope.eventlist[$scope.eventlist.length-1].event_id;
+      // $scope.startId ＝ $scope.eventlist[$scope.eventlist.length-1].event_id;
       console.log( $scope.eventlist[$scope.eventlist.length-1].event_id);
-      $scope.since_id = $scope.eventlist[$scope.eventlist.length-1].event_id;
+      $scope.startId = $scope.eventlist[$scope.eventlist.length-1].event_id;
     }).then(function() {
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });      

@@ -1,7 +1,8 @@
 <ion-view view-title="活动列表">
   <ion-content class="padding">
+  <ion-refresher on-refresh="refresh()"></ion-refresher>
   <ion-list>
-    <ion-item class="list card" ng-repeat = "item in eventlist | filter:query" href = "#/tab/event/{{item.event_id}}">
+    <ion-item class="list card" ng-repeat = "item in eventlist | filter:query" href = "#/tab/event/{{item.event_id}}" >
       <div class="item">
         <h3 class = "event_title_h3">{{item.event_title}}</h3>
       </div>
