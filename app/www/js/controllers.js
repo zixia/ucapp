@@ -1,6 +1,8 @@
 angular.module('starter.controllers', [])
 
-.controller('EventCtrl', function($scope,EventService,$ionicLoading,Format) {
+.controller('EventCtrl', function($scope,EventService,$ionicLoading,Format,$http) {
+  // 
+  $scope.busy = false
 
   $ionicLoading.show({
     template: '<i class = "ion-load-c"><br></i>加载中...'
