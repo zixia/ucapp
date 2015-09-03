@@ -60,6 +60,7 @@ function getEventList($num, $startId, $order) {
 
     switch ($order) {
         case 'ASC':
+            break;
         case 'DESC':
             break;
         default:
@@ -710,6 +711,7 @@ function getEventList($num, $startId, $order) {
         }
 
         $resp['h']['ret'] = ERR_OK;
+        $resp['h']['order'] = $order;
 
 
     }
