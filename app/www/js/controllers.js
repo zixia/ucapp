@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 .controller('EventCtrl', function($scope,EventService,$ionicLoading,Format,$http) {
-  // 
+  
   $scope.busy = false
 
   var DESC = "DESC";
@@ -39,8 +39,6 @@ angular.module('starter.controllers', [])
 
 
   $scope.loadMore = function() {
-      console.log("++++++++");
-      console.log($scope.startId);
       EventService.getMainInfo(loadNum,$scope.startId,DESC).success(function(data) {
       var eventArray = new Array();
       if ($scope.eventlist) {
@@ -50,11 +48,7 @@ angular.module('starter.controllers', [])
       for(var i = 0; i < data.b.length;  i++){
         eventArray.push(data.b[i]);
       }
-
       $scope.eventlist = eventArray;
-      console.log($scope.eventlist);
-      // $scope.startId ＝ $scope.eventlist[$scope.eventlist.length-1].event_id;
-      console.log( $scope.eventlist[$scope.eventlist.length-1].event_id);
       $scope.startId = $scope.eventlist[$scope.eventlist.length-1].event_id;
     }).then(function() {
       $scope.$broadcast('scroll.infiniteScrollComplete');

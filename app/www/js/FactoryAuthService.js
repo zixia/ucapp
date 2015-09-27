@@ -22,6 +22,11 @@ angular.module('FactoryAuthService', [])
         $window.sessionStorage['user_gender'] = res.data.user_gender;
         $window.sessionStorage['user_area'] = res.data.user_area;
         $window.sessionStorage['user_sign'] = res.data.user_sign;
+
+        localStorage.setItem('user_info', JSON.stringify($window.sessionStorage));
+        // JSON.parse(localStorage.getItem('user_info'));
+        // console.log(obj);
+
       } else {
         console.log('login error');
         // alert('用户名密码错误！');
@@ -31,6 +36,10 @@ angular.module('FactoryAuthService', [])
   }
 
   function isAuthenticated () {
+    if(JSON.parse(localStorage.getItem('user_info'))){
+      $window.sessionStorage = JSON.parse(localStorage.getItem('user_info'));
+    }
+
     return $window.sessionStorage['user_id'];
   }
 
