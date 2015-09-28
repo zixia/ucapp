@@ -1,4 +1,5 @@
 # 17SALSA UCHome App
+UCApp project home page - https://github.com/lijiarui/ucapp
 
 ## Coding style
 * JSCS: preset to google
