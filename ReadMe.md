@@ -32,6 +32,7 @@ Reference: [http://semver.org/](http://semver.org/)
 1. ionic config build
 1. ionic platform add ios android
 1. ionic hooks add
+1. ionic add ionic-service-push
 1. ionic build ios android
 1. ionic serve --lab
 

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('EventCtrl', function($scope,EventService,$ionicLoading,Format,$http) {
+.controller('EventCtrl', function($scope,EventService,$ionicLoading,Format) {
   // 
   $scope.busy = false
 
