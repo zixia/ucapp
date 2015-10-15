@@ -1,4 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/lijiarui/ucapp.png?label=ready&title=Ready)](https://waffle.io/lijiarui/ucapp)
+[![Stories in Ready](https://badge.waffle.io/AKAMobi/ucapp.png?label=ready&title=Ready)](https://waffle.io/AKAMobi/ucapp)
 [![Circle CI](https://circleci.com/gh/AKAMobi/ucapp/tree/master.svg?style=svg)](https://circleci.com/gh/AKAMobi/ucapp/tree/master)
 
 # 17SALSA UCHome App
