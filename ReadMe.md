@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/lijiarui/ucapp.png?label=ready&title=Ready)](https://waffle.io/lijiarui/ucapp)
 # 17SALSA UCHome App
 UCApp project home page - https://github.com/lijiarui/ucapp
 
