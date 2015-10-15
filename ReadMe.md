@@ -3,8 +3,8 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/AKAMobi/ucapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # [17SALSA](http://17salsa.com/app/) UCHome App
-View UCApp on GitHub - https://github.com/AKAMobi/ucapp
-[Android Market](https://play.google.com/store/apps/details?id=com.salsa17.home)
+View UCApp on GitHub - https://github.com/AKAMobi/ucapp  
+[Android Market](https://play.google.com/store/apps/details?id=com.salsa17.home)  
 [Apple Store](https://itunes.apple.com/cn/app/17salsa/id1019231034)
 
 ## Coding style
