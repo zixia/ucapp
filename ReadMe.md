@@ -1,5 +1,6 @@
 [![Stories in Ready](https://badge.waffle.io/AKAMobi/ucapp.png?label=ready&title=Ready)](https://waffle.io/AKAMobi/ucapp)
 [![Circle CI](https://circleci.com/gh/AKAMobi/ucapp/tree/master.svg?style=svg)](https://circleci.com/gh/AKAMobi/ucapp/tree/master)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/AKAMobi/ucapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # 17SALSA UCHome App
 UCApp project home page - https://github.com/lijiarui/ucapp
@@ -113,7 +114,5 @@ common params:
           }
         }
       ]
-      
 
 
-[![Join the chat at https://gitter.im/lijiarui/ucapp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lijiarui/ucapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
