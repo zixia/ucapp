@@ -4,3 +4,4 @@ Trash
 bower_components
 t.js
 npm-debug.log
+.*.swp
