@@ -1,3 +1,5 @@
+# [17SALSA](http://17salsa.com/app/) UCHome App [![Circle CI](https://circleci.com/gh/AKAMobi/ucapp/tree/master.svg?style=svg)](https://circleci.com/gh/AKAMobi/ucapp/tree/master)
+
 [![Stories in Ready](https://badge.waffle.io/AKAMobi/ucapp.png?label=ready&title=Ready)](https://waffle.io/AKAMobi/ucapp)
 [![Circle CI](https://circleci.com/gh/AKAMobi/ucapp/tree/master.svg?style=svg)](https://circleci.com/gh/AKAMobi/ucapp/tree/master)
 [![GitHub Issues](https://img.shields.io/github/issues/AKAMobi/ucapp.svg)](https://github.com/AKAMobi/ucapp/issues)
@@ -5,7 +7,6 @@
 
 [![Browser Support](https://ci.testling.com/AKAMobi/ucapp.png)](https://ci.testling.com/AKAMobi/ucapp)
 
-# [17SALSA](http://17salsa.com/app/) UCHome App
 * View UCApp on GitHub - https://github.com/AKAMobi/ucapp
 * View 17salsa on [Android Market](https://play.google.com/store/apps/details?id=com.salsa17.home)
 * View 17salsa on [Apple Store](https://itunes.apple.com/cn/app/17salsa/id1019231034)
