@@ -8,12 +8,9 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', [
   'ionic',
-  'ionic.service.core',
-  'ionic.service.analytics',
-  'ionic.service.push',
   'ngCordova',
 
-  'ionic.service.deploy',
+  'ui.router',
 
   //controllers
   'starter.controllers',
@@ -38,7 +35,6 @@ angular.module('starter', [
 
   //globalpara
   'GlobalPath'
-
 
 ])
 

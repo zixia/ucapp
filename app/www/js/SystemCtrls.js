@@ -1,6 +1,6 @@
 angular.module('SystemCtrls', [])
 
-.controller('SettingCtrl', function($rootScope, $scope, AuthService, $state, $log, $ionicPopup, $ionicUser, $ionicPush, $ionicDeploy, $ionicLoading, $http) {
+.controller('SettingCtrl', function($rootScope, $scope, AuthService, $state, $log, $ionicPopup, $ionicLoading, $http) {
   $scope.logout = function() {
     AuthService.logout()
     $state.go('login')
@@ -126,8 +126,41 @@ angular.module('SystemCtrls', [])
 
   // Registers a device for push notifications and stores its token
   $scope.pushRegister = function() {
-    $log.log('Ionic Push: Registering user');
+    Ionic.io()
 
+    var push = new Ionic.Push({
+      debug: true,
+      onNotification: function(notification) {
+        var payload = $ionicPush.getPayload(notification);
+        console.log(notification, payload);
+      },
+      onRegister: function(data) {
+        console.log(data);
+      }
+    })
+
+    var user = Ionic.User.current()
+
+    // if the user doesn't have an id, you'll need to give it one.
+    if (!user.id) {
+      user.id = Ionic.User.anonymousId()
+    }
+
+    user.set('name', 'abu')
+    user.set('bio', 'abu bio')
+    user.save()
+
+    var callback = function(data) {
+      console.log('Registered token:', data.token)
+      console.log(data.token)
+      push.addTokenToUser(user)
+      user.save()
+    }
+    // Registers for a device token using the options passed to init()
+    push.register(callback);
+
+
+    /*
     // Register with the Ionic Push service.  All parameters are optional.
     $ionicPush.register({
       canShowAlert: true, //Can pushes show an alert on your screen?
@@ -155,6 +188,8 @@ angular.module('SystemCtrls', [])
       console.log('Got token', data.token, data.platform);
       // Do something with the token
     })
+  }
+    */
   }
 
   $scope.identifyUser = function() {
@@ -204,4 +239,4 @@ angular.module('SystemCtrls', [])
       $log.log('Identified user ' + user.name + ' ID ' + user.user_id);
     })
   }
-});
+})

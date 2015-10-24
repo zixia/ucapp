@@ -2,19 +2,17 @@
   "name": "17SALSA",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower",
-    "ionic-service-core": "",
     "ngCordova": "",
-    "ionic-service-push": "",
-    "ionic-service-analytics": ""
+    "ionic-platform-web-client": ""
   },
   "dependencies": {
     "angular": "",
     "angular-cookies": "",
     "angular-scroll-glue": "",
-    "ng-cordova-oauth": "",
-    "angular-websocket": "",
-    "ionic-service-deploy": "",
-    "ionic-service-analytics": ""
+    "ng-cordova-oauth": ""
+    ,"angular-websocket": ""
+  },
+  "resolutions": {
+    "angular": "1.4.7"
   }
 }
