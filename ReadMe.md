@@ -2,6 +2,7 @@
 [![Circle CI](https://circleci.com/gh/AKAMobi/ucapp/tree/master.svg?style=svg)](https://circleci.com/gh/AKAMobi/ucapp/tree/master)
 [![GitHub Issues](https://img.shields.io/github/issues/AKAMobi/ucapp.svg)](https://github.com/AKAMobi/ucapp/issues)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/AKAMobi/ucapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 [![Browser Support](https://ci.testling.com/AKAMobi/ucapp.png)](https://ci.testling.com/AKAMobi/ucapp)
 
 # [17SALSA](http://17salsa.com/app/) UCHome App
