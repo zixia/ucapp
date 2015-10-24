@@ -1,4 +1,17 @@
+machine:
+  xcode:
+    version: "7.0"
+  services:
+    - docker
+  environment:
+
+dependencies:
+  post:
+
 test:
   override:
-    - echo 17salsa rocks!
+    - echo circleci rocks!
 
+notify:
+  webhooks:
+    url: http://zixia.net/~zixia/git/pushme.php
