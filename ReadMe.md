@@ -1,4 +1,15 @@
-# 17SALSA UCHome App
+# [17SALSA](http://17salsa.com/app/) UCHome App [![Circle CI](https://circleci.com/gh/AKAMobi/ucapp/tree/master.svg?style=svg)](https://circleci.com/gh/AKAMobi/ucapp/tree/master)
+
+[![Stories in Ready](https://badge.waffle.io/AKAMobi/ucapp.png?label=ready&title=Ready)](https://waffle.io/AKAMobi/ucapp)
+[![Circle CI](https://circleci.com/gh/AKAMobi/ucapp/tree/master.svg?style=svg)](https://circleci.com/gh/AKAMobi/ucapp/tree/master)
+[![GitHub Issues](https://img.shields.io/github/issues/AKAMobi/ucapp.svg)](https://github.com/AKAMobi/ucapp/issues)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/AKAMobi/ucapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+[![Browser Support](https://ci.testling.com/AKAMobi/ucapp.png)](https://ci.testling.com/AKAMobi/ucapp)
+
+* View UCApp on GitHub - https://github.com/AKAMobi/ucapp
+* View 17salsa on [Android Market](https://play.google.com/store/apps/details?id=com.salsa17.home)
+* View 17salsa on [Apple Store](https://itunes.apple.com/cn/app/17salsa/id1019231034)
 
 ## Coding style
 * JSCS: preset to google
@@ -32,6 +43,7 @@ Reference: [http://semver.org/](http://semver.org/)
 1. ionic config build
 1. ionic platform add ios android
 1. ionic hooks add
+1. ionic add ionic-service-push
 1. ionic build ios android
 1. ionic serve --lab
 
@@ -108,7 +120,5 @@ common params:
           }
         }
       ]
-      
 
 
-[![Join the chat at https://gitter.im/lijiarui/ucapp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lijiarui/ucapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)

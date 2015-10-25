@@ -43,33 +43,26 @@ angular.module('starter', [
 
 ])
 
-.config(['$httpProvider', function($httpProvider) {
-  // [Error] Failed to load resource: Cannot use wildcard in Access-Control-Allow-Origin 
+/*
+.config(['$httpProvider', function( $httpProvider ) {
+  // [Error] Failed to load resource: Cannot use wildcard in Access-Control-Allow-Origin
   // when credentials flag is true. (check, line 0)
-  
+
   //$httpProvider.defaults.withCredentials = true;
 }])
+*/
 
-.run(function($rootScope, $state) {
-  $rootScope.$on('$ionicView.beforeEnter', function() {
-    $rootScope.hideTab = false
-    if ($state.current.data) {
-      $rootScope.hideTab = !!$state.current.data.hide_tab
-    }
-  });
-})
-
-.run(['$ionicPlatform', '$ionicAnalytics', function($ionicPlatform, $ionicAnalytics) {
-  $ionicPlatform.ready(function() {
+.run(['$ionicPlatform', '$window', function ($ionicPlatform, $window) {
+  $ionicPlatform.ready(function () {
 
     // Hide the accessory bar by default remove this to show
     // the accessory bar above the keyboard
     // for form inputs
-    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-      window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    if ($window.cordova && $window.cordova.plugins && $window.cordova.plugins.Keyboard) {
+      $window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
-    if (window.StatusBar) {
-      window.StatusBar.styleDefault();
+    if ($window.StatusBar) {
+      $window.StatusBar.styleDefault();
     }
 
     // XXX without register analytics works?
@@ -89,27 +82,23 @@ angular.module('starter', [
 }])
 */
 
-.config(['$ionicConfigProvider', function($ionicConfigProvider) {
+.config(['$ionicConfigProvider', function ($ionicConfigProvider) {
   $ionicConfigProvider.navBar.alignTitle('center'); // center view title of ionic-view
   $ionicConfigProvider.tabs.position('bottom'); //Places them at the bottom for all OS
   $ionicConfigProvider.tabs.style('standard'); //Makes them all look the same across all OS
 }])
 
-.run(function($rootScope, $location, AuthService, $state, $timeout, $log) {
-  $rootScope.$on('$ionicView.beforeEnter', function() {
+.run(function ($rootScope, $location, AuthService, $state, $timeout, $log) {
+  var onIonicView_beforeEnter = $rootScope.$on('$ionicView.beforeEnter', function () {
+    $rootScope.hideTab = false;
     if ($state.current.data && $state.current.data.hide_tab) {
       $rootScope.hideTab = true;
-    } else {
-      $rootScope.hideTab = false;
     }
+
     $log.log('hideTab: ' + $rootScope.hideTab);
   });
 
-  $rootScope.$on('$stateChangeError', console.log.bind(console));
-
-  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-    //$log.log('$stateChangeStart (toState:' + toState.name + ',fromState:' + fromState.name + ')' + fromParams)
-
+  var onStateChangeStart = $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
     if (AuthService.isAuthenticated()) {
       return;
     }
@@ -138,4 +127,12 @@ angular.module('starter', [
     //$state.go('login', undefined, {notify: false})
     //$state.go('login', toParams, {notify: false, location: false})
   });
+
+  $rootScope.$on('$destroy', function () {
+      $log.log('destoryed' + onStateChangeStart);
+      $log.log('destoryed' + onIonicView_beforeEnter);
+  });
+
+
 });
+

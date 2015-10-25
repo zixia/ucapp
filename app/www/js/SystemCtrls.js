@@ -146,10 +146,13 @@ angular.module('SystemCtrls', [])
         )
         return true;
       }
+    },{
+      user_id: '1'
+      , age: 9001
     })
 
     $rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
-      //console.log('Got token', data.token, data.platform);
+      console.log('Got token', data.token, data.platform);
       // Do something with the token
     })
   }
@@ -158,23 +161,47 @@ angular.module('SystemCtrls', [])
     $log.log('Ionic User: Identifying with Ionic User service');
 
     var user = $ionicUser.get();
-    if (!user.user_id) {
-      // Set your user_id here, or generate a random one.
-      user.user_id = $ionicUser.generateGUID();
+    $log.log(user)
+
+    if (user.user_id && parseInt(user.user_id) > 0) {
+      $log.log('identifyUser found exist user: ' + user.user_id)
     } else {
-      $log.log('identifyUser found exist user: ' + user)
+      // Set your user_id here, or generate a random one.
+      var authedUser = AuthService.getAuthedUser()
+      $log.log('authedUser: ' + authedUser)
+      if (authedUser) {
+        user.user_id  = authedUser.user_id
+        user.name     = authedUser.user_name
+        user.image    = authedUser.user_avatar
+        user.bio      = authedUser.user_sign
+
+        // Add some metadata to your user object.
+        angular.extend(user, authedUser)
+
+        /*
+        angular.extend(user, {
+          build: config.build
+          , os:  device.os
+          , osVersion: device.osVersion
+        })
+        */
+
+      } else {
+        //user.user_id  = $ionicUser.generateGUID()
+        user.user_id  = device.uuid
+        user.name     = '17salsaer'
+      }
+      $log.log('identifyUser settig user id: ' + user.user_id)
     }
 
-    // Add some metadata to your user object.
-    angular.extend(user, {
-      name: 'Ionitron',
-      bio: 'I come from planet Ion'
-    })
+    // Request URL:https://apps.ionic.io/api/v1/app/38222868/users/identify
+    //  {"error":"You must supply user_id as a string"}
+    user.user_id += ''
 
     // Identify your user with the Ionic User Service
     $ionicUser.identify(user).then(function() {
       $scope.identified = true;
-      $log.log('Identified user ' + user.name + '\n ID ' + user.user_id);
+      $log.log('Identified user ' + user.name + ' ID ' + user.user_id);
     })
   }
 });

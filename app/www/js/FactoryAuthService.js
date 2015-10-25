@@ -49,10 +49,24 @@ angular.module('FactoryAuthService', [])
     console.log('logout successful');
   };
 
+  function getAuthedUser() {
+    var userId = $window.sessionStorage.user_id
+    $log.log('getAuthedUser userId:' + userId)
+
+    if (parseInt(userId) > 0) {
+      $log.log('getAuthedUser succ. user_id: ' + userId)
+      return $window.sessionStorage
+    }
+
+    $log.log('getAuthedUser not logined.')
+    return null
+  }
+
   return {
-    login: login,
-    logout:logout,
-    isAuthenticated:isAuthenticated
+    login: login
+    , logout: logout
+    , isAuthenticated: isAuthenticated
+    , getAuthedUser: getAuthedUser
   }
 
   function clean() {
@@ -74,5 +88,7 @@ angular.module('FactoryAuthService', [])
 
     $window.location.reload(true); // force reload to try to destory all view caches
   }
+
+
 });
 
