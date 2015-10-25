@@ -122,6 +122,19 @@ angular.module('RouteConfig', [])
     }
   })
 
+  .state('tab.publishtxt', {
+    data: {
+      hide_tab: true
+    },
+    url: '/publishtxt',
+    views: {
+      'tab-discovery': {
+        templateUrl: 'templates/publishtxt.html',
+        controller: 'PublishtxtCtrl',
+      }
+    }
+  })
+
   // 聊天室 tab
   .state('chatroom', {
     url: '/chatroom',

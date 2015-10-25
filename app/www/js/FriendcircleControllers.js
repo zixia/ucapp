@@ -1,11 +1,36 @@
 angular.module('starter.friendcirclecontrollers', [])
 
-.controller('FriendcircleCtrl', function($scope, $ionicPopup, Format, $ionicLoading, $state, $rootScope, $window, PersonalHomepageService, IdSearch, $timeout) {
+.controller('FriendcircleCtrl', function($scope, $ionicPopup, Format, $ionicLoading, $state, $rootScope, $window, PersonalHomepageService, IdSearch, $timeout,$ionicActionSheet) {
   $scope.clickarray = new Array();
   $scope.friend_id = null;
   $scope.inputshow = false;
 
   $scope.userbasic = $window.sessionStorage;
+
+  //ionicActionSheet
+  $scope.publish = function(){
+    var hideSheet = $ionicActionSheet.show({
+      buttons:[
+        {text:'纯文字发布'},
+        {text:'拍照'},
+        {text:'从手机相册选择'}
+      ],
+      cancelText:'取消',
+      buttonClicked:function(index){
+        switch(index){
+          case 0:
+            $state.go('tab.publishtxt');
+            return true;
+          case 1:
+            alert('22222');
+            return true;
+          case 1:
+            alert('22222');
+            return true;
+        }
+      }
+    });
+  };
 
   $scope.gomypage = function() {
     $state.go('personalHomepage');
@@ -216,3 +241,7 @@ angular.module('starter.friendcirclecontrollers', [])
     });      
   }
 })
+
+
+
+

@@ -54,6 +54,10 @@ angular.module('GlobalPath', [])
     return urldomain + 'receiveremark.php';
   }
 
+  service.getPublishtxtPath = function(){
+    return urldomain + 'publishtxt.php';
+  }
+
   return service;
 })
 

@@ -60,5 +60,18 @@ angular.module('FactoryPersonalHomepageService', [])
     })
   }
 
+  service.publishtxt = function(user_id,content){
+    return $http({
+      // url: getPublishtxtPath,
+      url:'http://127.0.0.1/publishtxt.php',
+      method: 'POST',
+      data: JSON.stringify({
+        user_id:user_id,
+        content:content
+      }),
+      withCredentials: true
+    })
+  }
+
   return service;
 })

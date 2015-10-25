@@ -1,0 +1,16 @@
+<ion-view view-title="发表文字">
+
+<!--  <ion-nav-buttons  side = "left">
+    <button class = "button" style = "border:0px" ng-click="publish()">取消</button>
+   </ion-nav-buttons> -->
+
+    <ion-nav-buttons  side = "right">
+    <button class = "button" style = "border:0px;color:#00AA55" ng-click="sendtxt()" ng-disabled="publish.content === ''">发送</button>
+   </ion-nav-buttons>
+
+  <ion-content style="background: #e8ebf1;">
+	 	<textarea   ng-model = "publish.content" type="text"  style ="width:100%"rows = "30" id ="inputContent"> 
+	 	</textarea>
+  </ion-content>
+
+</ion-view>

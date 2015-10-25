@@ -22,6 +22,7 @@ angular.module('starter', [
   'starter.friendcirclecontrollers',
   'starter.homepagecontrollers',
   'starter.accountcontrollers',
+  'starter.publishcontrollers',
   'SystemCtrls',
 
   //factories
