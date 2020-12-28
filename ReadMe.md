@@ -11,6 +11,8 @@
 * View 17salsa on [Android Market](https://play.google.com/store/apps/details?id=com.salsa17.home)
 * View 17salsa on [Apple Store](https://itunes.apple.com/cn/app/17salsa/id1019231034)
 
+See: <https://appadvice.com/app/17salsa/1019231034>
+
 ## Coding style
 * JSCS: preset to google
 * JSHint
