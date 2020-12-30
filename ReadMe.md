@@ -7,7 +7,7 @@
 
 [![Browser Support](https://ci.testling.com/AKAMobi/ucapp.png)](https://ci.testling.com/AKAMobi/ucapp)
 
-* View UCApp on GitHub - https://github.com/AKAMobi/ucapp
+* View UCApp on GitHub - https://github.com/zixia/ucapp
 * View 17salsa on [Android Market](https://play.google.com/store/apps/details?id=com.salsa17.home)
 * View 17salsa on [Apple Store](https://itunes.apple.com/cn/app/17salsa/id1019231034)
 
